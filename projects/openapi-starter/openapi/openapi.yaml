@@ -26,6 +26,10 @@ tags:
   #   description: "Example echo operations."
   - name: User
     description: "Example actions on user accounts."
+  - name: Customer
+    description: "Example actions on customer accounts."
+  - name: Products
+    description: Product operations 
   # - name: Admin
   #   description: "Example operations reserved for administrators."
   # - name: Info
@@ -49,6 +53,16 @@ servers:
         description: Your tenant id
   - url: https://example.com/api/v1
 paths:
+  '/v1/customers':
+    $ref: paths/v1/customers.yaml
+  '/v1/customers/{customer_id}':
+    $ref: paths/v1/customers_{customer_id}.yaml
+
+  '/v1/products':
+    $ref: paths/v1/products.yaml
+  '/v1/products/{product_id}':
+    $ref: paths/v1/products_{product_id}.yaml
+  
   '/users/{username}':
     $ref: 'paths/users_{username}.yaml'
   '/user':
@@ -61,6 +75,8 @@ paths:
   #   $ref: paths/pathItemWithExamples.yaml
   # '/echo':
   #   $ref: 'paths/echo.yaml'
+security: 
+  -  basic_auth: []
 components:
   securitySchemes:
     main_auth:
