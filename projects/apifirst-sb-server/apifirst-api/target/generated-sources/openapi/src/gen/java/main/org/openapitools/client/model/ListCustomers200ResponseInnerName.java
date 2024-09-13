@@ -14,138 +14,164 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import org.openapitools.jackson.nullable.JsonNullable;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import org.openapitools.client.JSON;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ListCustomers200ResponseInnerName
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-13T16:50:15.728540814Z[Etc/UTC]", comments = "Generator version: 7.8.0")
+@JsonPropertyOrder({
+  ListCustomers200ResponseInnerName.JSON_PROPERTY_PREFIX,
+  ListCustomers200ResponseInnerName.JSON_PROPERTY_FIRST_NAME,
+  ListCustomers200ResponseInnerName.JSON_PROPERTY_LAST_NAME,
+  ListCustomers200ResponseInnerName.JSON_PROPERTY_SUFFIX
+})
+@JsonTypeName("listCustomers_200_response_inner_name")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-13T20:31:19.509005654Z[Etc/UTC]")
 public class ListCustomers200ResponseInnerName {
-  public static final String SERIALIZED_NAME_PREFIX = "prefix";
-  @SerializedName(SERIALIZED_NAME_PREFIX)
-  private String prefix;
+  public static final String JSON_PROPERTY_PREFIX = "prefix";
+  private JsonNullable<String> prefix = JsonNullable.<String>undefined();
 
-  public static final String SERIALIZED_NAME_FIRST_NAME = "firstName";
-  @SerializedName(SERIALIZED_NAME_FIRST_NAME)
+  public static final String JSON_PROPERTY_FIRST_NAME = "firstName";
   private String firstName;
 
-  public static final String SERIALIZED_NAME_LAST_NAME = "lastName";
-  @SerializedName(SERIALIZED_NAME_LAST_NAME)
+  public static final String JSON_PROPERTY_LAST_NAME = "lastName";
   private String lastName;
 
-  public static final String SERIALIZED_NAME_SUFFIX = "suffix";
-  @SerializedName(SERIALIZED_NAME_SUFFIX)
-  private String suffix;
+  public static final String JSON_PROPERTY_SUFFIX = "suffix";
+  private JsonNullable<String> suffix = JsonNullable.<String>undefined();
 
   public ListCustomers200ResponseInnerName() {
   }
 
   public ListCustomers200ResponseInnerName prefix(String prefix) {
-    this.prefix = prefix;
+    this.prefix = JsonNullable.<String>of(prefix);
+    
     return this;
   }
 
-  /**
+   /**
    * Name Prefix
    * @return prefix
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonIgnore
+
   public String getPrefix() {
+        return prefix.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_PREFIX)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getPrefix_JsonNullable() {
     return prefix;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PREFIX)
+  public void setPrefix_JsonNullable(JsonNullable<String> prefix) {
+    this.prefix = prefix;
   }
 
   public void setPrefix(String prefix) {
-    this.prefix = prefix;
+    this.prefix = JsonNullable.<String>of(prefix);
   }
 
 
   public ListCustomers200ResponseInnerName firstName(String firstName) {
+    
     this.firstName = firstName;
     return this;
   }
 
-  /**
+   /**
    * First Name
    * @return firstName
-   */
+  **/
   @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_FIRST_NAME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
   public String getFirstName() {
     return firstName;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_FIRST_NAME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setFirstName(String firstName) {
     this.firstName = firstName;
   }
 
 
   public ListCustomers200ResponseInnerName lastName(String lastName) {
+    
     this.lastName = lastName;
     return this;
   }
 
-  /**
+   /**
    * Last Name
    * @return lastName
-   */
+  **/
   @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_LAST_NAME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
   public String getLastName() {
     return lastName;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_LAST_NAME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setLastName(String lastName) {
     this.lastName = lastName;
   }
 
 
   public ListCustomers200ResponseInnerName suffix(String suffix) {
-    this.suffix = suffix;
+    this.suffix = JsonNullable.<String>of(suffix);
+    
     return this;
   }
 
-  /**
+   /**
    * Name Suffix
    * @return suffix
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonIgnore
+
   public String getSuffix() {
-    return suffix;
+        return suffix.orElse(null);
   }
 
-  public void setSuffix(String suffix) {
+  @JsonProperty(JSON_PROPERTY_SUFFIX)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getSuffix_JsonNullable() {
+    return suffix;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SUFFIX)
+  public void setSuffix_JsonNullable(JsonNullable<String> suffix) {
     this.suffix = suffix;
   }
 
-
+  public void setSuffix(String suffix) {
+    this.suffix = JsonNullable.<String>of(suffix);
+  }
 
   @Override
   public boolean equals(Object o) {
@@ -156,10 +182,10 @@ public class ListCustomers200ResponseInnerName {
       return false;
     }
     ListCustomers200ResponseInnerName listCustomers200ResponseInnerName = (ListCustomers200ResponseInnerName) o;
-    return Objects.equals(this.prefix, listCustomers200ResponseInnerName.prefix) &&
+    return equalsNullable(this.prefix, listCustomers200ResponseInnerName.prefix) &&
         Objects.equals(this.firstName, listCustomers200ResponseInnerName.firstName) &&
         Objects.equals(this.lastName, listCustomers200ResponseInnerName.lastName) &&
-        Objects.equals(this.suffix, listCustomers200ResponseInnerName.suffix);
+        equalsNullable(this.suffix, listCustomers200ResponseInnerName.suffix);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -168,7 +194,7 @@ public class ListCustomers200ResponseInnerName {
 
   @Override
   public int hashCode() {
-    return Objects.hash(prefix, firstName, lastName, suffix);
+    return Objects.hash(hashCodeNullable(prefix), firstName, lastName, hashCodeNullable(suffix));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -201,113 +227,5 @@ public class ListCustomers200ResponseInnerName {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("prefix");
-    openapiFields.add("firstName");
-    openapiFields.add("lastName");
-    openapiFields.add("suffix");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("firstName");
-    openapiRequiredFields.add("lastName");
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ListCustomers200ResponseInnerName
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ListCustomers200ResponseInnerName.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ListCustomers200ResponseInnerName is not found in the empty JSON string", ListCustomers200ResponseInnerName.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ListCustomers200ResponseInnerName.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ListCustomers200ResponseInnerName` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : ListCustomers200ResponseInnerName.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("prefix") != null && !jsonObj.get("prefix").isJsonNull()) && !jsonObj.get("prefix").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `prefix` to be a primitive type in the JSON string but got `%s`", jsonObj.get("prefix").toString()));
-      }
-      if (!jsonObj.get("firstName").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `firstName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("firstName").toString()));
-      }
-      if (!jsonObj.get("lastName").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `lastName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("lastName").toString()));
-      }
-      if ((jsonObj.get("suffix") != null && !jsonObj.get("suffix").isJsonNull()) && !jsonObj.get("suffix").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `suffix` to be a primitive type in the JSON string but got `%s`", jsonObj.get("suffix").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ListCustomers200ResponseInnerName.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ListCustomers200ResponseInnerName' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ListCustomers200ResponseInnerName> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ListCustomers200ResponseInnerName.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ListCustomers200ResponseInnerName>() {
-           @Override
-           public void write(JsonWriter out, ListCustomers200ResponseInnerName value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ListCustomers200ResponseInnerName read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
-    }
-  }
-
-  /**
-   * Create an instance of ListCustomers200ResponseInnerName given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ListCustomers200ResponseInnerName
-   * @throws IOException if the JSON string is invalid with respect to ListCustomers200ResponseInnerName
-   */
-  public static ListCustomers200ResponseInnerName fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ListCustomers200ResponseInnerName.class);
-  }
-
-  /**
-   * Convert an instance of ListCustomers200ResponseInnerName to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
-  }
 }
 

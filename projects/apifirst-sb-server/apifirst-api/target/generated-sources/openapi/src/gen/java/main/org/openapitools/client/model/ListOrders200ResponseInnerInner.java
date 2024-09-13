@@ -14,12 +14,12 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,47 +27,33 @@ import java.util.List;
 import java.util.UUID;
 import org.openapitools.client.model.ListOrders200ResponseInnerInnerCustomer;
 import org.openapitools.client.model.ListOrders200ResponseInnerInnerOrderLinesInner;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import org.openapitools.client.JSON;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ListOrders200ResponseInnerInner
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-13T16:50:15.728540814Z[Etc/UTC]", comments = "Generator version: 7.8.0")
+@JsonPropertyOrder({
+  ListOrders200ResponseInnerInner.JSON_PROPERTY_ID,
+  ListOrders200ResponseInnerInner.JSON_PROPERTY_CUSTOMER,
+  ListOrders200ResponseInnerInner.JSON_PROPERTY_ORDER_STATUS,
+  ListOrders200ResponseInnerInner.JSON_PROPERTY_SHIPMENT_INFO,
+  ListOrders200ResponseInnerInner.JSON_PROPERTY_ORDER_LINES,
+  ListOrders200ResponseInnerInner.JSON_PROPERTY_DATE_CREATED,
+  ListOrders200ResponseInnerInner.JSON_PROPERTY_DATE_UPDATED
+})
+@JsonTypeName("listOrders_200_response_inner_inner")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-13T20:31:19.509005654Z[Etc/UTC]")
 public class ListOrders200ResponseInnerInner {
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
+  public static final String JSON_PROPERTY_ID = "id";
   private UUID id;
 
-  public static final String SERIALIZED_NAME_CUSTOMER = "customer";
-  @SerializedName(SERIALIZED_NAME_CUSTOMER)
+  public static final String JSON_PROPERTY_CUSTOMER = "customer";
   private ListOrders200ResponseInnerInnerCustomer customer;
 
   /**
    * Gets or Sets orderStatus
    */
-  @JsonAdapter(OrderStatusEnum.Adapter.class)
   public enum OrderStatusEnum {
     NEW("NEW"),
     
@@ -85,6 +71,7 @@ public class ListOrders200ResponseInnerInner {
       this.value = value;
     }
 
+    @JsonValue
     public String getValue() {
       return value;
     }
@@ -94,6 +81,7 @@ public class ListOrders200ResponseInnerInner {
       return String.valueOf(value);
     }
 
+    @JsonCreator
     public static OrderStatusEnum fromValue(String value) {
       for (OrderStatusEnum b : OrderStatusEnum.values()) {
         if (b.value.equals(value)) {
@@ -102,53 +90,31 @@ public class ListOrders200ResponseInnerInner {
       }
       throw new IllegalArgumentException("Unexpected value '" + value + "'");
     }
-
-    public static class Adapter extends TypeAdapter<OrderStatusEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final OrderStatusEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public OrderStatusEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return OrderStatusEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      OrderStatusEnum.fromValue(value);
-    }
   }
 
-  public static final String SERIALIZED_NAME_ORDER_STATUS = "orderStatus";
-  @SerializedName(SERIALIZED_NAME_ORDER_STATUS)
+  public static final String JSON_PROPERTY_ORDER_STATUS = "orderStatus";
   private OrderStatusEnum orderStatus = OrderStatusEnum.NEW;
 
-  public static final String SERIALIZED_NAME_SHIPMENT_INFO = "shipmentInfo";
-  @SerializedName(SERIALIZED_NAME_SHIPMENT_INFO)
+  public static final String JSON_PROPERTY_SHIPMENT_INFO = "shipmentInfo";
   private String shipmentInfo;
 
-  public static final String SERIALIZED_NAME_ORDER_LINES = "orderLines";
-  @SerializedName(SERIALIZED_NAME_ORDER_LINES)
+  public static final String JSON_PROPERTY_ORDER_LINES = "orderLines";
   private List<ListOrders200ResponseInnerInnerOrderLinesInner> orderLines = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_DATE_CREATED = "dateCreated";
-  @SerializedName(SERIALIZED_NAME_DATE_CREATED)
+  public static final String JSON_PROPERTY_DATE_CREATED = "dateCreated";
   private OffsetDateTime dateCreated;
 
-  public static final String SERIALIZED_NAME_DATE_UPDATED = "dateUpdated";
-  @SerializedName(SERIALIZED_NAME_DATE_UPDATED)
+  public static final String JSON_PROPERTY_DATE_UPDATED = "dateUpdated";
   private OffsetDateTime dateUpdated;
 
   public ListOrders200ResponseInnerInner() {
   }
 
+  @JsonCreator
   public ListOrders200ResponseInnerInner(
-     UUID id, 
-     OffsetDateTime dateCreated, 
-     OffsetDateTime dateUpdated
+    @JsonProperty(JSON_PROPERTY_ID) UUID id, 
+    @JsonProperty(JSON_PROPERTY_DATE_CREATED) OffsetDateTime dateCreated, 
+    @JsonProperty(JSON_PROPERTY_DATE_UPDATED) OffsetDateTime dateUpdated
   ) {
     this();
     this.id = id;
@@ -156,75 +122,101 @@ public class ListOrders200ResponseInnerInner {
     this.dateUpdated = dateUpdated;
   }
 
-  /**
+   /**
    * The unique identifier of the order
    * @return id
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
   public UUID getId() {
     return id;
   }
 
 
 
+
   public ListOrders200ResponseInnerInner customer(ListOrders200ResponseInnerInnerCustomer customer) {
+    
     this.customer = customer;
     return this;
   }
 
-  /**
+   /**
    * Get customer
    * @return customer
-   */
+  **/
   @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_CUSTOMER)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
   public ListOrders200ResponseInnerInnerCustomer getCustomer() {
     return customer;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CUSTOMER)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCustomer(ListOrders200ResponseInnerInnerCustomer customer) {
     this.customer = customer;
   }
 
 
   public ListOrders200ResponseInnerInner orderStatus(OrderStatusEnum orderStatus) {
+    
     this.orderStatus = orderStatus;
     return this;
   }
 
-  /**
+   /**
    * Get orderStatus
    * @return orderStatus
-   */
+  **/
   @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_ORDER_STATUS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
   public OrderStatusEnum getOrderStatus() {
     return orderStatus;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ORDER_STATUS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setOrderStatus(OrderStatusEnum orderStatus) {
     this.orderStatus = orderStatus;
   }
 
 
   public ListOrders200ResponseInnerInner shipmentInfo(String shipmentInfo) {
+    
     this.shipmentInfo = shipmentInfo;
     return this;
   }
 
-  /**
+   /**
    * Get shipmentInfo
    * @return shipmentInfo
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_SHIPMENT_INFO)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
   public String getShipmentInfo() {
     return shipmentInfo;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SHIPMENT_INFO)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setShipmentInfo(String shipmentInfo) {
     this.shipmentInfo = shipmentInfo;
   }
 
 
   public ListOrders200ResponseInnerInner orderLines(List<ListOrders200ResponseInnerInnerOrderLinesInner> orderLines) {
+    
     this.orderLines = orderLines;
     return this;
   }
@@ -237,40 +229,52 @@ public class ListOrders200ResponseInnerInner {
     return this;
   }
 
-  /**
-   * The order lines of the order
+   /**
+   * Get orderLines
    * @return orderLines
-   */
+  **/
   @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_ORDER_LINES)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
   public List<ListOrders200ResponseInnerInnerOrderLinesInner> getOrderLines() {
     return orderLines;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ORDER_LINES)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setOrderLines(List<ListOrders200ResponseInnerInnerOrderLinesInner> orderLines) {
     this.orderLines = orderLines;
   }
 
 
-  /**
+   /**
    * ISO 8601 Timestamp. Date Created and Date Updated are system managed values, should not be sent in request payloads - will be ignored.
    * @return dateCreated
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_DATE_CREATED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
   public OffsetDateTime getDateCreated() {
     return dateCreated;
   }
 
 
 
-  /**
+
+   /**
    * ISO 8601 Timestamp. Date Created and Date Updated are system managed values, should not be sent in request payloads - will be ignored.
    * @return dateUpdated
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_DATE_UPDATED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
   public OffsetDateTime getDateUpdated() {
     return dateUpdated;
   }
-
 
 
 
@@ -323,128 +327,5 @@ public class ListOrders200ResponseInnerInner {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("customer");
-    openapiFields.add("orderStatus");
-    openapiFields.add("shipmentInfo");
-    openapiFields.add("orderLines");
-    openapiFields.add("dateCreated");
-    openapiFields.add("dateUpdated");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("customer");
-    openapiRequiredFields.add("orderStatus");
-    openapiRequiredFields.add("orderLines");
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ListOrders200ResponseInnerInner
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ListOrders200ResponseInnerInner.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ListOrders200ResponseInnerInner is not found in the empty JSON string", ListOrders200ResponseInnerInner.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ListOrders200ResponseInnerInner.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ListOrders200ResponseInnerInner` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : ListOrders200ResponseInnerInner.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
-      }
-      // validate the required field `customer`
-      ListOrders200ResponseInnerInnerCustomer.validateJsonElement(jsonObj.get("customer"));
-      if (!jsonObj.get("orderStatus").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `orderStatus` to be a primitive type in the JSON string but got `%s`", jsonObj.get("orderStatus").toString()));
-      }
-      // validate the required field `orderStatus`
-      OrderStatusEnum.validateJsonElement(jsonObj.get("orderStatus"));
-      if ((jsonObj.get("shipmentInfo") != null && !jsonObj.get("shipmentInfo").isJsonNull()) && !jsonObj.get("shipmentInfo").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `shipmentInfo` to be a primitive type in the JSON string but got `%s`", jsonObj.get("shipmentInfo").toString()));
-      }
-      // ensure the json data is an array
-      if (!jsonObj.get("orderLines").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `orderLines` to be an array in the JSON string but got `%s`", jsonObj.get("orderLines").toString()));
-      }
-
-      JsonArray jsonArrayorderLines = jsonObj.getAsJsonArray("orderLines");
-      // validate the required field `orderLines` (array)
-      for (int i = 0; i < jsonArrayorderLines.size(); i++) {
-        ListOrders200ResponseInnerInnerOrderLinesInner.validateJsonElement(jsonArrayorderLines.get(i));
-      };
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ListOrders200ResponseInnerInner.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ListOrders200ResponseInnerInner' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ListOrders200ResponseInnerInner> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ListOrders200ResponseInnerInner.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ListOrders200ResponseInnerInner>() {
-           @Override
-           public void write(JsonWriter out, ListOrders200ResponseInnerInner value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ListOrders200ResponseInnerInner read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
-    }
-  }
-
-  /**
-   * Create an instance of ListOrders200ResponseInnerInner given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ListOrders200ResponseInnerInner
-   * @throws IOException if the JSON string is invalid with respect to ListOrders200ResponseInnerInner
-   */
-  public static ListOrders200ResponseInnerInner fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ListOrders200ResponseInnerInner.class);
-  }
-
-  /**
-   * Convert an instance of ListOrders200ResponseInnerInner to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
-  }
 }
 

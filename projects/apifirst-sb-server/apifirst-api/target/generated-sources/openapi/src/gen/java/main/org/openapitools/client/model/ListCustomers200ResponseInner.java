@@ -14,12 +14,12 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,78 +29,64 @@ import org.openapitools.client.model.ListCustomers200ResponseInnerName;
 import org.openapitools.client.model.ListCustomers200ResponseInnerPaymentMethodsInner;
 import org.openapitools.client.model.ListCustomers200ResponseInnerShipToAddress;
 import org.openapitools.jackson.nullable.JsonNullable;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import org.openapitools.client.JSON;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ListCustomers200ResponseInner
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-13T16:50:15.728540814Z[Etc/UTC]", comments = "Generator version: 7.8.0")
+@JsonPropertyOrder({
+  ListCustomers200ResponseInner.JSON_PROPERTY_ID,
+  ListCustomers200ResponseInner.JSON_PROPERTY_NAME,
+  ListCustomers200ResponseInner.JSON_PROPERTY_SHIP_TO_ADDRESS,
+  ListCustomers200ResponseInner.JSON_PROPERTY_BILL_TO_ADDRESS,
+  ListCustomers200ResponseInner.JSON_PROPERTY_EMAIL,
+  ListCustomers200ResponseInner.JSON_PROPERTY_PHONE,
+  ListCustomers200ResponseInner.JSON_PROPERTY_PAYMENT_METHODS,
+  ListCustomers200ResponseInner.JSON_PROPERTY_DATE_CREATED,
+  ListCustomers200ResponseInner.JSON_PROPERTY_DATE_UPDATED
+})
+@JsonTypeName("listCustomers_200_response_inner")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-13T20:31:19.509005654Z[Etc/UTC]")
 public class ListCustomers200ResponseInner {
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
+  public static final String JSON_PROPERTY_ID = "id";
   private UUID id;
 
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
+  public static final String JSON_PROPERTY_NAME = "name";
   private ListCustomers200ResponseInnerName name;
 
-  public static final String SERIALIZED_NAME_SHIP_TO_ADDRESS = "shipToAddress";
-  @SerializedName(SERIALIZED_NAME_SHIP_TO_ADDRESS)
+  public static final String JSON_PROPERTY_SHIP_TO_ADDRESS = "shipToAddress";
   private ListCustomers200ResponseInnerShipToAddress shipToAddress;
 
-  public static final String SERIALIZED_NAME_BILL_TO_ADDRESS = "billToAddress";
-  @SerializedName(SERIALIZED_NAME_BILL_TO_ADDRESS)
+  public static final String JSON_PROPERTY_BILL_TO_ADDRESS = "billToAddress";
   private ListCustomers200ResponseInnerShipToAddress billToAddress;
 
-  public static final String SERIALIZED_NAME_EMAIL = "email";
-  @SerializedName(SERIALIZED_NAME_EMAIL)
-  private String email;
+  public static final String JSON_PROPERTY_EMAIL = "email";
+  private JsonNullable<String> email = JsonNullable.<String>undefined();
 
-  public static final String SERIALIZED_NAME_PHONE = "phone";
-  @SerializedName(SERIALIZED_NAME_PHONE)
-  private String phone;
+  public static final String JSON_PROPERTY_PHONE = "phone";
+  private JsonNullable<String> phone = JsonNullable.<String>undefined();
 
-  public static final String SERIALIZED_NAME_PAYMENT_METHODS = "paymentMethods";
-  @SerializedName(SERIALIZED_NAME_PAYMENT_METHODS)
-  private List<ListCustomers200ResponseInnerPaymentMethodsInner> paymentMethods = new ArrayList<>();
+  public static final String JSON_PROPERTY_PAYMENT_METHODS = "paymentMethods";
+  private List<ListCustomers200ResponseInnerPaymentMethodsInner> paymentMethods;
 
-  public static final String SERIALIZED_NAME_DATE_CREATED = "dateCreated";
-  @SerializedName(SERIALIZED_NAME_DATE_CREATED)
+  public static final String JSON_PROPERTY_DATE_CREATED = "dateCreated";
   private OffsetDateTime dateCreated;
 
-  public static final String SERIALIZED_NAME_DATE_UPDATED = "dateUpdated";
-  @SerializedName(SERIALIZED_NAME_DATE_UPDATED)
+  public static final String JSON_PROPERTY_DATE_UPDATED = "dateUpdated";
   private OffsetDateTime dateUpdated;
 
   public ListCustomers200ResponseInner() {
   }
 
+  @JsonCreator
   public ListCustomers200ResponseInner(
-     UUID id, 
-     OffsetDateTime dateCreated, 
-     OffsetDateTime dateUpdated
+    @JsonProperty(JSON_PROPERTY_ID) UUID id, 
+    @JsonProperty(JSON_PROPERTY_DATE_CREATED) OffsetDateTime dateCreated, 
+    @JsonProperty(JSON_PROPERTY_DATE_UPDATED) OffsetDateTime dateUpdated
   ) {
     this();
     this.id = id;
@@ -108,113 +94,169 @@ public class ListCustomers200ResponseInner {
     this.dateUpdated = dateUpdated;
   }
 
-  /**
+   /**
    * Unique identifier representing a specific customer
    * @return id
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
   public UUID getId() {
     return id;
   }
 
 
 
+
   public ListCustomers200ResponseInner name(ListCustomers200ResponseInnerName name) {
+    
     this.name = name;
     return this;
   }
 
-  /**
+   /**
    * Get name
    * @return name
-   */
+  **/
   @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
   public ListCustomers200ResponseInnerName getName() {
     return name;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setName(ListCustomers200ResponseInnerName name) {
     this.name = name;
   }
 
 
   public ListCustomers200ResponseInner shipToAddress(ListCustomers200ResponseInnerShipToAddress shipToAddress) {
+    
     this.shipToAddress = shipToAddress;
     return this;
   }
 
-  /**
+   /**
    * Get shipToAddress
    * @return shipToAddress
-   */
+  **/
   @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_SHIP_TO_ADDRESS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
   public ListCustomers200ResponseInnerShipToAddress getShipToAddress() {
     return shipToAddress;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SHIP_TO_ADDRESS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setShipToAddress(ListCustomers200ResponseInnerShipToAddress shipToAddress) {
     this.shipToAddress = shipToAddress;
   }
 
 
   public ListCustomers200ResponseInner billToAddress(ListCustomers200ResponseInnerShipToAddress billToAddress) {
+    
     this.billToAddress = billToAddress;
     return this;
   }
 
-  /**
+   /**
    * Get billToAddress
    * @return billToAddress
-   */
+  **/
   @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_BILL_TO_ADDRESS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
   public ListCustomers200ResponseInnerShipToAddress getBillToAddress() {
     return billToAddress;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_BILL_TO_ADDRESS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setBillToAddress(ListCustomers200ResponseInnerShipToAddress billToAddress) {
     this.billToAddress = billToAddress;
   }
 
 
   public ListCustomers200ResponseInner email(String email) {
-    this.email = email;
+    this.email = JsonNullable.<String>of(email);
+    
     return this;
   }
 
-  /**
+   /**
    * Get email
    * @return email
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonIgnore
+
   public String getEmail() {
+        return email.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_EMAIL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getEmail_JsonNullable() {
     return email;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EMAIL)
+  public void setEmail_JsonNullable(JsonNullable<String> email) {
+    this.email = email;
   }
 
   public void setEmail(String email) {
-    this.email = email;
+    this.email = JsonNullable.<String>of(email);
   }
 
 
   public ListCustomers200ResponseInner phone(String phone) {
-    this.phone = phone;
+    this.phone = JsonNullable.<String>of(phone);
+    
     return this;
   }
 
-  /**
+   /**
    * Get phone
    * @return phone
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonIgnore
+
   public String getPhone() {
+        return phone.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_PHONE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getPhone_JsonNullable() {
     return phone;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PHONE)
+  public void setPhone_JsonNullable(JsonNullable<String> phone) {
+    this.phone = phone;
   }
 
   public void setPhone(String phone) {
-    this.phone = phone;
+    this.phone = JsonNullable.<String>of(phone);
   }
 
 
   public ListCustomers200ResponseInner paymentMethods(List<ListCustomers200ResponseInnerPaymentMethodsInner> paymentMethods) {
+    
     this.paymentMethods = paymentMethods;
     return this;
   }
@@ -227,40 +269,52 @@ public class ListCustomers200ResponseInner {
     return this;
   }
 
-  /**
+   /**
    * Get paymentMethods
    * @return paymentMethods
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_PAYMENT_METHODS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
   public List<ListCustomers200ResponseInnerPaymentMethodsInner> getPaymentMethods() {
     return paymentMethods;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PAYMENT_METHODS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPaymentMethods(List<ListCustomers200ResponseInnerPaymentMethodsInner> paymentMethods) {
     this.paymentMethods = paymentMethods;
   }
 
 
-  /**
+   /**
    * ISO 8601 Timestamp. Date Created and Date Updated are system managed values, should not be sent in request payloads - will be ignored.
    * @return dateCreated
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_DATE_CREATED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
   public OffsetDateTime getDateCreated() {
     return dateCreated;
   }
 
 
 
-  /**
+
+   /**
    * ISO 8601 Timestamp. Date Created and Date Updated are system managed values, should not be sent in request payloads - will be ignored.
    * @return dateUpdated
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_DATE_UPDATED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
   public OffsetDateTime getDateUpdated() {
     return dateUpdated;
   }
-
 
 
 
@@ -277,8 +331,8 @@ public class ListCustomers200ResponseInner {
         Objects.equals(this.name, listCustomers200ResponseInner.name) &&
         Objects.equals(this.shipToAddress, listCustomers200ResponseInner.shipToAddress) &&
         Objects.equals(this.billToAddress, listCustomers200ResponseInner.billToAddress) &&
-        Objects.equals(this.email, listCustomers200ResponseInner.email) &&
-        Objects.equals(this.phone, listCustomers200ResponseInner.phone) &&
+        equalsNullable(this.email, listCustomers200ResponseInner.email) &&
+        equalsNullable(this.phone, listCustomers200ResponseInner.phone) &&
         Objects.equals(this.paymentMethods, listCustomers200ResponseInner.paymentMethods) &&
         Objects.equals(this.dateCreated, listCustomers200ResponseInner.dateCreated) &&
         Objects.equals(this.dateUpdated, listCustomers200ResponseInner.dateUpdated);
@@ -290,7 +344,7 @@ public class ListCustomers200ResponseInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, shipToAddress, billToAddress, email, phone, paymentMethods, dateCreated, dateUpdated);
+    return Objects.hash(id, name, shipToAddress, billToAddress, hashCodeNullable(email), hashCodeNullable(phone), paymentMethods, dateCreated, dateUpdated);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -328,136 +382,5 @@ public class ListCustomers200ResponseInner {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("name");
-    openapiFields.add("shipToAddress");
-    openapiFields.add("billToAddress");
-    openapiFields.add("email");
-    openapiFields.add("phone");
-    openapiFields.add("paymentMethods");
-    openapiFields.add("dateCreated");
-    openapiFields.add("dateUpdated");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("name");
-    openapiRequiredFields.add("shipToAddress");
-    openapiRequiredFields.add("billToAddress");
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ListCustomers200ResponseInner
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ListCustomers200ResponseInner.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ListCustomers200ResponseInner is not found in the empty JSON string", ListCustomers200ResponseInner.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ListCustomers200ResponseInner.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ListCustomers200ResponseInner` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : ListCustomers200ResponseInner.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
-      }
-      // validate the required field `name`
-      ListCustomers200ResponseInnerName.validateJsonElement(jsonObj.get("name"));
-      // validate the required field `shipToAddress`
-      ListCustomers200ResponseInnerShipToAddress.validateJsonElement(jsonObj.get("shipToAddress"));
-      // validate the required field `billToAddress`
-      ListCustomers200ResponseInnerShipToAddress.validateJsonElement(jsonObj.get("billToAddress"));
-      if ((jsonObj.get("email") != null && !jsonObj.get("email").isJsonNull()) && !jsonObj.get("email").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `email` to be a primitive type in the JSON string but got `%s`", jsonObj.get("email").toString()));
-      }
-      if ((jsonObj.get("phone") != null && !jsonObj.get("phone").isJsonNull()) && !jsonObj.get("phone").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `phone` to be a primitive type in the JSON string but got `%s`", jsonObj.get("phone").toString()));
-      }
-      if (jsonObj.get("paymentMethods") != null && !jsonObj.get("paymentMethods").isJsonNull()) {
-        JsonArray jsonArraypaymentMethods = jsonObj.getAsJsonArray("paymentMethods");
-        if (jsonArraypaymentMethods != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("paymentMethods").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `paymentMethods` to be an array in the JSON string but got `%s`", jsonObj.get("paymentMethods").toString()));
-          }
-
-          // validate the optional field `paymentMethods` (array)
-          for (int i = 0; i < jsonArraypaymentMethods.size(); i++) {
-            ListCustomers200ResponseInnerPaymentMethodsInner.validateJsonElement(jsonArraypaymentMethods.get(i));
-          };
-        }
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ListCustomers200ResponseInner.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ListCustomers200ResponseInner' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ListCustomers200ResponseInner> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ListCustomers200ResponseInner.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ListCustomers200ResponseInner>() {
-           @Override
-           public void write(JsonWriter out, ListCustomers200ResponseInner value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ListCustomers200ResponseInner read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
-    }
-  }
-
-  /**
-   * Create an instance of ListCustomers200ResponseInner given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ListCustomers200ResponseInner
-   * @throws IOException if the JSON string is invalid with respect to ListCustomers200ResponseInner
-   */
-  public static ListCustomers200ResponseInner fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ListCustomers200ResponseInner.class);
-  }
-
-  /**
-   * Convert an instance of ListCustomers200ResponseInner to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
-  }
 }
 

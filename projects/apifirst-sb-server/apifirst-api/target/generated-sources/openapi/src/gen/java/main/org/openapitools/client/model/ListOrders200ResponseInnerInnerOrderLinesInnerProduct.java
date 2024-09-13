@@ -14,115 +14,115 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.UUID;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import org.openapitools.client.JSON;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ListOrders200ResponseInnerInnerOrderLinesInnerProduct
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-13T16:50:15.728540814Z[Etc/UTC]", comments = "Generator version: 7.8.0")
+@JsonPropertyOrder({
+  ListOrders200ResponseInnerInnerOrderLinesInnerProduct.JSON_PROPERTY_ID,
+  ListOrders200ResponseInnerInnerOrderLinesInnerProduct.JSON_PROPERTY_DESCRIPTION,
+  ListOrders200ResponseInnerInnerOrderLinesInnerProduct.JSON_PROPERTY_PRICE
+})
+@JsonTypeName("listOrders_200_response_inner_inner_orderLines_inner_product")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-13T20:31:19.509005654Z[Etc/UTC]")
 public class ListOrders200ResponseInnerInnerOrderLinesInnerProduct {
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
+  public static final String JSON_PROPERTY_ID = "id";
   private UUID id;
 
-  public static final String SERIALIZED_NAME_DESCRIPTION = "description";
-  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  public static final String JSON_PROPERTY_DESCRIPTION = "description";
   private String description;
 
-  public static final String SERIALIZED_NAME_PRICE = "price";
-  @SerializedName(SERIALIZED_NAME_PRICE)
+  public static final String JSON_PROPERTY_PRICE = "price";
   private String price;
 
   public ListOrders200ResponseInnerInnerOrderLinesInnerProduct() {
   }
 
   public ListOrders200ResponseInnerInnerOrderLinesInnerProduct id(UUID id) {
+    
     this.id = id;
     return this;
   }
 
-  /**
+   /**
    * The unique identifier of the product
    * @return id
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
   public UUID getId() {
     return id;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(UUID id) {
     this.id = id;
   }
 
 
   public ListOrders200ResponseInnerInnerOrderLinesInnerProduct description(String description) {
+    
     this.description = description;
     return this;
   }
 
-  /**
+   /**
    * The description of the product
    * @return description
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
   public String getDescription() {
     return description;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDescription(String description) {
     this.description = description;
   }
 
 
   public ListOrders200ResponseInnerInnerOrderLinesInnerProduct price(String price) {
+    
     this.price = price;
     return this;
   }
 
-  /**
+   /**
    * Get price
    * @return price
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_PRICE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
   public String getPrice() {
     return price;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PRICE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPrice(String price) {
     this.price = price;
   }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -165,100 +165,5 @@ public class ListOrders200ResponseInnerInnerOrderLinesInnerProduct {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("description");
-    openapiFields.add("price");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ListOrders200ResponseInnerInnerOrderLinesInnerProduct
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ListOrders200ResponseInnerInnerOrderLinesInnerProduct.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ListOrders200ResponseInnerInnerOrderLinesInnerProduct is not found in the empty JSON string", ListOrders200ResponseInnerInnerOrderLinesInnerProduct.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ListOrders200ResponseInnerInnerOrderLinesInnerProduct.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ListOrders200ResponseInnerInnerOrderLinesInnerProduct` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
-      }
-      if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull()) && !jsonObj.get("description").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
-      }
-      if ((jsonObj.get("price") != null && !jsonObj.get("price").isJsonNull()) && !jsonObj.get("price").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `price` to be a primitive type in the JSON string but got `%s`", jsonObj.get("price").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ListOrders200ResponseInnerInnerOrderLinesInnerProduct.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ListOrders200ResponseInnerInnerOrderLinesInnerProduct' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ListOrders200ResponseInnerInnerOrderLinesInnerProduct> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ListOrders200ResponseInnerInnerOrderLinesInnerProduct.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ListOrders200ResponseInnerInnerOrderLinesInnerProduct>() {
-           @Override
-           public void write(JsonWriter out, ListOrders200ResponseInnerInnerOrderLinesInnerProduct value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ListOrders200ResponseInnerInnerOrderLinesInnerProduct read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
-    }
-  }
-
-  /**
-   * Create an instance of ListOrders200ResponseInnerInnerOrderLinesInnerProduct given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ListOrders200ResponseInnerInnerOrderLinesInnerProduct
-   * @throws IOException if the JSON string is invalid with respect to ListOrders200ResponseInnerInnerOrderLinesInnerProduct
-   */
-  public static ListOrders200ResponseInnerInnerOrderLinesInnerProduct fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ListOrders200ResponseInnerInnerOrderLinesInnerProduct.class);
-  }
-
-  /**
-   * Convert an instance of ListOrders200ResponseInnerInnerOrderLinesInnerProduct to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
-  }
 }
 

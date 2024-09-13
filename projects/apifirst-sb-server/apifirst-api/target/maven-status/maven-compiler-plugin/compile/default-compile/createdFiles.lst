@@ -1,0 +1,16 @@
+com/rsouza01/App.class
+org/openapitools/client/model/ListCustomers200ResponseInner.class
+org/openapitools/client/model/ListProducts200ResponseInnerCategoriesInner.class
+org/openapitools/client/model/ListProducts200ResponseInner.class
+org/openapitools/client/model/ListCustomers200ResponseInnerPaymentMethodsInner.class
+org/openapitools/client/model/ListCustomers404Response.class
+org/openapitools/client/model/ListOrders200ResponseInnerInnerCustomer.class
+org/openapitools/client/model/ListOrders200ResponseInnerInner$OrderStatusEnum.class
+org/openapitools/client/model/CreateCustomer400Response.class
+org/openapitools/client/model/ListCustomers200ResponseInnerShipToAddress.class
+org/openapitools/client/model/ListCustomers200ResponseInnerName.class
+org/openapitools/client/model/ListProducts200ResponseInnerDimentions.class
+org/openapitools/client/model/ListOrders200ResponseInnerInner.class
+org/openapitools/client/model/ListOrders200ResponseInnerInnerOrderLinesInnerProduct.class
+org/openapitools/client/model/ListOrders200ResponseInnerInnerOrderLinesInner.class
+org/openapitools/client/model/ListProducts200ResponseInnerImagesInner.class

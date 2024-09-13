@@ -14,210 +14,238 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.UUID;
 import org.openapitools.client.model.ListCustomers200ResponseInnerName;
 import org.openapitools.client.model.ListCustomers200ResponseInnerPaymentMethodsInner;
 import org.openapitools.client.model.ListCustomers200ResponseInnerShipToAddress;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import org.openapitools.client.JSON;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ListOrders200ResponseInnerInnerCustomer
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-13T16:50:15.728540814Z[Etc/UTC]", comments = "Generator version: 7.8.0")
+@JsonPropertyOrder({
+  ListOrders200ResponseInnerInnerCustomer.JSON_PROPERTY_ID,
+  ListOrders200ResponseInnerInnerCustomer.JSON_PROPERTY_NAME,
+  ListOrders200ResponseInnerInnerCustomer.JSON_PROPERTY_SHIP_TO_ADDRESS,
+  ListOrders200ResponseInnerInnerCustomer.JSON_PROPERTY_BILL_TO_ADDRESS,
+  ListOrders200ResponseInnerInnerCustomer.JSON_PROPERTY_EMAIL,
+  ListOrders200ResponseInnerInnerCustomer.JSON_PROPERTY_PHONE,
+  ListOrders200ResponseInnerInnerCustomer.JSON_PROPERTY_SELECTED_PAYMENT_METHOD
+})
+@JsonTypeName("listOrders_200_response_inner_inner_customer")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-13T20:31:19.509005654Z[Etc/UTC]")
 public class ListOrders200ResponseInnerInnerCustomer {
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
+  public static final String JSON_PROPERTY_ID = "id";
   private UUID id;
 
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
+  public static final String JSON_PROPERTY_NAME = "name";
   private ListCustomers200ResponseInnerName name;
 
-  public static final String SERIALIZED_NAME_SHIP_TO_ADDRESS = "shipToAddress";
-  @SerializedName(SERIALIZED_NAME_SHIP_TO_ADDRESS)
+  public static final String JSON_PROPERTY_SHIP_TO_ADDRESS = "shipToAddress";
   private ListCustomers200ResponseInnerShipToAddress shipToAddress;
 
-  public static final String SERIALIZED_NAME_BILL_TO_ADDRESS = "billToAddress";
-  @SerializedName(SERIALIZED_NAME_BILL_TO_ADDRESS)
+  public static final String JSON_PROPERTY_BILL_TO_ADDRESS = "billToAddress";
   private ListCustomers200ResponseInnerShipToAddress billToAddress;
 
-  public static final String SERIALIZED_NAME_EMAIL = "email";
-  @SerializedName(SERIALIZED_NAME_EMAIL)
+  public static final String JSON_PROPERTY_EMAIL = "email";
   private String email;
 
-  public static final String SERIALIZED_NAME_PHONE = "phone";
-  @SerializedName(SERIALIZED_NAME_PHONE)
+  public static final String JSON_PROPERTY_PHONE = "phone";
   private String phone;
 
-  public static final String SERIALIZED_NAME_SELECTED_PAYMENT_METHOD = "selectedPaymentMethod";
-  @SerializedName(SERIALIZED_NAME_SELECTED_PAYMENT_METHOD)
+  public static final String JSON_PROPERTY_SELECTED_PAYMENT_METHOD = "selectedPaymentMethod";
   private ListCustomers200ResponseInnerPaymentMethodsInner selectedPaymentMethod;
 
   public ListOrders200ResponseInnerInnerCustomer() {
   }
 
   public ListOrders200ResponseInnerInnerCustomer id(UUID id) {
+    
     this.id = id;
     return this;
   }
 
-  /**
+   /**
    * The unique identifier of the customer
    * @return id
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
   public UUID getId() {
     return id;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(UUID id) {
     this.id = id;
   }
 
 
   public ListOrders200ResponseInnerInnerCustomer name(ListCustomers200ResponseInnerName name) {
+    
     this.name = name;
     return this;
   }
 
-  /**
+   /**
    * Get name
    * @return name
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
   public ListCustomers200ResponseInnerName getName() {
     return name;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(ListCustomers200ResponseInnerName name) {
     this.name = name;
   }
 
 
   public ListOrders200ResponseInnerInnerCustomer shipToAddress(ListCustomers200ResponseInnerShipToAddress shipToAddress) {
+    
     this.shipToAddress = shipToAddress;
     return this;
   }
 
-  /**
+   /**
    * Get shipToAddress
    * @return shipToAddress
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_SHIP_TO_ADDRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
   public ListCustomers200ResponseInnerShipToAddress getShipToAddress() {
     return shipToAddress;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SHIP_TO_ADDRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setShipToAddress(ListCustomers200ResponseInnerShipToAddress shipToAddress) {
     this.shipToAddress = shipToAddress;
   }
 
 
   public ListOrders200ResponseInnerInnerCustomer billToAddress(ListCustomers200ResponseInnerShipToAddress billToAddress) {
+    
     this.billToAddress = billToAddress;
     return this;
   }
 
-  /**
+   /**
    * Get billToAddress
    * @return billToAddress
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_BILL_TO_ADDRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
   public ListCustomers200ResponseInnerShipToAddress getBillToAddress() {
     return billToAddress;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_BILL_TO_ADDRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBillToAddress(ListCustomers200ResponseInnerShipToAddress billToAddress) {
     this.billToAddress = billToAddress;
   }
 
 
   public ListOrders200ResponseInnerInnerCustomer email(String email) {
+    
     this.email = email;
     return this;
   }
 
-  /**
+   /**
    * The email address of the customer
    * @return email
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_EMAIL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
   public String getEmail() {
     return email;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_EMAIL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEmail(String email) {
     this.email = email;
   }
 
 
   public ListOrders200ResponseInnerInnerCustomer phone(String phone) {
+    
     this.phone = phone;
     return this;
   }
 
-  /**
+   /**
    * The phone number of the customer
    * @return phone
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_PHONE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
   public String getPhone() {
     return phone;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PHONE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPhone(String phone) {
     this.phone = phone;
   }
 
 
   public ListOrders200ResponseInnerInnerCustomer selectedPaymentMethod(ListCustomers200ResponseInnerPaymentMethodsInner selectedPaymentMethod) {
+    
     this.selectedPaymentMethod = selectedPaymentMethod;
     return this;
   }
 
-  /**
+   /**
    * Get selectedPaymentMethod
    * @return selectedPaymentMethod
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_SELECTED_PAYMENT_METHOD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
   public ListCustomers200ResponseInnerPaymentMethodsInner getSelectedPaymentMethod() {
     return selectedPaymentMethod;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SELECTED_PAYMENT_METHOD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSelectedPaymentMethod(ListCustomers200ResponseInnerPaymentMethodsInner selectedPaymentMethod) {
     this.selectedPaymentMethod = selectedPaymentMethod;
   }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -268,120 +296,5 @@ public class ListOrders200ResponseInnerInnerCustomer {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("name");
-    openapiFields.add("shipToAddress");
-    openapiFields.add("billToAddress");
-    openapiFields.add("email");
-    openapiFields.add("phone");
-    openapiFields.add("selectedPaymentMethod");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ListOrders200ResponseInnerInnerCustomer
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ListOrders200ResponseInnerInnerCustomer.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ListOrders200ResponseInnerInnerCustomer is not found in the empty JSON string", ListOrders200ResponseInnerInnerCustomer.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ListOrders200ResponseInnerInnerCustomer.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ListOrders200ResponseInnerInnerCustomer` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
-      }
-      // validate the optional field `name`
-      if (jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) {
-        ListCustomers200ResponseInnerName.validateJsonElement(jsonObj.get("name"));
-      }
-      // validate the optional field `shipToAddress`
-      if (jsonObj.get("shipToAddress") != null && !jsonObj.get("shipToAddress").isJsonNull()) {
-        ListCustomers200ResponseInnerShipToAddress.validateJsonElement(jsonObj.get("shipToAddress"));
-      }
-      // validate the optional field `billToAddress`
-      if (jsonObj.get("billToAddress") != null && !jsonObj.get("billToAddress").isJsonNull()) {
-        ListCustomers200ResponseInnerShipToAddress.validateJsonElement(jsonObj.get("billToAddress"));
-      }
-      if ((jsonObj.get("email") != null && !jsonObj.get("email").isJsonNull()) && !jsonObj.get("email").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `email` to be a primitive type in the JSON string but got `%s`", jsonObj.get("email").toString()));
-      }
-      if ((jsonObj.get("phone") != null && !jsonObj.get("phone").isJsonNull()) && !jsonObj.get("phone").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `phone` to be a primitive type in the JSON string but got `%s`", jsonObj.get("phone").toString()));
-      }
-      // validate the optional field `selectedPaymentMethod`
-      if (jsonObj.get("selectedPaymentMethod") != null && !jsonObj.get("selectedPaymentMethod").isJsonNull()) {
-        ListCustomers200ResponseInnerPaymentMethodsInner.validateJsonElement(jsonObj.get("selectedPaymentMethod"));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ListOrders200ResponseInnerInnerCustomer.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ListOrders200ResponseInnerInnerCustomer' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ListOrders200ResponseInnerInnerCustomer> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ListOrders200ResponseInnerInnerCustomer.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ListOrders200ResponseInnerInnerCustomer>() {
-           @Override
-           public void write(JsonWriter out, ListOrders200ResponseInnerInnerCustomer value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ListOrders200ResponseInnerInnerCustomer read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
-    }
-  }
-
-  /**
-   * Create an instance of ListOrders200ResponseInnerInnerCustomer given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ListOrders200ResponseInnerInnerCustomer
-   * @throws IOException if the JSON string is invalid with respect to ListOrders200ResponseInnerInnerCustomer
-   */
-  public static ListOrders200ResponseInnerInnerCustomer fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ListOrders200ResponseInnerInnerCustomer.class);
-  }
-
-  /**
-   * Convert an instance of ListOrders200ResponseInnerInnerCustomer to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
-  }
 }
 

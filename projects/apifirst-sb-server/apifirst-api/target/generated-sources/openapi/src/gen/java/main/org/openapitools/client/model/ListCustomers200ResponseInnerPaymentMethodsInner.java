@@ -14,83 +14,65 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.time.OffsetDateTime;
 import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
+import java.time.OffsetDateTime;
 import java.util.UUID;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import org.openapitools.client.JSON;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ListCustomers200ResponseInnerPaymentMethodsInner
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-13T16:50:15.728540814Z[Etc/UTC]", comments = "Generator version: 7.8.0")
+@JsonPropertyOrder({
+  ListCustomers200ResponseInnerPaymentMethodsInner.JSON_PROPERTY_ID,
+  ListCustomers200ResponseInnerPaymentMethodsInner.JSON_PROPERTY_DISPLAY_NAME,
+  ListCustomers200ResponseInnerPaymentMethodsInner.JSON_PROPERTY_CARD_NUMBER,
+  ListCustomers200ResponseInnerPaymentMethodsInner.JSON_PROPERTY_EXPIRY_MONTH,
+  ListCustomers200ResponseInnerPaymentMethodsInner.JSON_PROPERTY_EXPIRY_YEAR,
+  ListCustomers200ResponseInnerPaymentMethodsInner.JSON_PROPERTY_CVV,
+  ListCustomers200ResponseInnerPaymentMethodsInner.JSON_PROPERTY_DATE_CREATED,
+  ListCustomers200ResponseInnerPaymentMethodsInner.JSON_PROPERTY_DATE_UPDATED
+})
+@JsonTypeName("listCustomers_200_response_inner_paymentMethods_inner")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-13T20:31:19.509005654Z[Etc/UTC]")
 public class ListCustomers200ResponseInnerPaymentMethodsInner {
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
+  public static final String JSON_PROPERTY_ID = "id";
   private UUID id;
 
-  public static final String SERIALIZED_NAME_DISPLAY_NAME = "displayName";
-  @SerializedName(SERIALIZED_NAME_DISPLAY_NAME)
+  public static final String JSON_PROPERTY_DISPLAY_NAME = "displayName";
   private String displayName;
 
-  public static final String SERIALIZED_NAME_CARD_NUMBER = "cardNumber";
-  @SerializedName(SERIALIZED_NAME_CARD_NUMBER)
+  public static final String JSON_PROPERTY_CARD_NUMBER = "cardNumber";
   private Integer cardNumber;
 
-  public static final String SERIALIZED_NAME_EXPIRY_MONTH = "expiryMonth";
-  @SerializedName(SERIALIZED_NAME_EXPIRY_MONTH)
+  public static final String JSON_PROPERTY_EXPIRY_MONTH = "expiryMonth";
   private Integer expiryMonth;
 
-  public static final String SERIALIZED_NAME_EXPIRY_YEAR = "expiryYear";
-  @SerializedName(SERIALIZED_NAME_EXPIRY_YEAR)
+  public static final String JSON_PROPERTY_EXPIRY_YEAR = "expiryYear";
   private Integer expiryYear;
 
-  public static final String SERIALIZED_NAME_CVV = "cvv";
-  @SerializedName(SERIALIZED_NAME_CVV)
+  public static final String JSON_PROPERTY_CVV = "cvv";
   private Integer cvv;
 
-  public static final String SERIALIZED_NAME_DATE_CREATED = "dateCreated";
-  @SerializedName(SERIALIZED_NAME_DATE_CREATED)
+  public static final String JSON_PROPERTY_DATE_CREATED = "dateCreated";
   private OffsetDateTime dateCreated;
 
-  public static final String SERIALIZED_NAME_DATE_UPDATED = "dateUpdated";
-  @SerializedName(SERIALIZED_NAME_DATE_UPDATED)
+  public static final String JSON_PROPERTY_DATE_UPDATED = "dateUpdated";
   private OffsetDateTime dateUpdated;
 
   public ListCustomers200ResponseInnerPaymentMethodsInner() {
   }
 
+  @JsonCreator
   public ListCustomers200ResponseInnerPaymentMethodsInner(
-     UUID id, 
-     OffsetDateTime dateCreated, 
-     OffsetDateTime dateUpdated
+    @JsonProperty(JSON_PROPERTY_ID) UUID id, 
+    @JsonProperty(JSON_PROPERTY_DATE_CREATED) OffsetDateTime dateCreated, 
+    @JsonProperty(JSON_PROPERTY_DATE_UPDATED) OffsetDateTime dateUpdated
   ) {
     this();
     this.id = id;
@@ -98,132 +80,177 @@ public class ListCustomers200ResponseInnerPaymentMethodsInner {
     this.dateUpdated = dateUpdated;
   }
 
-  /**
+   /**
    * Unique identifier representing a specific payment method.
    * @return id
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
   public UUID getId() {
     return id;
   }
 
 
 
+
   public ListCustomers200ResponseInnerPaymentMethodsInner displayName(String displayName) {
+    
     this.displayName = displayName;
     return this;
   }
 
-  /**
+   /**
    * Get displayName
    * @return displayName
-   */
+  **/
   @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_DISPLAY_NAME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
   public String getDisplayName() {
     return displayName;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DISPLAY_NAME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDisplayName(String displayName) {
     this.displayName = displayName;
   }
 
 
   public ListCustomers200ResponseInnerPaymentMethodsInner cardNumber(Integer cardNumber) {
+    
     this.cardNumber = cardNumber;
     return this;
   }
 
-  /**
+   /**
    * Get cardNumber
    * @return cardNumber
-   */
+  **/
   @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_CARD_NUMBER)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
   public Integer getCardNumber() {
     return cardNumber;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CARD_NUMBER)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCardNumber(Integer cardNumber) {
     this.cardNumber = cardNumber;
   }
 
 
   public ListCustomers200ResponseInnerPaymentMethodsInner expiryMonth(Integer expiryMonth) {
+    
     this.expiryMonth = expiryMonth;
     return this;
   }
 
-  /**
+   /**
    * Get expiryMonth
    * @return expiryMonth
-   */
+  **/
   @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_EXPIRY_MONTH)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
   public Integer getExpiryMonth() {
     return expiryMonth;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_EXPIRY_MONTH)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setExpiryMonth(Integer expiryMonth) {
     this.expiryMonth = expiryMonth;
   }
 
 
   public ListCustomers200ResponseInnerPaymentMethodsInner expiryYear(Integer expiryYear) {
+    
     this.expiryYear = expiryYear;
     return this;
   }
 
-  /**
+   /**
    * Get expiryYear
    * @return expiryYear
-   */
+  **/
   @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_EXPIRY_YEAR)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
   public Integer getExpiryYear() {
     return expiryYear;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_EXPIRY_YEAR)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setExpiryYear(Integer expiryYear) {
     this.expiryYear = expiryYear;
   }
 
 
   public ListCustomers200ResponseInnerPaymentMethodsInner cvv(Integer cvv) {
+    
     this.cvv = cvv;
     return this;
   }
 
-  /**
+   /**
    * Get cvv
    * @return cvv
-   */
+  **/
   @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_CVV)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
   public Integer getCvv() {
     return cvv;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CVV)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCvv(Integer cvv) {
     this.cvv = cvv;
   }
 
 
-  /**
+   /**
    * ISO 8601 Timestamp. Date Created and Date Updated are system managed values, should not be sent in request payloads - will be ignored.
    * @return dateCreated
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_DATE_CREATED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
   public OffsetDateTime getDateCreated() {
     return dateCreated;
   }
 
 
 
-  /**
+
+   /**
    * ISO 8601 Timestamp. Date Created and Date Updated are system managed values, should not be sent in request payloads - will be ignored.
    * @return dateUpdated
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_DATE_UPDATED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
   public OffsetDateTime getDateUpdated() {
     return dateUpdated;
   }
-
 
 
 
@@ -278,114 +305,5 @@ public class ListCustomers200ResponseInnerPaymentMethodsInner {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("displayName");
-    openapiFields.add("cardNumber");
-    openapiFields.add("expiryMonth");
-    openapiFields.add("expiryYear");
-    openapiFields.add("cvv");
-    openapiFields.add("dateCreated");
-    openapiFields.add("dateUpdated");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("displayName");
-    openapiRequiredFields.add("cardNumber");
-    openapiRequiredFields.add("expiryMonth");
-    openapiRequiredFields.add("expiryYear");
-    openapiRequiredFields.add("cvv");
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ListCustomers200ResponseInnerPaymentMethodsInner
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ListCustomers200ResponseInnerPaymentMethodsInner.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ListCustomers200ResponseInnerPaymentMethodsInner is not found in the empty JSON string", ListCustomers200ResponseInnerPaymentMethodsInner.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ListCustomers200ResponseInnerPaymentMethodsInner.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ListCustomers200ResponseInnerPaymentMethodsInner` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : ListCustomers200ResponseInnerPaymentMethodsInner.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
-      }
-      if (!jsonObj.get("displayName").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `displayName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("displayName").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ListCustomers200ResponseInnerPaymentMethodsInner.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ListCustomers200ResponseInnerPaymentMethodsInner' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ListCustomers200ResponseInnerPaymentMethodsInner> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ListCustomers200ResponseInnerPaymentMethodsInner.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ListCustomers200ResponseInnerPaymentMethodsInner>() {
-           @Override
-           public void write(JsonWriter out, ListCustomers200ResponseInnerPaymentMethodsInner value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ListCustomers200ResponseInnerPaymentMethodsInner read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
-    }
-  }
-
-  /**
-   * Create an instance of ListCustomers200ResponseInnerPaymentMethodsInner given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ListCustomers200ResponseInnerPaymentMethodsInner
-   * @throws IOException if the JSON string is invalid with respect to ListCustomers200ResponseInnerPaymentMethodsInner
-   */
-  public static ListCustomers200ResponseInnerPaymentMethodsInner fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ListCustomers200ResponseInnerPaymentMethodsInner.class);
-  }
-
-  /**
-   * Convert an instance of ListCustomers200ResponseInnerPaymentMethodsInner to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
-  }
 }
 

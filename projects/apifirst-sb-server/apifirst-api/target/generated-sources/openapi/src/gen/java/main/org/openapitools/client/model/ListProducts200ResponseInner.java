@@ -14,12 +14,12 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,78 +28,61 @@ import java.util.UUID;
 import org.openapitools.client.model.ListProducts200ResponseInnerCategoriesInner;
 import org.openapitools.client.model.ListProducts200ResponseInnerDimentions;
 import org.openapitools.client.model.ListProducts200ResponseInnerImagesInner;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import org.openapitools.client.JSON;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ListProducts200ResponseInner
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-13T16:50:15.728540814Z[Etc/UTC]", comments = "Generator version: 7.8.0")
+@JsonPropertyOrder({
+  ListProducts200ResponseInner.JSON_PROPERTY_ID,
+  ListProducts200ResponseInner.JSON_PROPERTY_DESCRIPTION,
+  ListProducts200ResponseInner.JSON_PROPERTY_DIMENTIONS,
+  ListProducts200ResponseInner.JSON_PROPERTY_CATEGORIES,
+  ListProducts200ResponseInner.JSON_PROPERTY_IMAGES,
+  ListProducts200ResponseInner.JSON_PROPERTY_PRICE,
+  ListProducts200ResponseInner.JSON_PROPERTY_COST,
+  ListProducts200ResponseInner.JSON_PROPERTY_DATE_CREATED,
+  ListProducts200ResponseInner.JSON_PROPERTY_DATE_UPDATED
+})
+@JsonTypeName("listProducts_200_response_inner")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-13T20:31:19.509005654Z[Etc/UTC]")
 public class ListProducts200ResponseInner {
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
+  public static final String JSON_PROPERTY_ID = "id";
   private UUID id;
 
-  public static final String SERIALIZED_NAME_DESCRIPTION = "description";
-  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  public static final String JSON_PROPERTY_DESCRIPTION = "description";
   private String description;
 
-  public static final String SERIALIZED_NAME_DIMENTIONS = "dimentions";
-  @SerializedName(SERIALIZED_NAME_DIMENTIONS)
+  public static final String JSON_PROPERTY_DIMENTIONS = "dimentions";
   private ListProducts200ResponseInnerDimentions dimentions;
 
-  public static final String SERIALIZED_NAME_CATEGORIES = "categories";
-  @SerializedName(SERIALIZED_NAME_CATEGORIES)
-  private List<ListProducts200ResponseInnerCategoriesInner> categories = new ArrayList<>();
+  public static final String JSON_PROPERTY_CATEGORIES = "categories";
+  private List<ListProducts200ResponseInnerCategoriesInner> categories;
 
-  public static final String SERIALIZED_NAME_IMAGES = "images";
-  @SerializedName(SERIALIZED_NAME_IMAGES)
-  private List<ListProducts200ResponseInnerImagesInner> images = new ArrayList<>();
+  public static final String JSON_PROPERTY_IMAGES = "images";
+  private List<ListProducts200ResponseInnerImagesInner> images;
 
-  public static final String SERIALIZED_NAME_PRICE = "price";
-  @SerializedName(SERIALIZED_NAME_PRICE)
+  public static final String JSON_PROPERTY_PRICE = "price";
   private String price;
 
-  public static final String SERIALIZED_NAME_COST = "cost";
-  @SerializedName(SERIALIZED_NAME_COST)
+  public static final String JSON_PROPERTY_COST = "cost";
   private String cost;
 
-  public static final String SERIALIZED_NAME_DATE_CREATED = "dateCreated";
-  @SerializedName(SERIALIZED_NAME_DATE_CREATED)
+  public static final String JSON_PROPERTY_DATE_CREATED = "dateCreated";
   private OffsetDateTime dateCreated;
 
-  public static final String SERIALIZED_NAME_DATE_UPDATED = "dateUpdated";
-  @SerializedName(SERIALIZED_NAME_DATE_UPDATED)
+  public static final String JSON_PROPERTY_DATE_UPDATED = "dateUpdated";
   private OffsetDateTime dateUpdated;
 
   public ListProducts200ResponseInner() {
   }
 
+  @JsonCreator
   public ListProducts200ResponseInner(
-     UUID id, 
-     OffsetDateTime dateCreated, 
-     OffsetDateTime dateUpdated
+    @JsonProperty(JSON_PROPERTY_ID) UUID id, 
+    @JsonProperty(JSON_PROPERTY_DATE_CREATED) OffsetDateTime dateCreated, 
+    @JsonProperty(JSON_PROPERTY_DATE_UPDATED) OffsetDateTime dateUpdated
   ) {
     this();
     this.id = id;
@@ -107,56 +90,75 @@ public class ListProducts200ResponseInner {
     this.dateUpdated = dateUpdated;
   }
 
-  /**
+   /**
    * The unique identifier of the product
    * @return id
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
   public UUID getId() {
     return id;
   }
 
 
 
+
   public ListProducts200ResponseInner description(String description) {
+    
     this.description = description;
     return this;
   }
 
-  /**
+   /**
    * The description of the product
    * @return description
-   */
+  **/
   @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
   public String getDescription() {
     return description;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDescription(String description) {
     this.description = description;
   }
 
 
   public ListProducts200ResponseInner dimentions(ListProducts200ResponseInnerDimentions dimentions) {
+    
     this.dimentions = dimentions;
     return this;
   }
 
-  /**
+   /**
    * Get dimentions
    * @return dimentions
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_DIMENTIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
   public ListProducts200ResponseInnerDimentions getDimentions() {
     return dimentions;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DIMENTIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDimentions(ListProducts200ResponseInnerDimentions dimentions) {
     this.dimentions = dimentions;
   }
 
 
   public ListProducts200ResponseInner categories(List<ListProducts200ResponseInnerCategoriesInner> categories) {
+    
     this.categories = categories;
     return this;
   }
@@ -169,21 +171,28 @@ public class ListProducts200ResponseInner {
     return this;
   }
 
-  /**
+   /**
    * Get categories
    * @return categories
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_CATEGORIES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
   public List<ListProducts200ResponseInnerCategoriesInner> getCategories() {
     return categories;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CATEGORIES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCategories(List<ListProducts200ResponseInnerCategoriesInner> categories) {
     this.categories = categories;
   }
 
 
   public ListProducts200ResponseInner images(List<ListProducts200ResponseInnerImagesInner> images) {
+    
     this.images = images;
     return this;
   }
@@ -196,78 +205,104 @@ public class ListProducts200ResponseInner {
     return this;
   }
 
-  /**
+   /**
    * Get images
    * @return images
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_IMAGES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
   public List<ListProducts200ResponseInnerImagesInner> getImages() {
     return images;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IMAGES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setImages(List<ListProducts200ResponseInnerImagesInner> images) {
     this.images = images;
   }
 
 
   public ListProducts200ResponseInner price(String price) {
+    
     this.price = price;
     return this;
   }
 
-  /**
+   /**
    * Get price
    * @return price
-   */
+  **/
   @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_PRICE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
   public String getPrice() {
     return price;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PRICE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setPrice(String price) {
     this.price = price;
   }
 
 
   public ListProducts200ResponseInner cost(String cost) {
+    
     this.cost = cost;
     return this;
   }
 
-  /**
+   /**
    * Get cost
    * @return cost
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_COST)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
   public String getCost() {
     return cost;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_COST)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCost(String cost) {
     this.cost = cost;
   }
 
 
-  /**
+   /**
    * ISO 8601 Timestamp. Date Created and Date Updated are system managed values, should not be sent in request payloads - will be ignored.
    * @return dateCreated
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_DATE_CREATED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
   public OffsetDateTime getDateCreated() {
     return dateCreated;
   }
 
 
 
-  /**
+
+   /**
    * ISO 8601 Timestamp. Date Created and Date Updated are system managed values, should not be sent in request payloads - will be ignored.
    * @return dateUpdated
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_DATE_UPDATED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
   public OffsetDateTime getDateUpdated() {
     return dateUpdated;
   }
-
 
 
 
@@ -324,150 +359,5 @@ public class ListProducts200ResponseInner {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("description");
-    openapiFields.add("dimentions");
-    openapiFields.add("categories");
-    openapiFields.add("images");
-    openapiFields.add("price");
-    openapiFields.add("cost");
-    openapiFields.add("dateCreated");
-    openapiFields.add("dateUpdated");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("description");
-    openapiRequiredFields.add("price");
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ListProducts200ResponseInner
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ListProducts200ResponseInner.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ListProducts200ResponseInner is not found in the empty JSON string", ListProducts200ResponseInner.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ListProducts200ResponseInner.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ListProducts200ResponseInner` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : ListProducts200ResponseInner.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
-      }
-      if (!jsonObj.get("description").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
-      }
-      // validate the optional field `dimentions`
-      if (jsonObj.get("dimentions") != null && !jsonObj.get("dimentions").isJsonNull()) {
-        ListProducts200ResponseInnerDimentions.validateJsonElement(jsonObj.get("dimentions"));
-      }
-      if (jsonObj.get("categories") != null && !jsonObj.get("categories").isJsonNull()) {
-        JsonArray jsonArraycategories = jsonObj.getAsJsonArray("categories");
-        if (jsonArraycategories != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("categories").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `categories` to be an array in the JSON string but got `%s`", jsonObj.get("categories").toString()));
-          }
-
-          // validate the optional field `categories` (array)
-          for (int i = 0; i < jsonArraycategories.size(); i++) {
-            ListProducts200ResponseInnerCategoriesInner.validateJsonElement(jsonArraycategories.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("images") != null && !jsonObj.get("images").isJsonNull()) {
-        JsonArray jsonArrayimages = jsonObj.getAsJsonArray("images");
-        if (jsonArrayimages != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("images").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `images` to be an array in the JSON string but got `%s`", jsonObj.get("images").toString()));
-          }
-
-          // validate the optional field `images` (array)
-          for (int i = 0; i < jsonArrayimages.size(); i++) {
-            ListProducts200ResponseInnerImagesInner.validateJsonElement(jsonArrayimages.get(i));
-          };
-        }
-      }
-      if (!jsonObj.get("price").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `price` to be a primitive type in the JSON string but got `%s`", jsonObj.get("price").toString()));
-      }
-      if ((jsonObj.get("cost") != null && !jsonObj.get("cost").isJsonNull()) && !jsonObj.get("cost").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `cost` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cost").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ListProducts200ResponseInner.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ListProducts200ResponseInner' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ListProducts200ResponseInner> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ListProducts200ResponseInner.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ListProducts200ResponseInner>() {
-           @Override
-           public void write(JsonWriter out, ListProducts200ResponseInner value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ListProducts200ResponseInner read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
-    }
-  }
-
-  /**
-   * Create an instance of ListProducts200ResponseInner given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ListProducts200ResponseInner
-   * @throws IOException if the JSON string is invalid with respect to ListProducts200ResponseInner
-   */
-  public static ListProducts200ResponseInner fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ListProducts200ResponseInner.class);
-  }
-
-  /**
-   * Convert an instance of ListProducts200ResponseInner to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
-  }
 }
 

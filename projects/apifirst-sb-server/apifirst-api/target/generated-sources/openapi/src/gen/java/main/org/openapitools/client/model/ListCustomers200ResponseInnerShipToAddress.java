@@ -14,84 +14,69 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.time.OffsetDateTime;
 import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
+import java.time.OffsetDateTime;
 import java.util.UUID;
 import org.openapitools.jackson.nullable.JsonNullable;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import org.openapitools.client.JSON;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ListCustomers200ResponseInnerShipToAddress
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-13T16:50:15.728540814Z[Etc/UTC]", comments = "Generator version: 7.8.0")
+@JsonPropertyOrder({
+  ListCustomers200ResponseInnerShipToAddress.JSON_PROPERTY_ID,
+  ListCustomers200ResponseInnerShipToAddress.JSON_PROPERTY_ADDRESS_LINE1,
+  ListCustomers200ResponseInnerShipToAddress.JSON_PROPERTY_ADDRESS_LINE2,
+  ListCustomers200ResponseInnerShipToAddress.JSON_PROPERTY_CITY,
+  ListCustomers200ResponseInnerShipToAddress.JSON_PROPERTY_STATE,
+  ListCustomers200ResponseInnerShipToAddress.JSON_PROPERTY_ZIP,
+  ListCustomers200ResponseInnerShipToAddress.JSON_PROPERTY_DATE_CREATED,
+  ListCustomers200ResponseInnerShipToAddress.JSON_PROPERTY_DATE_UPDATED
+})
+@JsonTypeName("listCustomers_200_response_inner_shipToAddress")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-13T20:31:19.509005654Z[Etc/UTC]")
 public class ListCustomers200ResponseInnerShipToAddress {
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
+  public static final String JSON_PROPERTY_ID = "id";
   private UUID id;
 
-  public static final String SERIALIZED_NAME_ADDRESS_LINE1 = "addressLine1";
-  @SerializedName(SERIALIZED_NAME_ADDRESS_LINE1)
+  public static final String JSON_PROPERTY_ADDRESS_LINE1 = "addressLine1";
   private String addressLine1;
 
-  public static final String SERIALIZED_NAME_ADDRESS_LINE2 = "addressLine2";
-  @SerializedName(SERIALIZED_NAME_ADDRESS_LINE2)
-  private String addressLine2;
+  public static final String JSON_PROPERTY_ADDRESS_LINE2 = "addressLine2";
+  private JsonNullable<String> addressLine2 = JsonNullable.<String>undefined();
 
-  public static final String SERIALIZED_NAME_CITY = "city";
-  @SerializedName(SERIALIZED_NAME_CITY)
+  public static final String JSON_PROPERTY_CITY = "city";
   private String city;
 
-  public static final String SERIALIZED_NAME_STATE = "state";
-  @SerializedName(SERIALIZED_NAME_STATE)
+  public static final String JSON_PROPERTY_STATE = "state";
   private String state;
 
-  public static final String SERIALIZED_NAME_ZIP = "zip";
-  @SerializedName(SERIALIZED_NAME_ZIP)
+  public static final String JSON_PROPERTY_ZIP = "zip";
   private String zip;
 
-  public static final String SERIALIZED_NAME_DATE_CREATED = "dateCreated";
-  @SerializedName(SERIALIZED_NAME_DATE_CREATED)
+  public static final String JSON_PROPERTY_DATE_CREATED = "dateCreated";
   private OffsetDateTime dateCreated;
 
-  public static final String SERIALIZED_NAME_DATE_UPDATED = "dateUpdated";
-  @SerializedName(SERIALIZED_NAME_DATE_UPDATED)
+  public static final String JSON_PROPERTY_DATE_UPDATED = "dateUpdated";
   private OffsetDateTime dateUpdated;
 
   public ListCustomers200ResponseInnerShipToAddress() {
   }
 
+  @JsonCreator
   public ListCustomers200ResponseInnerShipToAddress(
-     UUID id, 
-     OffsetDateTime dateCreated, 
-     OffsetDateTime dateUpdated
+    @JsonProperty(JSON_PROPERTY_ID) UUID id, 
+    @JsonProperty(JSON_PROPERTY_DATE_CREATED) OffsetDateTime dateCreated, 
+    @JsonProperty(JSON_PROPERTY_DATE_UPDATED) OffsetDateTime dateUpdated
   ) {
     this();
     this.id = id;
@@ -99,132 +84,185 @@ public class ListCustomers200ResponseInnerShipToAddress {
     this.dateUpdated = dateUpdated;
   }
 
-  /**
+   /**
    * Unique identifier representing a specific customer
    * @return id
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
   public UUID getId() {
     return id;
   }
 
 
 
+
   public ListCustomers200ResponseInnerShipToAddress addressLine1(String addressLine1) {
+    
     this.addressLine1 = addressLine1;
     return this;
   }
 
-  /**
+   /**
    * Address Line 1
    * @return addressLine1
-   */
+  **/
   @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_ADDRESS_LINE1)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
   public String getAddressLine1() {
     return addressLine1;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ADDRESS_LINE1)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setAddressLine1(String addressLine1) {
     this.addressLine1 = addressLine1;
   }
 
 
   public ListCustomers200ResponseInnerShipToAddress addressLine2(String addressLine2) {
-    this.addressLine2 = addressLine2;
+    this.addressLine2 = JsonNullable.<String>of(addressLine2);
+    
     return this;
   }
 
-  /**
+   /**
    * Address Line 2
    * @return addressLine2
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonIgnore
+
   public String getAddressLine2() {
+        return addressLine2.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_ADDRESS_LINE2)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getAddressLine2_JsonNullable() {
     return addressLine2;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ADDRESS_LINE2)
+  public void setAddressLine2_JsonNullable(JsonNullable<String> addressLine2) {
+    this.addressLine2 = addressLine2;
   }
 
   public void setAddressLine2(String addressLine2) {
-    this.addressLine2 = addressLine2;
+    this.addressLine2 = JsonNullable.<String>of(addressLine2);
   }
 
 
   public ListCustomers200ResponseInnerShipToAddress city(String city) {
+    
     this.city = city;
     return this;
   }
 
-  /**
+   /**
    * City
    * @return city
-   */
+  **/
   @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_CITY)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
   public String getCity() {
     return city;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CITY)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCity(String city) {
     this.city = city;
   }
 
 
   public ListCustomers200ResponseInnerShipToAddress state(String state) {
+    
     this.state = state;
     return this;
   }
 
-  /**
+   /**
    * 2 character state code
    * @return state
-   */
+  **/
   @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_STATE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
   public String getState() {
     return state;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_STATE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setState(String state) {
     this.state = state;
   }
 
 
   public ListCustomers200ResponseInnerShipToAddress zip(String zip) {
+    
     this.zip = zip;
     return this;
   }
 
-  /**
+   /**
    * Zip Code
    * @return zip
-   */
+  **/
   @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_ZIP)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
   public String getZip() {
     return zip;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ZIP)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setZip(String zip) {
     this.zip = zip;
   }
 
 
-  /**
+   /**
    * ISO 8601 Timestamp. Date Created and Date Updated are system managed values, should not be sent in request payloads - will be ignored.
    * @return dateCreated
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_DATE_CREATED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
   public OffsetDateTime getDateCreated() {
     return dateCreated;
   }
 
 
 
-  /**
+
+   /**
    * ISO 8601 Timestamp. Date Created and Date Updated are system managed values, should not be sent in request payloads - will be ignored.
    * @return dateUpdated
-   */
+  **/
   @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_DATE_UPDATED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
   public OffsetDateTime getDateUpdated() {
     return dateUpdated;
   }
-
 
 
 
@@ -239,7 +277,7 @@ public class ListCustomers200ResponseInnerShipToAddress {
     ListCustomers200ResponseInnerShipToAddress listCustomers200ResponseInnerShipToAddress = (ListCustomers200ResponseInnerShipToAddress) o;
     return Objects.equals(this.id, listCustomers200ResponseInnerShipToAddress.id) &&
         Objects.equals(this.addressLine1, listCustomers200ResponseInnerShipToAddress.addressLine1) &&
-        Objects.equals(this.addressLine2, listCustomers200ResponseInnerShipToAddress.addressLine2) &&
+        equalsNullable(this.addressLine2, listCustomers200ResponseInnerShipToAddress.addressLine2) &&
         Objects.equals(this.city, listCustomers200ResponseInnerShipToAddress.city) &&
         Objects.equals(this.state, listCustomers200ResponseInnerShipToAddress.state) &&
         Objects.equals(this.zip, listCustomers200ResponseInnerShipToAddress.zip) &&
@@ -253,7 +291,7 @@ public class ListCustomers200ResponseInnerShipToAddress {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, addressLine1, addressLine2, city, state, zip, dateCreated, dateUpdated);
+    return Objects.hash(id, addressLine1, hashCodeNullable(addressLine2), city, state, zip, dateCreated, dateUpdated);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -290,125 +328,5 @@ public class ListCustomers200ResponseInnerShipToAddress {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("addressLine1");
-    openapiFields.add("addressLine2");
-    openapiFields.add("city");
-    openapiFields.add("state");
-    openapiFields.add("zip");
-    openapiFields.add("dateCreated");
-    openapiFields.add("dateUpdated");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("addressLine1");
-    openapiRequiredFields.add("city");
-    openapiRequiredFields.add("state");
-    openapiRequiredFields.add("zip");
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ListCustomers200ResponseInnerShipToAddress
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ListCustomers200ResponseInnerShipToAddress.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ListCustomers200ResponseInnerShipToAddress is not found in the empty JSON string", ListCustomers200ResponseInnerShipToAddress.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ListCustomers200ResponseInnerShipToAddress.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ListCustomers200ResponseInnerShipToAddress` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : ListCustomers200ResponseInnerShipToAddress.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
-      }
-      if (!jsonObj.get("addressLine1").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `addressLine1` to be a primitive type in the JSON string but got `%s`", jsonObj.get("addressLine1").toString()));
-      }
-      if ((jsonObj.get("addressLine2") != null && !jsonObj.get("addressLine2").isJsonNull()) && !jsonObj.get("addressLine2").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `addressLine2` to be a primitive type in the JSON string but got `%s`", jsonObj.get("addressLine2").toString()));
-      }
-      if (!jsonObj.get("city").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `city` to be a primitive type in the JSON string but got `%s`", jsonObj.get("city").toString()));
-      }
-      if (!jsonObj.get("state").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `state` to be a primitive type in the JSON string but got `%s`", jsonObj.get("state").toString()));
-      }
-      if (!jsonObj.get("zip").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `zip` to be a primitive type in the JSON string but got `%s`", jsonObj.get("zip").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ListCustomers200ResponseInnerShipToAddress.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ListCustomers200ResponseInnerShipToAddress' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ListCustomers200ResponseInnerShipToAddress> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ListCustomers200ResponseInnerShipToAddress.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ListCustomers200ResponseInnerShipToAddress>() {
-           @Override
-           public void write(JsonWriter out, ListCustomers200ResponseInnerShipToAddress value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ListCustomers200ResponseInnerShipToAddress read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
-    }
-  }
-
-  /**
-   * Create an instance of ListCustomers200ResponseInnerShipToAddress given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ListCustomers200ResponseInnerShipToAddress
-   * @throws IOException if the JSON string is invalid with respect to ListCustomers200ResponseInnerShipToAddress
-   */
-  public static ListCustomers200ResponseInnerShipToAddress fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ListCustomers200ResponseInnerShipToAddress.class);
-  }
-
-  /**
-   * Convert an instance of ListCustomers200ResponseInnerShipToAddress to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
-  }
 }
 

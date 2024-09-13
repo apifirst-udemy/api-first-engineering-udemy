@@ -14,207 +14,223 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.net.URI;
 import java.util.Arrays;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
-import org.openapitools.client.JSON;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * The Problem Details JSON Object [[RFC7807](https://tools.ietf.org/html/rfc7807)].
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-13T16:50:15.728540814Z[Etc/UTC]", comments = "Generator version: 7.8.0")
-public class ListCustomers404Response {
-  public static final String SERIALIZED_NAME_TYPE = "type";
-  @SerializedName(SERIALIZED_NAME_TYPE)
-  private URI type;
+@JsonPropertyOrder({
+  ListCustomers404Response.JSON_PROPERTY_TYPE,
+  ListCustomers404Response.JSON_PROPERTY_TITLE,
+  ListCustomers404Response.JSON_PROPERTY_STATUS,
+  ListCustomers404Response.JSON_PROPERTY_DETAIL,
+  ListCustomers404Response.JSON_PROPERTY_INSTANCE
+})
+@JsonTypeName("listCustomers_404_response")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-13T20:31:19.509005654Z[Etc/UTC]")
+public class ListCustomers404Response extends HashMap<String, Object> {
+  public static final String JSON_PROPERTY_TYPE = "type";
+  private JsonNullable<Object> type = JsonNullable.<Object>of(null);
 
-  public static final String SERIALIZED_NAME_TITLE = "title";
-  @SerializedName(SERIALIZED_NAME_TITLE)
-  private String title;
+  public static final String JSON_PROPERTY_TITLE = "title";
+  private JsonNullable<Object> title = JsonNullable.<Object>of(null);
 
-  public static final String SERIALIZED_NAME_STATUS = "status";
-  @SerializedName(SERIALIZED_NAME_STATUS)
-  private Integer status;
+  public static final String JSON_PROPERTY_STATUS = "status";
+  private JsonNullable<Object> status = JsonNullable.<Object>of(null);
 
-  public static final String SERIALIZED_NAME_DETAIL = "detail";
-  @SerializedName(SERIALIZED_NAME_DETAIL)
-  private String detail;
+  public static final String JSON_PROPERTY_DETAIL = "detail";
+  private JsonNullable<Object> detail = JsonNullable.<Object>of(null);
 
-  public static final String SERIALIZED_NAME_INSTANCE = "instance";
-  @SerializedName(SERIALIZED_NAME_INSTANCE)
-  private String instance;
+  public static final String JSON_PROPERTY_INSTANCE = "instance";
+  private JsonNullable<Object> instance = JsonNullable.<Object>of(null);
 
   public ListCustomers404Response() {
+
   }
 
-  public ListCustomers404Response type(URI type) {
-    this.type = type;
+  public ListCustomers404Response type(Object type) {
+    this.type = JsonNullable.<Object>of(type);
+    
     return this;
   }
 
-  /**
+   /**
    * A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] that identifies the problem type. It should provide human-readable documentation for the problem type. When this member is not present, its value is assumed to be \&quot;about:blank\&quot;.
    * @return type
-   */
+  **/
   @javax.annotation.Nullable
-  public URI getType() {
-    return type;
+  @JsonIgnore
+
+  public Object getType() {
+        return type.orElse(null);
   }
 
-  public void setType(URI type) {
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<Object> getType_JsonNullable() {
+    return type;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  public void setType_JsonNullable(JsonNullable<Object> type) {
     this.type = type;
   }
 
+  public void setType(Object type) {
+    this.type = JsonNullable.<Object>of(type);
+  }
 
-  public ListCustomers404Response title(String title) {
-    this.title = title;
+
+  public ListCustomers404Response title(Object title) {
+    this.title = JsonNullable.<Object>of(title);
+    
     return this;
   }
 
-  /**
+   /**
    * A short, human-readable summary of the problem type. It SHOULD NOT change from occurrence to occurrence of the problem, except for purposes of localization.
    * @return title
-   */
+  **/
   @javax.annotation.Nullable
-  public String getTitle() {
-    return title;
+  @JsonIgnore
+
+  public Object getTitle() {
+        return title.orElse(null);
   }
 
-  public void setTitle(String title) {
+  @JsonProperty(JSON_PROPERTY_TITLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<Object> getTitle_JsonNullable() {
+    return title;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TITLE)
+  public void setTitle_JsonNullable(JsonNullable<Object> title) {
     this.title = title;
   }
 
+  public void setTitle(Object title) {
+    this.title = JsonNullable.<Object>of(title);
+  }
 
-  public ListCustomers404Response status(Integer status) {
-    this.status = status;
+
+  public ListCustomers404Response status(Object status) {
+    this.status = JsonNullable.<Object>of(status);
+    
     return this;
   }
 
-  /**
+   /**
    * The HTTP status code.
    * minimum: 400
    * maximum: 599
    * @return status
-   */
+  **/
   @javax.annotation.Nullable
-  public Integer getStatus() {
-    return status;
+  @JsonIgnore
+
+  public Object getStatus() {
+        return status.orElse(null);
   }
 
-  public void setStatus(Integer status) {
+  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<Object> getStatus_JsonNullable() {
+    return status;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_STATUS)
+  public void setStatus_JsonNullable(JsonNullable<Object> status) {
     this.status = status;
   }
 
+  public void setStatus(Object status) {
+    this.status = JsonNullable.<Object>of(status);
+  }
 
-  public ListCustomers404Response detail(String detail) {
-    this.detail = detail;
+
+  public ListCustomers404Response detail(Object detail) {
+    this.detail = JsonNullable.<Object>of(detail);
+    
     return this;
   }
 
-  /**
+   /**
    * A human-readable explanation specific to this occurrence of the problem.
    * @return detail
-   */
+  **/
   @javax.annotation.Nullable
-  public String getDetail() {
-    return detail;
+  @JsonIgnore
+
+  public Object getDetail() {
+        return detail.orElse(null);
   }
 
-  public void setDetail(String detail) {
+  @JsonProperty(JSON_PROPERTY_DETAIL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<Object> getDetail_JsonNullable() {
+    return detail;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DETAIL)
+  public void setDetail_JsonNullable(JsonNullable<Object> detail) {
     this.detail = detail;
   }
 
+  public void setDetail(Object detail) {
+    this.detail = JsonNullable.<Object>of(detail);
+  }
 
-  public ListCustomers404Response instance(String instance) {
-    this.instance = instance;
+
+  public ListCustomers404Response instance(Object instance) {
+    this.instance = JsonNullable.<Object>of(instance);
+    
     return this;
   }
 
-  /**
+   /**
    * A URI reference that identifies the specific occurrence of the problem.  It may or may not yield further information if dereferenced.
    * @return instance
-   */
+  **/
   @javax.annotation.Nullable
-  public String getInstance() {
-    return instance;
+  @JsonIgnore
+
+  public Object getInstance() {
+        return instance.orElse(null);
   }
 
-  public void setInstance(String instance) {
+  @JsonProperty(JSON_PROPERTY_INSTANCE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<Object> getInstance_JsonNullable() {
+    return instance;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_INSTANCE)
+  public void setInstance_JsonNullable(JsonNullable<Object> instance) {
     this.instance = instance;
   }
 
-  /**
-   * A container for additional, undeclared properties.
-   * This is a holder for any undeclared properties as specified with
-   * the 'additionalProperties' keyword in the OAS document.
-   */
-  private Map<String, Object> additionalProperties;
-
-  /**
-   * Set the additional (undeclared) property with the specified name and value.
-   * If the property does not already exist, create it otherwise replace it.
-   *
-   * @param key name of the property
-   * @param value value of the property
-   * @return the ListCustomers404Response instance itself
-   */
-  public ListCustomers404Response putAdditionalProperty(String key, Object value) {
-    if (this.additionalProperties == null) {
-        this.additionalProperties = new HashMap<String, Object>();
-    }
-    this.additionalProperties.put(key, value);
-    return this;
+  public void setInstance(Object instance) {
+    this.instance = JsonNullable.<Object>of(instance);
   }
-
-  /**
-   * Return the additional (undeclared) property.
-   *
-   * @return a map of objects
-   */
-  public Map<String, Object> getAdditionalProperties() {
-    return additionalProperties;
-  }
-
-  /**
-   * Return the additional (undeclared) property with the specified name.
-   *
-   * @param key name of the property
-   * @return an object
-   */
-  public Object getAdditionalProperty(String key) {
-    if (this.additionalProperties == null) {
-        return null;
-    }
-    return this.additionalProperties.get(key);
-  }
-
 
   @Override
   public boolean equals(Object o) {
@@ -225,29 +241,40 @@ public class ListCustomers404Response {
       return false;
     }
     ListCustomers404Response listCustomers404Response = (ListCustomers404Response) o;
-    return Objects.equals(this.type, listCustomers404Response.type) &&
-        Objects.equals(this.title, listCustomers404Response.title) &&
-        Objects.equals(this.status, listCustomers404Response.status) &&
-        Objects.equals(this.detail, listCustomers404Response.detail) &&
-        Objects.equals(this.instance, listCustomers404Response.instance)&&
-        Objects.equals(this.additionalProperties, listCustomers404Response.additionalProperties);
+    return equalsNullable(this.type, listCustomers404Response.type) &&
+        equalsNullable(this.title, listCustomers404Response.title) &&
+        equalsNullable(this.status, listCustomers404Response.status) &&
+        equalsNullable(this.detail, listCustomers404Response.detail) &&
+        equalsNullable(this.instance, listCustomers404Response.instance) &&
+        super.equals(o);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, title, status, detail, instance, additionalProperties);
+    return Objects.hash(hashCodeNullable(type), hashCodeNullable(title), hashCodeNullable(status), hashCodeNullable(detail), hashCodeNullable(instance), super.hashCode());
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ListCustomers404Response {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    detail: ").append(toIndentedString(detail)).append("\n");
     sb.append("    instance: ").append(toIndentedString(instance)).append("\n");
-    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -263,140 +290,5 @@ public class ListCustomers404Response {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("type");
-    openapiFields.add("title");
-    openapiFields.add("status");
-    openapiFields.add("detail");
-    openapiFields.add("instance");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ListCustomers404Response
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ListCustomers404Response.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ListCustomers404Response is not found in the empty JSON string", ListCustomers404Response.openapiRequiredFields.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) && !jsonObj.get("type").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
-      }
-      if ((jsonObj.get("title") != null && !jsonObj.get("title").isJsonNull()) && !jsonObj.get("title").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `title` to be a primitive type in the JSON string but got `%s`", jsonObj.get("title").toString()));
-      }
-      if ((jsonObj.get("detail") != null && !jsonObj.get("detail").isJsonNull()) && !jsonObj.get("detail").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `detail` to be a primitive type in the JSON string but got `%s`", jsonObj.get("detail").toString()));
-      }
-      if ((jsonObj.get("instance") != null && !jsonObj.get("instance").isJsonNull()) && !jsonObj.get("instance").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `instance` to be a primitive type in the JSON string but got `%s`", jsonObj.get("instance").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ListCustomers404Response.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ListCustomers404Response' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ListCustomers404Response> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ListCustomers404Response.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ListCustomers404Response>() {
-           @Override
-           public void write(JsonWriter out, ListCustomers404Response value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             obj.remove("additionalProperties");
-             // serialize additional properties
-             if (value.getAdditionalProperties() != null) {
-               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
-                 if (entry.getValue() instanceof String)
-                   obj.addProperty(entry.getKey(), (String) entry.getValue());
-                 else if (entry.getValue() instanceof Number)
-                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
-                 else if (entry.getValue() instanceof Boolean)
-                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
-                 else if (entry.getValue() instanceof Character)
-                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
-                 else {
-                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
-                   if (jsonElement.isJsonArray()) {
-                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
-                   } else {
-                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
-                   }
-                 }
-               }
-             }
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ListCustomers404Response read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             JsonObject jsonObj = jsonElement.getAsJsonObject();
-             // store additional fields in the deserialized instance
-             ListCustomers404Response instance = thisAdapter.fromJsonTree(jsonObj);
-             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
-               if (!openapiFields.contains(entry.getKey())) {
-                 if (entry.getValue().isJsonPrimitive()) { // primitive type
-                   if (entry.getValue().getAsJsonPrimitive().isString())
-                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
-                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
-                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
-                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
-                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
-                   else
-                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
-                 } else if (entry.getValue().isJsonArray()) {
-                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
-                 } else { // JSON object
-                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
-                 }
-               }
-             }
-             return instance;
-           }
-
-       }.nullSafe();
-    }
-  }
-
-  /**
-   * Create an instance of ListCustomers404Response given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ListCustomers404Response
-   * @throws IOException if the JSON string is invalid with respect to ListCustomers404Response
-   */
-  public static ListCustomers404Response fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ListCustomers404Response.class);
-  }
-
-  /**
-   * Convert an instance of ListCustomers404Response to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
-  }
 }
 
