@@ -15,7 +15,7 @@ properties:
       type: [string, 'null']
       maxLength: 255
       minLength: 3
-      example: john@springframework.guru
+      example: rsouza01@gmail.com
     phone:
       type: 
         - string
