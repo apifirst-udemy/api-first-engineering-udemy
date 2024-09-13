@@ -24,8 +24,6 @@ externalDocs:
 tags:
   # - name: Echo
   #   description: "Example echo operations."
-  - name: User
-    description: "Example actions on user accounts."
   - name: Customer
     description: "Example actions on customer accounts."
   - name: Products
@@ -63,12 +61,12 @@ paths:
   '/v1/products/{product_id}':
     $ref: paths/v1/products_{product_id}.yaml
   
-  '/users/{username}':
-    $ref: 'paths/users_{username}.yaml'
-  '/user':
-    $ref: 'paths/user.yaml'
-  '/user/list':
-    $ref: 'paths/user-status.yaml'
+  # '/users/{username}':
+  #   $ref: 'paths/users_{username}.yaml'
+  # '/user':
+  #   $ref: 'paths/user.yaml'
+  # '/user/list':
+  #   $ref: 'paths/user-status.yaml'
   # /pathItem:
   #   $ref: paths/pathItem.yaml
   # /pathItemWithExamples:
