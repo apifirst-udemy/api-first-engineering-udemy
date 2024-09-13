@@ -1,5 +1,11 @@
 # api-first-engineering-udemy
 
+## Commands
+
+
+mvn archetype:generate -DgroupId=com.rsouza01 -DartifactId=apifirst-sb-server -DinteractiveMode=false
+mvn archetype:generate -DgroupId=com.rsouza01 -DartifactId=apifirst-api -DinteractiveMode=false
+
 
 # References
 

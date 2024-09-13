@@ -1,0 +1,914 @@
+openapi: 3.1.0
+info:
+  contact:
+    email: rsouza01@gmail.com
+    name: Contact our support
+    url: http://example.com/contact
+  description: |
+    # Introduction
+    API first course on Udemy
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: https://example.com/terms/
+  title: API first course on Udemy
+  version: 1.0.0
+  x-logo:
+    url: https://redocly.github.io/openapi-template/logo.png
+    altText: OpenAPI example logo
+externalDocs:
+  description: Find out how to create a GitHub repo for your OpenAPI definition.
+  url: https://github.com/Redocly/create-openapi-repo
+servers:
+- url: "https://{tenant}/api/v1"
+  variables:
+    tenant:
+      default: www
+      description: Your tenant id
+- url: https://example.com/api/v1
+security:
+- basic_auth: []
+tags:
+- description: Example actions on customer accounts.
+  name: Customer
+- description: Product operations
+  name: Products
+- description: Operations about orders.
+  name: Order
+paths:
+  /v1/customers:
+    get:
+      description: Get a list of customers based on some param.
+      operationId: listCustomers
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/listCustomers_200_response_inner'
+                type: array
+          description: Success
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listCustomers_404_response'
+          description: Not Found
+      summary: Get a list of customers
+      tags:
+      - Customer
+      x-accepts:
+      - application/json
+    post:
+      description: Create a new customer via rest endpoint
+      operationId: createCustomer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/listCustomers_200_response_inner'
+      responses:
+        "201":
+          description: Created
+          headers:
+            Location:
+              description: The location of the new customer
+              explode: false
+              schema:
+                example: /v1/customers/27ca5995-f6e1-46bb-8f18-52458b7ed96e
+                format: uri
+                type: string
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createCustomer_400_response'
+          description: Bad Request
+      summary: Create a new customer
+      tags:
+      - Customer
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/customers/{customerId}:
+    $ref: "./paths/v1/customers_{customerId}.yaml"
+  /v1/products:
+    get:
+      description: Get a list of Products based on some param.
+      operationId: listProducts
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/listProducts_200_response_inner'
+                type: array
+          description: Success
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createCustomer_400_response'
+          description: Not Found
+      summary: Get a list of Products
+      tags:
+      - Products
+      x-accepts:
+      - application/json
+  /v1/products/{productId}:
+    $ref: "./paths/v1/products_{productId}.yaml"
+  /v1/orders:
+    get:
+      description: List Orders endpoint via some parameter
+      operationId: listOrders
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  items:
+                    $ref: '#/components/schemas/listOrders_200_response_inner_inner'
+                  type: array
+                type: array
+          description: successful operation
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
+      summary: List Orders
+      tags:
+      - Order
+      x-accepts:
+      - application/json
+  /v1/orders/{orderId}:
+    $ref: "./paths/v1/orders_{orderId}.yaml"
+components:
+  schemas:
+    listCustomers_404_response:
+      additionalProperties: {}
+      description: "The Problem Details JSON Object [[RFC7807](https://tools.ietf.org/html/rfc7807)]."
+      example:
+        instance: instance
+        detail: detail
+        type: https://openapi-generator.tech
+        title: title
+        status: 415
+      minProperties: 1
+      properties:
+        type:
+          description: "A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)]\
+            \ that identifies the problem type. It should provide human-readable documentation\
+            \ for the problem type. When this member is not present, its value is\
+            \ assumed to be \"about:blank\"."
+          format: uri
+        title:
+          description: "A short, human-readable summary of the problem type. It SHOULD\
+            \ NOT change from occurrence to occurrence of the problem, except for\
+            \ purposes of localization."
+        status:
+          description: The HTTP status code.
+          maximum: 599
+          minimum: 400
+        detail:
+          description: A human-readable explanation specific to this occurrence of
+            the problem.
+        instance:
+          description: A URI reference that identifies the specific occurrence of
+            the problem.  It may or may not yield further information if dereferenced.
+    listOrders_200_response_inner_inner_orderLines_inner:
+      example:
+        product:
+          price: price
+          description: description
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        dateCreated: 2022-08-22T11:43:06-07:00
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        orderQuantity: 2
+        shipQuantity: 2
+        dateUpdated: 2022-08-22T11:43:06-07:00
+      properties:
+        id:
+          description: The unique identifier of the order line
+          format: uuid
+          readOnly: true
+          type: string
+        product:
+          $ref: '#/components/schemas/listOrders_200_response_inner_inner_orderLines_inner_product'
+        orderQuantity:
+          description: The quantity of the product in the order
+          example: 2
+          maximum: 10000
+          minimum: 1
+          type: integer
+        shipQuantity:
+          description: The quantity of the product shipped
+          example: 2
+          maximum: 10000
+          minimum: 1
+          type: integer
+        dateCreated:
+          description: "ISO 8601 Timestamp. Date Created and Date Updated are system\
+            \ managed values, should not be sent in request payloads - will be ignored."
+          example: 2022-08-22T11:43:06-07:00
+          format: date-time
+          readOnly: true
+          title: ISO Timestamp
+          type: string
+        dateUpdated:
+          description: "ISO 8601 Timestamp. Date Created and Date Updated are system\
+            \ managed values, should not be sent in request payloads - will be ignored."
+          example: 2022-08-22T11:43:06-07:00
+          format: date-time
+          readOnly: true
+          title: ISO Timestamp
+          type: string
+      required:
+      - orderQuantity
+      - product
+    listCustomers_200_response_inner_paymentMethods_inner:
+      example:
+        cvv: 123
+        dateCreated: 2022-08-22T11:43:06-07:00
+        displayName: My Chase Card
+        expiryMonth: 7
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        expiryYear: 26
+        cardNumber: 1234567890123456
+        dateUpdated: 2022-08-22T11:43:06-07:00
+      properties:
+        id:
+          description: Unique identifier representing a specific payment method.
+          format: uuid
+          readOnly: true
+          type: string
+        displayName:
+          example: My Chase Card
+          maxLength: 100
+          minLength: 2
+          type: string
+        cardNumber:
+          example: 1234567890123456
+          type: integer
+        expiryMonth:
+          example: 7
+          type: integer
+        expiryYear:
+          example: 26
+          type: integer
+        cvv:
+          example: 123
+          type: integer
+        dateCreated:
+          description: "ISO 8601 Timestamp. Date Created and Date Updated are system\
+            \ managed values, should not be sent in request payloads - will be ignored."
+          example: 2022-08-22T11:43:06-07:00
+          format: date-time
+          readOnly: true
+          title: ISO Timestamp
+          type: string
+        dateUpdated:
+          description: "ISO 8601 Timestamp. Date Created and Date Updated are system\
+            \ managed values, should not be sent in request payloads - will be ignored."
+          example: 2022-08-22T11:43:06-07:00
+          format: date-time
+          readOnly: true
+          title: ISO Timestamp
+          type: string
+      required:
+      - cardNumber
+      - cvv
+      - displayName
+      - expiryMonth
+      - expiryYear
+    createCustomer_400_response:
+      additionalProperties: true
+      description: "The Problem Details JSON Object [[RFC7807](https://tools.ietf.org/html/rfc7807)]."
+      example:
+        instance: instance
+        detail: detail
+        type: https://openapi-generator.tech
+        title: title
+        status: 415
+      minProperties: 1
+      properties:
+        type:
+          description: "A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)]\
+            \ that identifies the problem type. It should provide human-readable documentation\
+            \ for the problem type. When this member is not present, its value is\
+            \ assumed to be \"about:blank\"."
+          format: uri
+          type: string
+        title:
+          description: "A short, human-readable summary of the problem type. It SHOULD\
+            \ NOT change from occurrence to occurrence of the problem, except for\
+            \ purposes of localization."
+          type: string
+        status:
+          description: The HTTP status code.
+          maximum: 599
+          minimum: 400
+          type: integer
+        detail:
+          description: A human-readable explanation specific to this occurrence of
+            the problem.
+          type: string
+        instance:
+          description: A URI reference that identifies the specific occurrence of
+            the problem.  It may or may not yield further information if dereferenced.
+          type: string
+    listOrders_200_response_inner_inner:
+      example:
+        dateCreated: 2022-08-22T11:43:06-07:00
+        orderLines:
+        - product:
+            price: price
+            description: description
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          dateCreated: 2022-08-22T11:43:06-07:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          orderQuantity: 2
+          shipQuantity: 2
+          dateUpdated: 2022-08-22T11:43:06-07:00
+        - product:
+            price: price
+            description: description
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          dateCreated: 2022-08-22T11:43:06-07:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          orderQuantity: 2
+          shipQuantity: 2
+          dateUpdated: 2022-08-22T11:43:06-07:00
+        orderStatus: NEW
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        shipmentInfo: shipmentInfo
+        customer:
+          shipToAddress:
+            zip: 33701
+            dateCreated: 2022-08-22T11:43:06-07:00
+            city: St Petersburg
+            addressLine1: 123 Main Street
+            addressLine2: addressLine2
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            state: FL
+            dateUpdated: 2022-08-22T11:43:06-07:00
+          billToAddress:
+            zip: 33701
+            dateCreated: 2022-08-22T11:43:06-07:00
+            city: St Petersburg
+            addressLine1: 123 Main Street
+            addressLine2: addressLine2
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            state: FL
+            dateUpdated: 2022-08-22T11:43:06-07:00
+          phone: phone
+          selectedPaymentMethod:
+            cvv: 123
+            dateCreated: 2022-08-22T11:43:06-07:00
+            displayName: My Chase Card
+            expiryMonth: 7
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            expiryYear: 26
+            cardNumber: 1234567890123456
+            dateUpdated: 2022-08-22T11:43:06-07:00
+          name:
+            firstName: John
+            lastName: Thompson
+            prefix: Mr.
+            suffix: suffix
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          email: email
+        dateUpdated: 2022-08-22T11:43:06-07:00
+      properties:
+        id:
+          description: The unique identifier of the order
+          format: uuid
+          readOnly: true
+          type: string
+        customer:
+          $ref: '#/components/schemas/listOrders_200_response_inner_inner_customer'
+        orderStatus:
+          default: NEW
+          enum:
+          - NEW
+          - HOLD
+          - SHIPPED
+          - DELIVERED
+          - CLOSED
+          type: string
+        shipmentInfo:
+          maxLength: 255
+          minLength: 1
+          type: string
+        orderLines:
+          description: The order lines of the order
+          items:
+            $ref: '#/components/schemas/listOrders_200_response_inner_inner_orderLines_inner'
+          type: array
+        dateCreated:
+          description: "ISO 8601 Timestamp. Date Created and Date Updated are system\
+            \ managed values, should not be sent in request payloads - will be ignored."
+          example: 2022-08-22T11:43:06-07:00
+          format: date-time
+          readOnly: true
+          title: ISO Timestamp
+          type: string
+        dateUpdated:
+          description: "ISO 8601 Timestamp. Date Created and Date Updated are system\
+            \ managed values, should not be sent in request payloads - will be ignored."
+          example: 2022-08-22T11:43:06-07:00
+          format: date-time
+          readOnly: true
+          title: ISO Timestamp
+          type: string
+      required:
+      - customer
+      - orderLines
+      - orderStatus
+    listProducts_200_response_inner:
+      example:
+        images:
+        - dateCreated: 2022-08-22T11:43:06-07:00
+          altText: altText
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          url: https://springframework.guru/wp-content/uploads/2019/08/spring-framework-guru-logo.jpg
+          dateUpdated: 2022-08-22T11:43:06-07:00
+        - dateCreated: 2022-08-22T11:43:06-07:00
+          altText: altText
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          url: https://springframework.guru/wp-content/uploads/2019/08/spring-framework-guru-logo.jpg
+          dateUpdated: 2022-08-22T11:43:06-07:00
+        cost: cost
+        dateCreated: 2022-08-22T11:43:06-07:00
+        price: price
+        description: description
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        categories:
+        - dateCreated: 2022-08-22T11:43:06-07:00
+          description: Electronics and Gadgets
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          category: Electronics
+          dateUpdated: 2022-08-22T11:43:06-07:00
+        - dateCreated: 2022-08-22T11:43:06-07:00
+          description: Electronics and Gadgets
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          category: Electronics
+          dateUpdated: 2022-08-22T11:43:06-07:00
+        dimentions:
+          length: 10
+          width: 10
+          height: 10
+        dateUpdated: 2022-08-22T11:43:06-07:00
+      properties:
+        id:
+          description: The unique identifier of the product
+          format: uuid
+          readOnly: true
+          type: string
+        description:
+          description: The description of the product
+          maxLength: 255
+          minLength: 3
+          type: string
+        dimentions:
+          $ref: '#/components/schemas/listProducts_200_response_inner_dimentions'
+        categories:
+          items:
+            $ref: '#/components/schemas/listProducts_200_response_inner_categories_inner'
+          type: array
+        images:
+          items:
+            $ref: '#/components/schemas/listProducts_200_response_inner_images_inner'
+          type: array
+        price:
+          pattern: "^-?(?:0|[1-9]\\d{0,2}(?:,?\\d{3})*)(?:\\.\\d+)?$"
+          type: string
+        cost:
+          pattern: "^-?(?:0|[1-9]\\d{0,2}(?:,?\\d{3})*)(?:\\.\\d+)?$"
+          type: string
+        dateCreated:
+          description: "ISO 8601 Timestamp. Date Created and Date Updated are system\
+            \ managed values, should not be sent in request payloads - will be ignored."
+          example: 2022-08-22T11:43:06-07:00
+          format: date-time
+          readOnly: true
+          title: ISO Timestamp
+          type: string
+        dateUpdated:
+          description: "ISO 8601 Timestamp. Date Created and Date Updated are system\
+            \ managed values, should not be sent in request payloads - will be ignored."
+          example: 2022-08-22T11:43:06-07:00
+          format: date-time
+          readOnly: true
+          title: ISO Timestamp
+          type: string
+      required:
+      - description
+      - price
+    listOrders_200_response_inner_inner_customer:
+      example:
+        shipToAddress:
+          zip: 33701
+          dateCreated: 2022-08-22T11:43:06-07:00
+          city: St Petersburg
+          addressLine1: 123 Main Street
+          addressLine2: addressLine2
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          state: FL
+          dateUpdated: 2022-08-22T11:43:06-07:00
+        billToAddress:
+          zip: 33701
+          dateCreated: 2022-08-22T11:43:06-07:00
+          city: St Petersburg
+          addressLine1: 123 Main Street
+          addressLine2: addressLine2
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          state: FL
+          dateUpdated: 2022-08-22T11:43:06-07:00
+        phone: phone
+        selectedPaymentMethod:
+          cvv: 123
+          dateCreated: 2022-08-22T11:43:06-07:00
+          displayName: My Chase Card
+          expiryMonth: 7
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          expiryYear: 26
+          cardNumber: 1234567890123456
+          dateUpdated: 2022-08-22T11:43:06-07:00
+        name:
+          firstName: John
+          lastName: Thompson
+          prefix: Mr.
+          suffix: suffix
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        email: email
+      properties:
+        id:
+          description: The unique identifier of the customer
+          format: uuid
+          type: string
+        name:
+          $ref: '#/components/schemas/listCustomers_200_response_inner_name'
+        shipToAddress:
+          $ref: '#/components/schemas/listCustomers_200_response_inner_shipToAddress'
+        billToAddress:
+          $ref: '#/components/schemas/listCustomers_200_response_inner_shipToAddress'
+        email:
+          description: The email address of the customer
+          type: string
+        phone:
+          description: The phone number of the customer
+          type: string
+        selectedPaymentMethod:
+          $ref: '#/components/schemas/listCustomers_200_response_inner_paymentMethods_inner'
+    listCustomers_200_response_inner_shipToAddress:
+      example:
+        zip: 33701
+        dateCreated: 2022-08-22T11:43:06-07:00
+        city: St Petersburg
+        addressLine1: 123 Main Street
+        addressLine2: addressLine2
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        state: FL
+        dateUpdated: 2022-08-22T11:43:06-07:00
+      properties:
+        id:
+          description: Unique identifier representing a specific customer
+          format: uuid
+          readOnly: true
+          type: string
+        addressLine1:
+          description: Address Line 1
+          example: 123 Main Street
+          maxLength: 100
+          minLength: 3
+          type: string
+        addressLine2:
+          description: Address Line 2
+          maxLength: 100
+          minLength: 3
+          nullable: true
+          type: string
+        city:
+          description: City
+          example: St Petersburg
+          maxLength: 100
+          minLength: 2
+          type: string
+        state:
+          description: 2 character state code
+          example: FL
+          maxLength: 2
+          minLength: 2
+          type: string
+        zip:
+          description: Zip Code
+          example: 33701
+          maxLength: 10
+          minLength: 5
+          type: string
+        dateCreated:
+          description: "ISO 8601 Timestamp. Date Created and Date Updated are system\
+            \ managed values, should not be sent in request payloads - will be ignored."
+          example: 2022-08-22T11:43:06-07:00
+          format: date-time
+          readOnly: true
+          title: ISO Timestamp
+          type: string
+        dateUpdated:
+          description: "ISO 8601 Timestamp. Date Created and Date Updated are system\
+            \ managed values, should not be sent in request payloads - will be ignored."
+          example: 2022-08-22T11:43:06-07:00
+          format: date-time
+          readOnly: true
+          title: ISO Timestamp
+          type: string
+      required:
+      - addressLine1
+      - city
+      - state
+      - zip
+    listCustomers_200_response_inner:
+      example:
+        shipToAddress:
+          zip: 33701
+          dateCreated: 2022-08-22T11:43:06-07:00
+          city: St Petersburg
+          addressLine1: 123 Main Street
+          addressLine2: addressLine2
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          state: FL
+          dateUpdated: 2022-08-22T11:43:06-07:00
+        billToAddress:
+          zip: 33701
+          dateCreated: 2022-08-22T11:43:06-07:00
+          city: St Petersburg
+          addressLine1: 123 Main Street
+          addressLine2: addressLine2
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          state: FL
+          dateUpdated: 2022-08-22T11:43:06-07:00
+        dateCreated: 2022-08-22T11:43:06-07:00
+        phone: 800-555-1212
+        paymentMethods:
+        - cvv: 123
+          dateCreated: 2022-08-22T11:43:06-07:00
+          displayName: My Chase Card
+          expiryMonth: 7
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          expiryYear: 26
+          cardNumber: 1234567890123456
+          dateUpdated: 2022-08-22T11:43:06-07:00
+        - cvv: 123
+          dateCreated: 2022-08-22T11:43:06-07:00
+          displayName: My Chase Card
+          expiryMonth: 7
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          expiryYear: 26
+          cardNumber: 1234567890123456
+          dateUpdated: 2022-08-22T11:43:06-07:00
+        name:
+          firstName: John
+          lastName: Thompson
+          prefix: Mr.
+          suffix: suffix
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        email: rsouza01@gmail.com
+        dateUpdated: 2022-08-22T11:43:06-07:00
+      properties:
+        id:
+          description: Unique identifier representing a specific customer
+          format: uuid
+          readOnly: true
+          type: string
+        name:
+          $ref: '#/components/schemas/listCustomers_200_response_inner_name'
+        shipToAddress:
+          $ref: '#/components/schemas/listCustomers_200_response_inner_shipToAddress'
+        billToAddress:
+          $ref: '#/components/schemas/listCustomers_200_response_inner_shipToAddress'
+        email:
+          example: rsouza01@gmail.com
+          maxLength: 255
+          minLength: 3
+          nullable: true
+          type: string
+        phone:
+          example: 800-555-1212
+          maxLength: 15
+          minLength: 7
+          nullable: true
+          type: string
+        paymentMethods:
+          items:
+            $ref: '#/components/schemas/listCustomers_200_response_inner_paymentMethods_inner'
+          type: array
+        dateCreated:
+          description: "ISO 8601 Timestamp. Date Created and Date Updated are system\
+            \ managed values, should not be sent in request payloads - will be ignored."
+          example: 2022-08-22T11:43:06-07:00
+          format: date-time
+          readOnly: true
+          title: ISO Timestamp
+          type: string
+        dateUpdated:
+          description: "ISO 8601 Timestamp. Date Created and Date Updated are system\
+            \ managed values, should not be sent in request payloads - will be ignored."
+          example: 2022-08-22T11:43:06-07:00
+          format: date-time
+          readOnly: true
+          title: ISO Timestamp
+          type: string
+      required:
+      - billToAddress
+      - name
+      - shipToAddress
+    listProducts_200_response_inner_dimentions:
+      description: The dimentions of the product
+      example:
+        length: 10
+        width: 10
+        height: 10
+      properties:
+        length:
+          description: The length of the product
+          example: 10
+          maximum: 999
+          minimum: 1
+          type: number
+        width:
+          description: The width of the product
+          example: 10
+          maximum: 999
+          minimum: 1
+          type: number
+        height:
+          description: The height of the product
+          example: 10
+          maximum: 999
+          minimum: 1
+          type: number
+      required:
+      - height
+      - length
+      - width
+    listProducts_200_response_inner_images_inner:
+      example:
+        dateCreated: 2022-08-22T11:43:06-07:00
+        altText: altText
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        url: https://springframework.guru/wp-content/uploads/2019/08/spring-framework-guru-logo.jpg
+        dateUpdated: 2022-08-22T11:43:06-07:00
+      properties:
+        id:
+          description: The unique identifier of the image
+          format: uuid
+          readOnly: true
+          type: string
+        url:
+          description: The url of the image
+          example: https://springframework.guru/wp-content/uploads/2019/08/spring-framework-guru-logo.jpg
+          format: url
+          maxLength: 500
+          minLength: 5
+          type: string
+        altText:
+          maxLength: 255
+          minLength: 3
+          nullable: true
+          type: string
+        dateCreated:
+          description: "ISO 8601 Timestamp. Date Created and Date Updated are system\
+            \ managed values, should not be sent in request payloads - will be ignored."
+          example: 2022-08-22T11:43:06-07:00
+          format: date-time
+          readOnly: true
+          title: ISO Timestamp
+          type: string
+        dateUpdated:
+          description: "ISO 8601 Timestamp. Date Created and Date Updated are system\
+            \ managed values, should not be sent in request payloads - will be ignored."
+          example: 2022-08-22T11:43:06-07:00
+          format: date-time
+          readOnly: true
+          title: ISO Timestamp
+          type: string
+      required:
+      - url
+    listOrders_200_response_inner_inner_orderLines_inner_product:
+      example:
+        price: price
+        description: description
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        id:
+          description: The unique identifier of the product
+          format: uuid
+          type: string
+        description:
+          description: The description of the product
+          type: string
+        price:
+          pattern: "^-?(?:0|[1-9]\\d{0,2}(?:,?\\d{3})*)(?:\\.\\d+)?$"
+          type: string
+    listProducts_200_response_inner_categories_inner:
+      example:
+        dateCreated: 2022-08-22T11:43:06-07:00
+        description: Electronics and Gadgets
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        category: Electronics
+        dateUpdated: 2022-08-22T11:43:06-07:00
+      properties:
+        id:
+          description: The unique identifier of the category
+          format: uuid
+          readOnly: true
+          type: string
+        category:
+          description: The category of the product
+          example: Electronics
+          maxLength: 25
+          minLength: 3
+          type: string
+        description:
+          description: The description of the category
+          example: Electronics and Gadgets
+          maxLength: 255
+          minLength: 3
+          type: string
+        dateCreated:
+          description: "ISO 8601 Timestamp. Date Created and Date Updated are system\
+            \ managed values, should not be sent in request payloads - will be ignored."
+          example: 2022-08-22T11:43:06-07:00
+          format: date-time
+          readOnly: true
+          title: ISO Timestamp
+          type: string
+        dateUpdated:
+          description: "ISO 8601 Timestamp. Date Created and Date Updated are system\
+            \ managed values, should not be sent in request payloads - will be ignored."
+          example: 2022-08-22T11:43:06-07:00
+          format: date-time
+          readOnly: true
+          title: ISO Timestamp
+          type: string
+      required:
+      - category
+      - description
+    listCustomers_200_response_inner_name:
+      example:
+        firstName: John
+        lastName: Thompson
+        prefix: Mr.
+        suffix: suffix
+      properties:
+        prefix:
+          description: Name Prefix
+          example: Mr.
+          maxLength: 25
+          minLength: 0
+          nullable: true
+          type: string
+        firstName:
+          description: First Name
+          example: John
+          maxLength: 100
+          minLength: 2
+          type: string
+        lastName:
+          description: Last Name
+          example: Thompson
+          maxLength: 100
+          minLength: 2
+          type: string
+        suffix:
+          description: Name Suffix
+          maxLength: 25
+          minLength: 0
+          nullable: true
+          type: string
+      required:
+      - firstName
+      - lastName
+  securitySchemes:
+    main_auth:
+      description: Example description text of the OAuth2 scheme.
+      flows:
+        implicit:
+          authorizationUrl: http://example.com/api/oauth/dialog
+          scopes:
+            read:users: read user info
+            write:users: modify or remove users
+      type: oauth2
+    api_key:
+      description: Example description text of the API key scheme.
+      in: header
+      name: api_key
+      type: apiKey
+    basic_auth:
+      scheme: basic
+      type: http
+

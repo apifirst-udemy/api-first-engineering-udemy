@@ -1,4 +1,4 @@
-package com.rsouza01.apifirst;
+package com.rsouza01;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
