@@ -22,12 +22,12 @@ externalDocs:
   description: "Find out how to create a GitHub repo for your OpenAPI definition."
   url: 'https://github.com/Redocly/create-openapi-repo'
 tags:
-  # - name: Echo
-  #   description: "Example echo operations."
   - name: Customer
     description: "Example actions on customer accounts."
   - name: Products
     description: Product operations 
+  - name: Order
+    description: Operations about orders.    
   # - name: Admin
   #   description: "Example operations reserved for administrators."
   # - name: Info
@@ -53,14 +53,20 @@ servers:
 paths:
   '/v1/customers':
     $ref: paths/v1/customers.yaml
-  '/v1/customers/{customer_id}':
-    $ref: paths/v1/customers_{customer_id}.yaml
+  '/v1/customers/{customerId}':
+    $ref: paths/v1/customers_{customerId}.yaml
 
   '/v1/products':
     $ref: paths/v1/products.yaml
-  '/v1/products/{product_id}':
-    $ref: paths/v1/products_{product_id}.yaml
-  
+  '/v1/products/{productId}':
+    $ref: paths/v1/products_{productId}.yaml
+
+  '/v1/orders':
+    $ref: paths/v1/orders.yaml
+  '/v1/orders/{orderId}':
+    $ref: paths/v1/orders_{orderId}.yaml
+      
+      
   # '/users/{username}':
   #   $ref: 'paths/users_{username}.yaml'
   # '/user':

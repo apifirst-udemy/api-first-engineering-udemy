@@ -1,13 +1,13 @@
 get: 
   tags: 
-    -  Customer 
-  summary: Get a customer by ID
-  description: 'Get a customer by ID via parameter'
-  operationId: getCustomerById
+    -  Order  
+  summary: Get Order by id
+  description: Get Order by id as usual by api spec.
+  operationId: getOrderById
   parameters: 
-    - name: customer_id
+    - name: orderId
       in: path
-      description: The ID of the customer to retrieve
+      description: The ID of the order to retrieve
       required: true
       schema: 
         type: string
@@ -18,7 +18,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../../components/schemas/v1/customer.yaml
+            $ref: ../../components/schemas/v1/order.yaml
     '400':
       description: Bad Request 
     '404':
