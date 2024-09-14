@@ -24,12 +24,12 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     public <S extends Customer> S save(S entity) {
         UUID id = UUID.randomUUID();
 
-        Customer.CustomerBuilder builder1 = Customer.builder();
+        Customer.CustomerBuilder customerBuilder = Customer.builder();
 
-        builder1.id(id);
+        customerBuilder.id(id);
 
         if (entity.getBillToAddress() != null) {
-            builder1.billToAddress(Address.builder()
+            customerBuilder.billToAddress(Address.builder()
                     .id(UUID.randomUUID())
                     .addressLine1(entity.getBillToAddress().getAddressLine1())
                     .addressLine2(entity.getBillToAddress().getAddressLine2())
@@ -42,7 +42,7 @@ public class CustomerRepositoryImpl implements CustomerRepository {
         }
 
         if (entity.getShipToAddress() != null) {
-            builder1.shipToAddress(Address.builder()
+            customerBuilder.shipToAddress(Address.builder()
                     .id(UUID.randomUUID())
                     .addressLine1(entity.getShipToAddress().getAddressLine1())
                     .addressLine2(entity.getShipToAddress().getAddressLine2())
@@ -55,7 +55,7 @@ public class CustomerRepositoryImpl implements CustomerRepository {
         }
 
         if (entity.getPaymentMethods() != null) {
-            builder1.paymentMethods(entity.getPaymentMethods()
+            customerBuilder.paymentMethods(entity.getPaymentMethods()
                     .stream()
                     .map(paymentMethod -> PaymentMethod.builder()
                             .id(UUID.randomUUID())
@@ -70,7 +70,7 @@ public class CustomerRepositoryImpl implements CustomerRepository {
                     .collect(Collectors.toList()));
         }
 
-        Customer customer = builder1.email(entity.getEmail())
+        Customer customer = customerBuilder.email(entity.getEmail())
                 .name(entity.getName())
                 .phone(entity.getPhone())
                 .dateCreated(OffsetDateTime.now())

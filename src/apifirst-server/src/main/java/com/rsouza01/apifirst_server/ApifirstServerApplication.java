@@ -9,5 +9,4 @@ public class ApifirstServerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ApifirstServerApplication.class, args);
 	}
-
 }
