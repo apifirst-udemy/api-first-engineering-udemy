@@ -18,8 +18,8 @@
   <name>apifirst-api</name>
 
   <properties>
-    <maven.compiler.source>21</maven.compiler.source>
-    <maven.compiler.target>21</maven.compiler.target>
+    <maven.compiler.source>20</maven.compiler.source>
+    <maven.compiler.target>20</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
@@ -73,8 +73,7 @@
               <generateModelTests>false</generateModelTests>
               <generateAliasAsModel>false</generateAliasAsModel>
               <generateApis>false</generateApis>
-              <inputSpec>
-                /workspaces/api-first-engineering-udemy/projects/openapi-starter/openapi/openapi.yaml</inputSpec>
+              <inputSpec>https://raw.githubusercontent.com/apifirst-udemy/api-first-openapi/main/dist/bundle.yaml</inputSpec>
               <generatorName>java</generatorName>
               <configOptions>
                 <sourceFolder>src/gen/java/main</sourceFolder>
