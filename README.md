@@ -5,6 +5,7 @@
 
 mvn archetype:generate -DgroupId=com.rsouza01 -DartifactId=apifirst-sb-server -DinteractiveMode=false
 mvn archetype:generate -DgroupId=com.rsouza01 -DartifactId=apifirst-api -DinteractiveMode=false
+mvn archetype:generate -DgroupId=com.rsouza01 -DartifactId=apifirst-server -DinteractiveMode=false
 
 
 # Remote
