@@ -1,6 +1,7 @@
 package com.rsouza01.apifirst_server.bootstrap;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.UUID;
 import java.time.OffsetDateTime;
 
@@ -15,22 +16,71 @@ import com.rsouza01.apifirst.model.Customer;
 import com.rsouza01.apifirst.model.Dimentions;
 import com.rsouza01.apifirst.model.Image;
 import com.rsouza01.apifirst.model.Name;
+import com.rsouza01.apifirst.model.Order;
+import com.rsouza01.apifirst.model.OrderCustomer;
+import com.rsouza01.apifirst.model.OrderLine;
 import com.rsouza01.apifirst.model.PaymentMethod;
 import com.rsouza01.apifirst.model.Product;
 import com.rsouza01.apifirst_server.repositories.CustomerRepository;
+import com.rsouza01.apifirst_server.repositories.OrderRepository;
 import com.rsouza01.apifirst_server.repositories.ProductRepository;
 
 @RequiredArgsConstructor
 @Component
 public class DataLoader implements CommandLineRunner {
 
+    private final List<Customer> customersList = new ArrayList<Customer>();
+
     private final CustomerRepository customerRepository;
     private final ProductRepository productRepository;
+    private final OrderRepository orderRepository;
 
     @Override
     public void run(String... args) throws Exception {
+
+        initCustomerList();
         initCustomerRepository();
+
         initProductRepository();
+        initOrderRepository();
+    }
+
+    private void initOrderRepository() {
+
+        /*
+
+  public static final String JSON_PROPERTY_PRODUCT = "product";
+  private OrderProduct product;
+
+  public static final String JSON_PROPERTY_ORDER_QUANTITY = "orderQuantity";
+  private Integer orderQuantity;
+
+  public static final String JSON_PROPERTY_SHIP_QUANTITY = "shipQuantity";
+  private Integer shipQuantity;
+
+         */
+        // One order per customer
+        // customerRepository.findAll()
+        //         .forEach(customer -> {
+        //             List<OrderLine> orderLines = List.of(
+        //                 OrderLine.builder()
+        //                 .id(UUID.randomUUID())
+        //                 .orderQuantity(1)
+        //                 .shipQuantity(10)
+        //                 .dateCreated(OffsetDateTime.now())
+        //                 .dateUpdated(OffsetDateTime.now())
+        //                 .build(),
+        //             );
+        //             Order order = Order.builder()
+        //                 .id(UUID.randomUUID())
+        //                 .customer(OrderCustomer.builder().build())
+        //                 .orderLines(orderLines)
+        //                 .dateCreated(OffsetDateTime.now())
+        //                 .dateUpdated(OffsetDateTime.now())
+        //                 .build();
+
+        //                 orderRepository.save(order);
+        //             });
     }
 
     private void initProductRepository() {
@@ -69,20 +119,20 @@ public class DataLoader implements CommandLineRunner {
                 .dateCreated(OffsetDateTime.now())
                 .dateUpdated(OffsetDateTime.now())
                 .images(List.of(
-                    Image.builder()
-                    .id(UUID.randomUUID())
-                    .url("url-1-product-1")
-                    .altText("Alt text")
-                    .dateCreated(OffsetDateTime.now())
-                    .dateUpdated(OffsetDateTime.now())
-                    .build(),
-                    Image.builder()
-                    .id(UUID.randomUUID())
-                    .url("url-2-product-1")
-                    .altText("Alt text")
-                    .dateCreated(OffsetDateTime.now())
-                    .dateUpdated(OffsetDateTime.now())
-                    .build()))
+                        Image.builder()
+                                .id(UUID.randomUUID())
+                                .url("url-1-product-1")
+                                .altText("Alt text")
+                                .dateCreated(OffsetDateTime.now())
+                                .dateUpdated(OffsetDateTime.now())
+                                .build(),
+                        Image.builder()
+                                .id(UUID.randomUUID())
+                                .url("url-2-product-1")
+                                .altText("Alt text")
+                                .dateCreated(OffsetDateTime.now())
+                                .dateUpdated(OffsetDateTime.now())
+                                .build()))
                 .build();
 
         Product product2 = Product.builder()
@@ -94,27 +144,27 @@ public class DataLoader implements CommandLineRunner {
                 .dateCreated(OffsetDateTime.now())
                 .dateUpdated(OffsetDateTime.now())
                 .images(List.of(
-                    Image.builder()
-                    .id(UUID.randomUUID())
-                    .url("url-1-product-2")
-                    .altText("Alt text")
-                    .dateCreated(OffsetDateTime.now())
-                    .dateUpdated(OffsetDateTime.now())
-                    .build(),
-                    Image.builder()
-                    .id(UUID.randomUUID())
-                    .url("url-2-product-2")
-                    .altText("Alt text")
-                    .dateCreated(OffsetDateTime.now())
-                    .dateUpdated(OffsetDateTime.now())
-                    .build()))
+                        Image.builder()
+                                .id(UUID.randomUUID())
+                                .url("url-1-product-2")
+                                .altText("Alt text")
+                                .dateCreated(OffsetDateTime.now())
+                                .dateUpdated(OffsetDateTime.now())
+                                .build(),
+                        Image.builder()
+                                .id(UUID.randomUUID())
+                                .url("url-2-product-2")
+                                .altText("Alt text")
+                                .dateCreated(OffsetDateTime.now())
+                                .dateUpdated(OffsetDateTime.now())
+                                .build()))
                 .build();
 
         productRepository.save(product1);
         productRepository.save(product2);
     }
 
-    private void initCustomerRepository() {
+    private void initCustomerList() {
         Address address1 = Address.builder()
                 .addressLine1("1234 W Some Street")
                 .city("Some City")
@@ -175,8 +225,13 @@ public class DataLoader implements CommandLineRunner {
                         .build()))
                 .build();
 
-        customerRepository.save(customer1);
-        customerRepository.save(customer2);
+                customersList.add(customer1);
+                customersList.add(customer2);
     }
 
+    private void initCustomerRepository() {
+        customersList.forEach(customer -> 
+            customerRepository.save(customer)
+        );
+    }
 }

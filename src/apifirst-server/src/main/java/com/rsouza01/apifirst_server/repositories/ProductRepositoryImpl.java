@@ -12,10 +12,7 @@ import java.util.stream.StreamSupport;
 import org.springframework.stereotype.Repository;
 
 import com.rsouza01.apifirst.model.Category;
-import com.rsouza01.apifirst.model.Customer;
-import com.rsouza01.apifirst.model.Dimentions;
 import com.rsouza01.apifirst.model.Image;
-import com.rsouza01.apifirst.model.PaymentMethod;
 import com.rsouza01.apifirst.model.Product;
 
 @Repository
