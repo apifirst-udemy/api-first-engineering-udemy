@@ -1,5 +1,7 @@
 package com.rsouza01.apifirst_server.bootstrap;
 
+import java.time.OffsetDateTime;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -25,6 +27,8 @@ public class DataLoader implements CommandLineRunner {
                 .city("Some City")
                 .state("FL")
                 .zip("33701")
+                .dateCreated(OffsetDateTime.now())
+                .dateUpdated(OffsetDateTime.now())
                 .build();
 
         Customer customer1 = Customer.builder()
@@ -36,10 +40,15 @@ public class DataLoader implements CommandLineRunner {
                 .shipToAddress(address1)
                 .email("john@springframework.guru")
                 .phone("800-555-1212")
+                .dateCreated(OffsetDateTime.now())
+                .dateUpdated(OffsetDateTime.now())
                 .paymentMethods(List.of(PaymentMethod.builder()
+                        .displayName("Card 1")
                         .cardNumber(12341234)
                         .expiryMonth(12)
                         .expiryYear(26)
+                        .dateCreated(OffsetDateTime.now())
+                        .dateUpdated(OffsetDateTime.now())
                         .build()))
                 .build();
 
@@ -48,6 +57,8 @@ public class DataLoader implements CommandLineRunner {
                 .city("Some City")
                 .state("FL")
                 .zip("33701")
+                .dateCreated(OffsetDateTime.now())
+                .dateUpdated(OffsetDateTime.now())
                 .build();
 
         Customer customer2 = Customer.builder()
@@ -59,10 +70,15 @@ public class DataLoader implements CommandLineRunner {
                 .shipToAddress(address2)
                 .email("jim@springframework.guru")
                 .phone("800-555-1212")
+                .dateCreated(OffsetDateTime.now())
+                .dateUpdated(OffsetDateTime.now())
                 .paymentMethods(List.of(PaymentMethod.builder()
+                        .displayName("Card 2")
                         .cardNumber(1234888)
                         .expiryMonth(12)
                         .expiryYear(26)
+                        .dateCreated(OffsetDateTime.now())
+                        .dateUpdated(OffsetDateTime.now())
                         .build()))
                 .build();
 

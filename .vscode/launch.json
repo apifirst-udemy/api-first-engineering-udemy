@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ApifirstServerApplication<com.rsouza01-apifirst-server>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.rsouza01.apifirst_server.ApifirstServerApplication",
+            "projectName": "com.rsouza01-apifirst-server",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
