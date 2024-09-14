@@ -27,6 +27,10 @@ public class OrderRepositoryImpl implements OrderRepository {
         orderBuilder.id(id);
 
         Order order = orderBuilder
+                .orderLines(entity.getOrderLines())
+                .customer(entity.getCustomer())
+                .orderStatus(entity.getOrderStatus())
+                .shipmentInfo(entity.getShipmentInfo())
                 .dateCreated(OffsetDateTime.now())
                 .dateUpdated(OffsetDateTime.now())
                 .build();

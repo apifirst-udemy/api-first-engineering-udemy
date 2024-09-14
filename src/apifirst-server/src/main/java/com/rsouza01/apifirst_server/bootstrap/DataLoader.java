@@ -19,6 +19,7 @@ import com.rsouza01.apifirst.model.Name;
 import com.rsouza01.apifirst.model.Order;
 import com.rsouza01.apifirst.model.OrderCustomer;
 import com.rsouza01.apifirst.model.OrderLine;
+import com.rsouza01.apifirst.model.OrderProduct;
 import com.rsouza01.apifirst.model.PaymentMethod;
 import com.rsouza01.apifirst.model.Product;
 import com.rsouza01.apifirst_server.repositories.CustomerRepository;
@@ -30,6 +31,8 @@ import com.rsouza01.apifirst_server.repositories.ProductRepository;
 public class DataLoader implements CommandLineRunner {
 
     private final List<Customer> customersList = new ArrayList<Customer>();
+    private final List<Product> productsList = new ArrayList<Product>();
+    private final List<Order> ordersList = new ArrayList<Order>();
 
     private final CustomerRepository customerRepository;
     private final ProductRepository productRepository;
@@ -39,51 +42,57 @@ public class DataLoader implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         initCustomerList();
-        initCustomerRepository();
+        initProductList();
+        initOrdersList();
 
+        initCustomerRepository();
         initProductRepository();
         initOrderRepository();
-    }
 
-    private void initOrderRepository() {
-
-        /*
-
-  public static final String JSON_PROPERTY_PRODUCT = "product";
-  private OrderProduct product;
-
-  public static final String JSON_PROPERTY_ORDER_QUANTITY = "orderQuantity";
-  private Integer orderQuantity;
-
-  public static final String JSON_PROPERTY_SHIP_QUANTITY = "shipQuantity";
-  private Integer shipQuantity;
-
-         */
-        // One order per customer
-        // customerRepository.findAll()
-        //         .forEach(customer -> {
-        //             List<OrderLine> orderLines = List.of(
-        //                 OrderLine.builder()
-        //                 .id(UUID.randomUUID())
-        //                 .orderQuantity(1)
-        //                 .shipQuantity(10)
-        //                 .dateCreated(OffsetDateTime.now())
-        //                 .dateUpdated(OffsetDateTime.now())
-        //                 .build(),
-        //             );
-        //             Order order = Order.builder()
-        //                 .id(UUID.randomUUID())
-        //                 .customer(OrderCustomer.builder().build())
-        //                 .orderLines(orderLines)
-        //                 .dateCreated(OffsetDateTime.now())
-        //                 .dateUpdated(OffsetDateTime.now())
-        //                 .build();
-
-        //                 orderRepository.save(order);
-        //             });
     }
 
     private void initProductRepository() {
+        productsList.forEach(product -> productRepository.save(product));
+    }
+
+    private void initCustomerRepository() {
+        customersList.forEach(customer -> customerRepository.save(customer));
+    }
+
+    private void initOrderRepository() {
+        ordersList.forEach(order -> orderRepository.save(order));
+    }
+
+    private void initOrdersList() {
+        Order order1 = Order.builder()
+            .id(UUID.randomUUID())
+            .customer(OrderCustomer.builder().build())
+            .orderLines(List.of(
+                OrderLine.builder()
+                    .id(UUID.randomUUID())
+                    .product(OrderProduct.builder().build())
+                    .orderQuantity(1)
+                    .shipQuantity(10)
+                    .dateCreated(OffsetDateTime.now())
+                    .dateUpdated(OffsetDateTime.now())
+                    .build(),
+                OrderLine.builder()
+                    .id(UUID.randomUUID())
+                    .product(OrderProduct.builder().build())
+                    .orderQuantity(1)
+                    .shipQuantity(10)
+                    .dateCreated(OffsetDateTime.now())
+                    .dateUpdated(OffsetDateTime.now())
+                    .build()
+            ))
+            .dateCreated(OffsetDateTime.now())
+            .dateUpdated(OffsetDateTime.now())
+            .build();
+
+        ordersList.add(order1);
+    }
+
+    private void initProductList() {
 
         List<Category> categories = List.of(
                 Category.builder()
@@ -160,8 +169,8 @@ public class DataLoader implements CommandLineRunner {
                                 .build()))
                 .build();
 
-        productRepository.save(product1);
-        productRepository.save(product2);
+        productsList.add(product1);
+        productsList.add(product2);
     }
 
     private void initCustomerList() {
@@ -225,13 +234,8 @@ public class DataLoader implements CommandLineRunner {
                         .build()))
                 .build();
 
-                customersList.add(customer1);
-                customersList.add(customer2);
+        customersList.add(customer1);
+        customersList.add(customer2);
     }
 
-    private void initCustomerRepository() {
-        customersList.forEach(customer -> 
-            customerRepository.save(customer)
-        );
-    }
 }
