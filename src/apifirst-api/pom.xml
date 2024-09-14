@@ -85,6 +85,7 @@
               <generateModelTests>false</generateModelTests>
               <generateAliasAsModel>false</generateAliasAsModel>
               <generateApis>false</generateApis>
+              <modelPackage>com.rsouza01.apifirst.model</modelPackage>
               <inputSpec>
                 https://raw.githubusercontent.com/apifirst-udemy/api-first-openapi/main/dist/bundle.yaml</inputSpec>
               <generatorName>java</generatorName>
