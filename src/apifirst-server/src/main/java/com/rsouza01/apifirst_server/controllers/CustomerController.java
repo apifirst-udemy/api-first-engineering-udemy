@@ -1,6 +1,7 @@
 package com.rsouza01.apifirst_server.controllers;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController
@@ -25,6 +27,11 @@ public class CustomerController {
     @GetMapping
     public ResponseEntity<List<Customer>> listCustomers() {
         return ResponseEntity.ok(customerService.listCustomers());
+    }
+
+    @GetMapping("/{customerId}")
+    public ResponseEntity<Customer> getCustomerById(@PathVariable("customerId") UUID customerId) {
+        return ResponseEntity.ok(customerService.getCustomerById(customerId));
     }
     
 }
