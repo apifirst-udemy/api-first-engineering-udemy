@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.UUID;
 import java.time.OffsetDateTime;
+import java.util.stream.Collectors;
 
 import lombok.RequiredArgsConstructor;
 
@@ -65,29 +66,28 @@ public class DataLoader implements CommandLineRunner {
 
     private void initOrdersList() {
         Order order1 = Order.builder()
-            .id(UUID.randomUUID())
-            .customer(OrderCustomer.builder().build())
-            .orderLines(List.of(
-                OrderLine.builder()
-                    .id(UUID.randomUUID())
-                    .product(OrderProduct.builder().build())
-                    .orderQuantity(1)
-                    .shipQuantity(10)
-                    .dateCreated(OffsetDateTime.now())
-                    .dateUpdated(OffsetDateTime.now())
-                    .build(),
-                OrderLine.builder()
-                    .id(UUID.randomUUID())
-                    .product(OrderProduct.builder().build())
-                    .orderQuantity(1)
-                    .shipQuantity(10)
-                    .dateCreated(OffsetDateTime.now())
-                    .dateUpdated(OffsetDateTime.now())
-                    .build()
-            ))
-            .dateCreated(OffsetDateTime.now())
-            .dateUpdated(OffsetDateTime.now())
-            .build();
+                .id(UUID.randomUUID())
+                .customer(customerToOrderCustomer(customersList.get(0)))
+                .orderLines(List.of(
+                        OrderLine.builder()
+                                .id(UUID.randomUUID())
+                                .product(OrderProduct.builder().build())
+                                .orderQuantity(1)
+                                .shipQuantity(10)
+                                .dateCreated(OffsetDateTime.now())
+                                .dateUpdated(OffsetDateTime.now())
+                                .build(),
+                        OrderLine.builder()
+                                .id(UUID.randomUUID())
+                                .product(OrderProduct.builder().build())
+                                .orderQuantity(1)
+                                .shipQuantity(10)
+                                .dateCreated(OffsetDateTime.now())
+                                .dateUpdated(OffsetDateTime.now())
+                                .build()))
+                .dateCreated(OffsetDateTime.now())
+                .dateUpdated(OffsetDateTime.now())
+                .build();
 
         ordersList.add(order1);
     }
@@ -184,6 +184,7 @@ public class DataLoader implements CommandLineRunner {
                 .build();
 
         Customer customer1 = Customer.builder()
+                .id(UUID.randomUUID())
                 .name(Name.builder()
                         .firstName("John")
                         .lastName("Thompson")
@@ -215,6 +216,7 @@ public class DataLoader implements CommandLineRunner {
                 .build();
 
         Customer customer2 = Customer.builder()
+                .id(UUID.randomUUID())
                 .name(Name.builder()
                         .firstName("Jim")
                         .lastName("Smith")
@@ -240,4 +242,43 @@ public class DataLoader implements CommandLineRunner {
         customersList.add(customer2);
     }
 
+    private static OrderCustomer customerToOrderCustomer(final Customer customer) {
+        OrderCustomer.OrderCustomerBuilder orderCustomerBuilder = OrderCustomer.builder();
+
+        orderCustomerBuilder.id(customer.getId());
+
+        if (customer.getBillToAddress() != null) {
+            orderCustomerBuilder.billToAddress(Address.builder()
+                    .id(UUID.randomUUID())
+                    .addressLine1(customer.getBillToAddress().getAddressLine1())
+                    .addressLine2(customer.getBillToAddress().getAddressLine2())
+                    .city(customer.getBillToAddress().getCity())
+                    .state(customer.getBillToAddress().getState())
+                    .zip(customer.getBillToAddress().getZip())
+                    .dateCreated(customer.getDateCreated())
+                    .dateUpdated(customer.getDateUpdated())
+                    .build());
+        }
+
+        if (customer.getShipToAddress() != null) {
+            orderCustomerBuilder.shipToAddress(Address.builder()
+                    .id(UUID.randomUUID())
+                    .addressLine1(customer.getShipToAddress().getAddressLine1())
+                    .addressLine2(customer.getShipToAddress().getAddressLine2())
+                    .city(customer.getShipToAddress().getCity())
+                    .state(customer.getShipToAddress().getState())
+                    .zip(customer.getShipToAddress().getZip())
+                    .dateCreated(customer.getDateCreated())
+                    .dateUpdated(customer.getDateUpdated())
+                    .build());
+        }
+
+        OrderCustomer orderCustomer = orderCustomerBuilder
+                .email(customer.getEmail())
+                .name(customer.getName())
+                .phone(customer.getPhone())
+                .build();
+
+        return orderCustomer;
+    }
 }
