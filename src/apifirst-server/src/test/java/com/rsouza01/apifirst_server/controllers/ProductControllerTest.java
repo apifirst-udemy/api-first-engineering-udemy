@@ -12,22 +12,22 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-public class CustomerControllerTest extends BaseTest {
+public class ProductControllerTest extends BaseTest {
 
     @DisplayName("Get by Id")
     @Test
-    void testGetCustomerById() throws Exception {
-        mockMvc.perform(get(CustomerController.BASE_URL + "/{customerId}", testCustomer.getId())
+    void testGetProductById() throws Exception {
+        mockMvc.perform(get(ProductController.BASE_URL + "/{productId}", testProduct.getId())
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(testCustomer.getId().toString()));
+                .andExpect(jsonPath("$.id").value(testProduct.getId().toString()));
     }
 
-    @DisplayName("Test list customers")
+    @DisplayName("Test list Products")
     @Test
-    void testListCustomers() throws Exception {
-        mockMvc.perform(get(CustomerController.BASE_URL)
+    void testListProducts() throws Exception {
+        mockMvc.perform(get(ProductController.BASE_URL)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()", greaterThan(0)));

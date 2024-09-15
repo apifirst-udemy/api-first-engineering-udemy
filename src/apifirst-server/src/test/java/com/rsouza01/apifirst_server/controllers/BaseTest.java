@@ -1,10 +1,13 @@
 package com.rsouza01.apifirst_server.controllers;
 
+import jakarta.servlet.Filter;
+
 import com.rsouza01.apifirst.model.Customer;
+import com.rsouza01.apifirst.model.Order;
+import com.rsouza01.apifirst.model.Product;
 import com.rsouza01.apifirst_server.repositories.CustomerRepository;
 import com.rsouza01.apifirst_server.repositories.OrderRepository;
 import com.rsouza01.apifirst_server.repositories.ProductRepository;
-
 
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +29,21 @@ public class BaseTest {
     @Autowired
     WebApplicationContext wac;
 
-    public MockMvc mockMvc; 
+    public MockMvc mockMvc;
 
     Customer testCustomer;
+    Product testProduct;
+    Order testOrder;
+
+    @Autowired
+    Filter validationFilter;
 
     @BeforeEach
     void setup() {
-        mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
+        mockMvc = MockMvcBuilders.webAppContextSetup(wac).addFilter(validationFilter).build();
 
         testCustomer = customerRepository.findAll().iterator().next();
+        testProduct = productRepository.findAll().iterator().next();
+        testOrder = orderRepository.findAll().iterator().next();
     }
 }

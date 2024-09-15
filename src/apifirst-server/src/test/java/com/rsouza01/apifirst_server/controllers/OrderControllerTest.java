@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import static org.hamcrest.Matchers.greaterThan;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -12,22 +11,22 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-public class CustomerControllerTest extends BaseTest {
+public class OrderControllerTest extends BaseTest {
 
     @DisplayName("Get by Id")
     @Test
-    void testGetCustomerById() throws Exception {
-        mockMvc.perform(get(CustomerController.BASE_URL + "/{customerId}", testCustomer.getId())
+    void testGetOrderById() throws Exception {
+        System.out.println(">>>>>> testOrder:" + testOrder);
+        mockMvc.perform(get(OrderController.BASE_URL + "/{orderId}", testOrder.getId())
                 .accept(MediaType.APPLICATION_JSON))
-                .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(testCustomer.getId().toString()));
+                .andExpect(jsonPath("$.id").value(testOrder.getId().toString()));
     }
 
-    @DisplayName("Test list customers")
+    @DisplayName("Test list Orders")
     @Test
-    void testListCustomers() throws Exception {
-        mockMvc.perform(get(CustomerController.BASE_URL)
+    void testListOrders() throws Exception {
+        mockMvc.perform(get(OrderController.BASE_URL)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()", greaterThan(0)));
