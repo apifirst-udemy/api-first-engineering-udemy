@@ -12,35 +12,48 @@ import java.util.stream.StreamSupport;
 import org.springframework.stereotype.Repository;
 
 import com.rsouza01.apifirst.model.Order;
+import com.rsouza01.apifirst.model.OrderLine;
 
 @Repository
 public class OrderRepositoryImpl implements OrderRepository {
 
     private final Map<UUID, Order> entityMap = new HashMap<>();
 
+
     @Override
     public <S extends Order> S save(S entity) {
-        UUID id = UUID.randomUUID();
+        Order.OrderBuilder builder = Order.builder();
 
-        Order.OrderBuilder orderBuilder = Order.builder();
-
-        orderBuilder.id(id);
-
-        Order order = orderBuilder
-                .orderLines(entity.getOrderLines())
-                .customer(entity.getCustomer())
+        builder.id(UUID.randomUUID())
                 .orderStatus(entity.getOrderStatus())
                 .shipmentInfo(entity.getShipmentInfo())
                 .dateCreated(OffsetDateTime.now())
-                .dateUpdated(OffsetDateTime.now())
-                .build();
+                .dateUpdated(OffsetDateTime.now());
 
+        if (entity.getCustomer() != null) {
+            builder.customer(entity.getCustomer());
+        }
 
-        entityMap.put(id, order);
+        if (entity.getOrderLines() != null){
+            builder.orderLines(entity.getOrderLines().stream()
+                    .map(orderLine -> {
+                        return OrderLine.builder()
+                                .id(UUID.randomUUID())
+                                .product(orderLine.getProduct()) //might cause NPE
+                                .orderQuantity(orderLine.getOrderQuantity())
+                                .shipQuantity(orderLine.getShipQuantity())
+                                .dateCreated(OffsetDateTime.now())
+                                .dateUpdated(OffsetDateTime.now())
+                                .build();
+                    })
+                    .collect(Collectors.toList()));
+        }
 
-        return (S) order;
+        Order savedEntity = builder.build();
+        entityMap.put(savedEntity.getId(), savedEntity);
+        return (S) savedEntity;
     }
-
+    
     @Override
     public <S extends Order> Iterable<S> saveAll(Iterable<S> entities) {
         return StreamSupport.stream(entities.spliterator(), false)
