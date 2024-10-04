@@ -5,15 +5,22 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+
+import com.rsouza01.apifirst.model.OrderCreate;
+import com.rsouza01.apifirst.model.OrderLineCreate;
 
 import static org.hamcrest.Matchers.greaterThan;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.Arrays;
+
 @SpringBootTest
 public class OrderControllerTest extends BaseTest {
-
 
     // Failing because the Order objects are not fully fulfilled.
     @DisplayName("Test list Orders")
@@ -36,4 +43,22 @@ public class OrderControllerTest extends BaseTest {
                 .andExpect(jsonPath("$.id").value(testOrder.getId().toString()));
     }
 
+    @DisplayName("Create order")
+    @Test
+    void testCreateOrder() throws Exception {
+
+        OrderCreate orderCreate = OrderCreate.builder()
+                .customerId(testCustomer.getId())
+                .selectPaymentMethod(testCustomer.getPaymentMethods().get(0).getId())
+                .orderLines(Arrays
+                        .asList(OrderLineCreate.builder().productId(testProduct.getId()).orderQuantity(2).build()))
+                .build();
+
+        mockMvc.perform(post(OrderController.BASE_URL)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(orderCreate)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isCreated())
+                .andExpect(header().exists("Location"));
+    }
 }

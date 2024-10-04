@@ -45,7 +45,6 @@ public class ProductControllerTest extends BaseTest {
     @DisplayName("Create product")
     @Test
     void testCreateProduct() throws Exception {
-        ;
 
         Product product = Product.builder()
                 .description("null")
