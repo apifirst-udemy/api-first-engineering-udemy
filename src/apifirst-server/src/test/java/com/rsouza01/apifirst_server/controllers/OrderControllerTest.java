@@ -14,6 +14,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 public class OrderControllerTest extends BaseTest {
 
+
+    // Failing because the Order objects are not fully fulfilled.
+    @DisplayName("Test list Orders")
+    @Test
+    @Disabled
+    void testListOrders() throws Exception {
+        mockMvc.perform(get(OrderController.BASE_URL)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()", greaterThan(0)));
+    }
+
     @DisplayName("Get by Id")
     @Test
     @Disabled
@@ -24,13 +36,4 @@ public class OrderControllerTest extends BaseTest {
                 .andExpect(jsonPath("$.id").value(testOrder.getId().toString()));
     }
 
-    @DisplayName("Test list Orders")
-    @Test
-    @Disabled
-    void testListOrders() throws Exception {
-        mockMvc.perform(get(OrderController.BASE_URL)
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.length()", greaterThan(0)));
-    }
 }

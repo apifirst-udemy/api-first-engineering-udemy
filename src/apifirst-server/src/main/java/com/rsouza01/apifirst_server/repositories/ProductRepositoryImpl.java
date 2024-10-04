@@ -67,7 +67,6 @@ public class ProductRepositoryImpl implements ProductRepository {
         entityMap.put(id, product);
 
         return (S) product;
-    
     }
 
     @Override

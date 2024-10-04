@@ -6,13 +6,31 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
+import com.rsouza01.apifirst.model.Category;
+import com.rsouza01.apifirst.model.Dimentions;
+import com.rsouza01.apifirst.model.Image;
+import com.rsouza01.apifirst.model.Product;
+
 import static org.hamcrest.Matchers.greaterThan;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.Arrays;
+
 @SpringBootTest
 public class ProductControllerTest extends BaseTest {
+
+    @DisplayName("Test list Products")
+    @Test
+    void testListProducts() throws Exception {
+        mockMvc.perform(get(ProductController.BASE_URL)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()", greaterThan(0)));
+    }
 
     @DisplayName("Get by Id")
     @Test
@@ -24,12 +42,35 @@ public class ProductControllerTest extends BaseTest {
                 .andExpect(jsonPath("$.id").value(testProduct.getId().toString()));
     }
 
-    @DisplayName("Test list Products")
+    @DisplayName("Create product")
     @Test
-    void testListProducts() throws Exception {
-        mockMvc.perform(get(ProductController.BASE_URL)
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.length()", greaterThan(0)));
+    void testCreateProduct() throws Exception {
+        ;
+
+        Product product = Product.builder()
+                .description("null")
+                .cost("1.00")
+                .price("1.00")
+                .categories(Arrays.asList(Category.builder()
+                        .category("New Category")
+                        .description("Category Description")
+                        .build()))
+                .images(Arrays.asList(Image.builder()
+                        .url("http://example.com/image.jpg")
+                        .altText("Some image")
+                        .build()))
+                .dimentions(Dimentions.builder()
+                        .length(10)
+                        .width(10)
+                        .height(10)
+                        .build())
+                .build();
+
+        mockMvc.perform(post(ProductController.BASE_URL)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(product)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isCreated())
+                .andExpect(header().exists("Location"));
     }
 }

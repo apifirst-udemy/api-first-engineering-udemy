@@ -7,6 +7,17 @@ mvn archetype:generate -DgroupId=com.rsouza01 -DartifactId=apifirst-sb-server -D
 mvn archetype:generate -DgroupId=com.rsouza01 -DartifactId=apifirst-api -DinteractiveMode=false
 mvn archetype:generate -DgroupId=com.rsouza01 -DartifactId=apifirst-server -DinteractiveMode=false
 
+## Build commands
+
+* Build
+mvn clean install
+
+* Full build + tests
+mvn test-compile -f "/workspaces/api-first-engineering-udemy/src/pom.xml"
+
+* Start the server
+mvn spring-boot:run -f "./src/apifirst-server/pom.xml"
+
 
 # Remote
 git remote set-url origin https://github.com/apifirst-udemy/api-first-engineering-udemy.git

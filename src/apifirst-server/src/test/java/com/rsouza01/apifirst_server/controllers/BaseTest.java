@@ -2,6 +2,7 @@ package com.rsouza01.apifirst_server.controllers;
 
 import jakarta.servlet.Filter;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rsouza01.apifirst.model.Customer;
 import com.rsouza01.apifirst.model.Order;
 import com.rsouza01.apifirst.model.Product;
@@ -25,6 +26,9 @@ public class BaseTest {
 
     @Autowired
     OrderRepository orderRepository;
+
+    @Autowired
+    ObjectMapper objectMapper;
 
     @Autowired
     WebApplicationContext wac;
