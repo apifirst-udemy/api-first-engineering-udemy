@@ -4,25 +4,24 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.UUID;
 import java.time.OffsetDateTime;
-import java.util.stream.Collectors;
 
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import com.rsouza01.apifirst.model.Address;
-import com.rsouza01.apifirst.model.Category;
-import com.rsouza01.apifirst.model.Customer;
-import com.rsouza01.apifirst.model.Dimentions;
-import com.rsouza01.apifirst.model.Image;
-import com.rsouza01.apifirst.model.Name;
-import com.rsouza01.apifirst.model.Order;
-import com.rsouza01.apifirst.model.OrderCustomer;
-import com.rsouza01.apifirst.model.OrderLine;
-import com.rsouza01.apifirst.model.OrderProduct;
-import com.rsouza01.apifirst.model.PaymentMethod;
-import com.rsouza01.apifirst.model.Product;
+import com.rsouza01.apifirst.model.AddressDto;
+import com.rsouza01.apifirst.model.CategoryDto;
+import com.rsouza01.apifirst.model.CustomerDto;
+import com.rsouza01.apifirst.model.DimensionsDto;
+import com.rsouza01.apifirst.model.ImageDto;
+import com.rsouza01.apifirst.model.NameDto;
+import com.rsouza01.apifirst.model.OrderDto;
+import com.rsouza01.apifirst.model.OrderCustomerDto;
+import com.rsouza01.apifirst.model.OrderLineDto;
+import com.rsouza01.apifirst.model.OrderProductDto;
+import com.rsouza01.apifirst.model.PaymentMethodDto;
+import com.rsouza01.apifirst.model.ProductDto;
 import com.rsouza01.apifirst_server.repositories.CustomerRepository;
 import com.rsouza01.apifirst_server.repositories.OrderRepository;
 import com.rsouza01.apifirst_server.repositories.ProductRepository;
@@ -31,9 +30,9 @@ import com.rsouza01.apifirst_server.repositories.ProductRepository;
 @Component
 public class DataLoader implements CommandLineRunner {
 
-    private final List<Customer> customersList = new ArrayList<Customer>();
-    private final List<Product> productsList = new ArrayList<Product>();
-    private final List<Order> ordersList = new ArrayList<Order>();
+    private final List<CustomerDto> customersList = new ArrayList<CustomerDto>();
+    private final List<ProductDto> productsList = new ArrayList<ProductDto>();
+    private final List<OrderDto> ordersList = new ArrayList<OrderDto>();
 
     private final CustomerRepository customerRepository;
     private final ProductRepository productRepository;
@@ -65,21 +64,21 @@ public class DataLoader implements CommandLineRunner {
     }
 
     private void initOrdersList() {
-        Order order1 = Order.builder()
+        OrderDto order1 = OrderDto.builder()
                 .id(UUID.randomUUID())
                 .customer(customerToOrderCustomer(customersList.get(0)))
                 .orderLines(List.of(
-                        OrderLine.builder()
+                        OrderLineDto.builder()
                                 .id(UUID.randomUUID())
-                                .product(OrderProduct.builder().build())
+                                .product(OrderProductDto.builder().build())
                                 .orderQuantity(1)
                                 .shipQuantity(10)
                                 .dateCreated(OffsetDateTime.now())
                                 .dateUpdated(OffsetDateTime.now())
                                 .build(),
-                        OrderLine.builder()
+                        OrderLineDto.builder()
                                 .id(UUID.randomUUID())
-                                .product(OrderProduct.builder().build())
+                                .product(OrderProductDto.builder().build())
                                 .orderQuantity(1)
                                 .shipQuantity(10)
                                 .dateCreated(OffsetDateTime.now())
@@ -94,22 +93,22 @@ public class DataLoader implements CommandLineRunner {
 
     private void initProductList() {
 
-        List<Category> categories = List.of(
-                Category.builder()
+        List<CategoryDto> categories = List.of(
+                CategoryDto.builder()
                         .id(UUID.randomUUID())
                         .category("Category 1")
                         .description("Description of Category 1")
                         .dateCreated(OffsetDateTime.now())
                         .dateUpdated(OffsetDateTime.now())
                         .build(),
-                Category.builder()
+                CategoryDto.builder()
                         .id(UUID.randomUUID())
                         .category("Category 2")
                         .description("Description of Category 2")
                         .dateCreated(OffsetDateTime.now())
                         .dateUpdated(OffsetDateTime.now())
                         .build(),
-                Category.builder()
+                CategoryDto.builder()
                         .id(UUID.randomUUID())
                         .category("Category 3")
                         .description("Description of Category 3")
@@ -119,23 +118,23 @@ public class DataLoader implements CommandLineRunner {
 
         );
 
-        Product product1 = Product.builder()
+        ProductDto product1 = ProductDto.builder()
                 .description("Product 1")
                 .price("123")
                 .cost("100")
-                .dimentions(Dimentions.builder().width(10).height(10).length(10).build())
+                .dimensions(DimensionsDto.builder().width(10).height(10).length(10).build())
                 .categories(List.of(categories.get(0), categories.get(1)))
                 .dateCreated(OffsetDateTime.now())
                 .dateUpdated(OffsetDateTime.now())
                 .images(List.of(
-                        Image.builder()
+                        ImageDto.builder()
                                 .id(UUID.randomUUID())
                                 .url("url-1-product-1")
                                 .altText("Alt text")
                                 .dateCreated(OffsetDateTime.now())
                                 .dateUpdated(OffsetDateTime.now())
                                 .build(),
-                        Image.builder()
+                        ImageDto.builder()
                                 .id(UUID.randomUUID())
                                 .url("url-2-product-1")
                                 .altText("Alt text")
@@ -144,23 +143,23 @@ public class DataLoader implements CommandLineRunner {
                                 .build()))
                 .build();
 
-        Product product2 = Product.builder()
+        ProductDto product2 = ProductDto.builder()
                 .description("Product 2")
                 .price("321")
                 .cost("300")
-                .dimentions(Dimentions.builder().width(100).height(100).length(100).build())
+                .dimensions(DimensionsDto.builder().width(100).height(100).length(100).build())
                 .categories(List.of(categories.get(1), categories.get(2)))
                 .dateCreated(OffsetDateTime.now())
                 .dateUpdated(OffsetDateTime.now())
                 .images(List.of(
-                        Image.builder()
+                        ImageDto.builder()
                                 .id(UUID.randomUUID())
                                 .url("url-1-product-2")
                                 .altText("Alt text")
                                 .dateCreated(OffsetDateTime.now())
                                 .dateUpdated(OffsetDateTime.now())
                                 .build(),
-                        Image.builder()
+                        ImageDto.builder()
                                 .id(UUID.randomUUID())
                                 .url("url-2-product-2")
                                 .altText("Alt text")
@@ -174,7 +173,7 @@ public class DataLoader implements CommandLineRunner {
     }
 
     private void initCustomerList() {
-        Address address1 = Address.builder()
+        AddressDto address1 = AddressDto.builder()
                 .addressLine1("1234 W Some Street")
                 .city("Some City")
                 .state("FL")
@@ -183,9 +182,9 @@ public class DataLoader implements CommandLineRunner {
                 .dateUpdated(OffsetDateTime.now())
                 .build();
 
-        Customer customer1 = Customer.builder()
+        CustomerDto customer1 = CustomerDto.builder()
                 .id(UUID.randomUUID())
-                .name(Name.builder()
+                .name(NameDto.builder()
                         .firstName("John")
                         .lastName("Thompson")
                         .build())
@@ -195,7 +194,7 @@ public class DataLoader implements CommandLineRunner {
                 .phone("800-555-1212")
                 .dateCreated(OffsetDateTime.now())
                 .dateUpdated(OffsetDateTime.now())
-                .paymentMethods(List.of(PaymentMethod.builder()
+                .paymentMethods(List.of(PaymentMethodDto.builder()
                         .displayName("Card 1")
                         .cvv(123)
                         .cardNumber(12341234)
@@ -206,7 +205,7 @@ public class DataLoader implements CommandLineRunner {
                         .build()))
                 .build();
 
-        Address address2 = Address.builder()
+        AddressDto address2 = AddressDto.builder()
                 .addressLine1("1234 W Some Street")
                 .city("Some City")
                 .state("FL")
@@ -215,9 +214,9 @@ public class DataLoader implements CommandLineRunner {
                 .dateUpdated(OffsetDateTime.now())
                 .build();
 
-        Customer customer2 = Customer.builder()
+        CustomerDto customer2 = CustomerDto.builder()
                 .id(UUID.randomUUID())
-                .name(Name.builder()
+                .name(NameDto.builder()
                         .firstName("Jim")
                         .lastName("Smith")
                         .build())
@@ -227,7 +226,7 @@ public class DataLoader implements CommandLineRunner {
                 .phone("800-555-1212")
                 .dateCreated(OffsetDateTime.now())
                 .dateUpdated(OffsetDateTime.now())
-                .paymentMethods(List.of(PaymentMethod.builder()
+                .paymentMethods(List.of(PaymentMethodDto.builder()
                         .displayName("Card 2")
                         .cvv(123)
                         .cardNumber(1234888)
@@ -242,13 +241,13 @@ public class DataLoader implements CommandLineRunner {
         customersList.add(customer2);
     }
 
-    private static OrderCustomer customerToOrderCustomer(final Customer customer) {
-        OrderCustomer.OrderCustomerBuilder orderCustomerBuilder = OrderCustomer.builder();
+    private static OrderCustomerDto customerToOrderCustomer(final CustomerDto customer) {
+        OrderCustomerDto.OrderCustomerDtoBuilder orderCustomerBuilder = OrderCustomerDto.builder();
 
         orderCustomerBuilder.id(customer.getId());
 
         if (customer.getBillToAddress() != null) {
-            orderCustomerBuilder.billToAddress(Address.builder()
+            orderCustomerBuilder.billToAddress(AddressDto.builder()
                     .id(UUID.randomUUID())
                     .addressLine1(customer.getBillToAddress().getAddressLine1())
                     .addressLine2(customer.getBillToAddress().getAddressLine2())
@@ -261,7 +260,7 @@ public class DataLoader implements CommandLineRunner {
         }
 
         if (customer.getShipToAddress() != null) {
-            orderCustomerBuilder.shipToAddress(Address.builder()
+            orderCustomerBuilder.shipToAddress(AddressDto.builder()
                     .id(UUID.randomUUID())
                     .addressLine1(customer.getShipToAddress().getAddressLine1())
                     .addressLine2(customer.getShipToAddress().getAddressLine2())
@@ -273,7 +272,7 @@ public class DataLoader implements CommandLineRunner {
                     .build());
         }
 
-        OrderCustomer orderCustomer = orderCustomerBuilder
+        OrderCustomerDto orderCustomer = orderCustomerBuilder
                 .email(customer.getEmail())
                 .name(customer.getName())
                 .phone(customer.getPhone())

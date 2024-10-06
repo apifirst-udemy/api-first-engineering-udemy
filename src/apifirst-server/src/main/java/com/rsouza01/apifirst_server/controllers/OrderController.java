@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.rsouza01.apifirst.model.Order;
-import com.rsouza01.apifirst.model.OrderCreate;
-import com.rsouza01.apifirst.model.Product;
+import com.rsouza01.apifirst.model.OrderDto;
+import com.rsouza01.apifirst.model.OrderCreateDto;
 import com.rsouza01.apifirst_server.services.OrderService;
 
 import lombok.RequiredArgsConstructor;
@@ -32,19 +31,19 @@ public class OrderController {
     private final OrderService orderService;
 
     @GetMapping
-    public ResponseEntity<List<Order>> listOrders() {
+    public ResponseEntity<List<OrderDto>> listOrders() {
         return ResponseEntity.ok(orderService.listOrders());
     }
 
     @GetMapping("/{orderId}")
-    public ResponseEntity<Order> getOrderById(@PathVariable("orderId") UUID orderId) {
+    public ResponseEntity<OrderDto> getOrderById(@PathVariable("orderId") UUID orderId) {
         return ResponseEntity.ok(orderService.getOrderById(orderId));
     }
     
     @PostMapping
-    public ResponseEntity<Void> saveNewOrder(@RequestBody OrderCreate orderCreate) {
+    public ResponseEntity<Void> saveNewOrder(@RequestBody OrderCreateDto orderCreate) {
         
-        Order savedOrder = orderService.saveNewOrder(orderCreate);
+        OrderDto savedOrder = orderService.saveNewOrder(orderCreate);
 
         UriComponents uriComponents = UriComponentsBuilder.fromPath(BASE_URL + "/{order_id}").buildAndExpand(savedOrder.getId());
 

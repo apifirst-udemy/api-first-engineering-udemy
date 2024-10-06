@@ -7,13 +7,13 @@ import java.util.stream.StreamSupport;
 
 import org.springframework.stereotype.Service;
 
-import com.rsouza01.apifirst.model.Customer;
-import com.rsouza01.apifirst.model.Order;
-import com.rsouza01.apifirst.model.OrderCreate;
-import com.rsouza01.apifirst.model.OrderCustomer;
-import com.rsouza01.apifirst.model.OrderLine;
-import com.rsouza01.apifirst.model.OrderProduct;
-import com.rsouza01.apifirst.model.Product;
+import com.rsouza01.apifirst.model.CustomerDto;
+import com.rsouza01.apifirst.model.OrderDto;
+import com.rsouza01.apifirst.model.OrderCreateDto;
+import com.rsouza01.apifirst.model.OrderCustomerDto;
+import com.rsouza01.apifirst.model.OrderLineDto;
+import com.rsouza01.apifirst.model.OrderProductDto;
+import com.rsouza01.apifirst.model.ProductDto;
 import com.rsouza01.apifirst_server.repositories.CustomerRepository;
 import com.rsouza01.apifirst_server.repositories.OrderRepository;
 import com.rsouza01.apifirst_server.repositories.ProductRepository;
@@ -29,21 +29,21 @@ public class OrderServiceImpl implements OrderService {
     private final ProductRepository productRepository;
 
     @Override
-    public List<Order> listOrders() {
+    public List<OrderDto> listOrders() {
         return StreamSupport.stream(orderRepository.findAll().spliterator(), false).toList();
     }
 
     @Override
-    public Order getOrderById(UUID orderId) {
+    public OrderDto getOrderById(UUID orderId) {
         return orderRepository.findById(orderId).orElseThrow();
     }
 
     @Override
-    public Order saveNewOrder(OrderCreate orderCreate) {
-        Customer orderCustomer = customerRepository.findById(orderCreate.getCustomerId()).orElseThrow();
+    public OrderDto saveNewOrder(OrderCreateDto orderCreate) {
+        CustomerDto orderCustomer = customerRepository.findById(orderCreate.getCustomerId()).orElseThrow();
 
-        Order.OrderBuilder builder = Order.builder()
-                .customer(OrderCustomer.builder()
+        OrderDto.OrderDtoBuilder builder = OrderDto.builder()
+                .customer(OrderCustomerDto.builder()
                         .id(orderCustomer.getId())
                         .name(orderCustomer.getName())
                         .billToAddress(orderCustomer.getBillToAddress())
@@ -51,19 +51,19 @@ public class OrderServiceImpl implements OrderService {
                         .phone(orderCustomer.getPhone())
                         .selectedPaymentMethod(orderCustomer.getPaymentMethods().stream()
                                 .filter(paymentMethod -> paymentMethod.getId()
-                                        .equals(orderCreate.getSelectPaymentMethod()))
+                                        .equals(orderCreate.getSelectPaymentMethodId()))
                                 .findFirst().orElseThrow())
                         .build())
-                .orderStatus(Order.OrderStatusEnum.NEW);
+                .orderStatus(OrderDto.OrderStatusEnum.NEW);
 
-        List<OrderLine> orderLines = new ArrayList<>();
+        List<OrderLineDto> orderLines = new ArrayList<>();
 
         orderCreate.getOrderLines()
                 .forEach(orderLineCreate -> {
-                    Product product = productRepository.findById(orderLineCreate.getProductId()).orElseThrow();
+                    ProductDto product = productRepository.findById(orderLineCreate.getProductId()).orElseThrow();
 
-                    orderLines.add(OrderLine.builder()
-                            .product(OrderProduct.builder()
+                    orderLines.add(OrderLineDto.builder()
+                            .product(OrderProductDto.builder()
                                     .id(product.getId())
                                     .description(product.getDescription())
                                     .price(product.getPrice())

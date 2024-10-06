@@ -3,15 +3,15 @@ package com.rsouza01.apifirst_server.services;
 import java.util.List;
 import java.util.UUID;
 
-import com.rsouza01.apifirst.model.Order;
-import com.rsouza01.apifirst.model.OrderCreate;
+import com.rsouza01.apifirst.model.OrderDto;
+import com.rsouza01.apifirst.model.OrderCreateDto;
 
 
 public interface OrderService {
 
-    List<Order> listOrders();
+    List<OrderDto> listOrders();
 
-    Order getOrderById(UUID orderId);
+    OrderDto getOrderById(UUID orderId);
 
-    Order saveNewOrder(OrderCreate orderCreate);
+    OrderDto saveNewOrder(OrderCreateDto orderCreate);
 }

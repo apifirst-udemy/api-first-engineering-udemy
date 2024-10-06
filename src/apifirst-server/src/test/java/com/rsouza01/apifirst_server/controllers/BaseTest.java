@@ -3,9 +3,9 @@ package com.rsouza01.apifirst_server.controllers;
 import jakarta.servlet.Filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rsouza01.apifirst.model.Customer;
-import com.rsouza01.apifirst.model.Order;
-import com.rsouza01.apifirst.model.Product;
+import com.rsouza01.apifirst.model.CustomerDto;
+import com.rsouza01.apifirst.model.OrderDto;
+import com.rsouza01.apifirst.model.ProductDto;
 import com.rsouza01.apifirst_server.repositories.CustomerRepository;
 import com.rsouza01.apifirst_server.repositories.OrderRepository;
 import com.rsouza01.apifirst_server.repositories.ProductRepository;
@@ -35,9 +35,9 @@ public class BaseTest {
 
     public MockMvc mockMvc;
 
-    Customer testCustomer;
-    Product testProduct;
-    Order testOrder;
+    CustomerDto testCustomer;
+    ProductDto testProduct;
+    OrderDto testOrder;
 
     @Autowired
     Filter validationFilter;

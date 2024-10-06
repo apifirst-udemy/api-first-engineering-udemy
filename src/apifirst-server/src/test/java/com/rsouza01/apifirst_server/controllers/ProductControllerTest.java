@@ -6,10 +6,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
-import com.rsouza01.apifirst.model.Category;
-import com.rsouza01.apifirst.model.Dimentions;
-import com.rsouza01.apifirst.model.Image;
-import com.rsouza01.apifirst.model.Product;
+import com.rsouza01.apifirst.model.CategoryDto;
+import com.rsouza01.apifirst.model.DimensionsDto;
+import com.rsouza01.apifirst.model.ImageDto;
+import com.rsouza01.apifirst.model.ProductDto;
 
 import static org.hamcrest.Matchers.greaterThan;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -46,19 +46,19 @@ public class ProductControllerTest extends BaseTest {
     @Test
     void testCreateProduct() throws Exception {
 
-        Product product = Product.builder()
+        ProductDto product = ProductDto.builder()
                 .description("null")
                 .cost("1.00")
                 .price("1.00")
-                .categories(Arrays.asList(Category.builder()
+                .categories(Arrays.asList(CategoryDto.builder()
                         .category("New Category")
                         .description("Category Description")
                         .build()))
-                .images(Arrays.asList(Image.builder()
-                        .url("http://example.com/image.jpg")
+                .images(Arrays.asList(ImageDto.builder()
+                        .url("http://example.com/ImageDto.jpg")
                         .altText("Some image")
                         .build()))
-                .dimentions(Dimentions.builder()
+                .dimensions(DimensionsDto.builder()
                         .length(10)
                         .width(10)
                         .height(10)

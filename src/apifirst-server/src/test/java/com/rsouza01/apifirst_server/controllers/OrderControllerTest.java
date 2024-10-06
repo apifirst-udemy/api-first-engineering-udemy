@@ -7,8 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
-import com.rsouza01.apifirst.model.OrderCreate;
-import com.rsouza01.apifirst.model.OrderLineCreate;
+import com.rsouza01.apifirst.model.OrderCreateDto;
+import com.rsouza01.apifirst.model.OrderLineCreateDto;
 
 import static org.hamcrest.Matchers.greaterThan;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -47,11 +47,11 @@ public class OrderControllerTest extends BaseTest {
     @Test
     void testCreateOrder() throws Exception {
 
-        OrderCreate orderCreate = OrderCreate.builder()
+        OrderCreateDto orderCreate = OrderCreateDto.builder()
                 .customerId(testCustomer.getId())
-                .selectPaymentMethod(testCustomer.getPaymentMethods().get(0).getId())
+                .selectPaymentMethodId(testCustomer.getPaymentMethods().get(0).getId())
                 .orderLines(Arrays
-                        .asList(OrderLineCreate.builder().productId(testProduct.getId()).orderQuantity(2).build()))
+                        .asList(OrderLineCreateDto.builder().productId(testProduct.getId()).orderQuantity(2).build()))
                 .build();
 
         mockMvc.perform(post(OrderController.BASE_URL)

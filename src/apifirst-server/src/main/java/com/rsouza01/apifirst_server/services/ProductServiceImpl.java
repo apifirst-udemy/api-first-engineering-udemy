@@ -6,7 +6,7 @@ import java.util.stream.StreamSupport;
 
 import org.springframework.stereotype.Service;
 
-import com.rsouza01.apifirst.model.Product;
+import com.rsouza01.apifirst.model.ProductDto;
 import com.rsouza01.apifirst_server.repositories.ProductRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -18,17 +18,17 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
 
     @Override
-    public List<Product> listProducts() {
+    public List<ProductDto> listProducts() {
         return StreamSupport.stream(productRepository.findAll().spliterator(), false).toList();
     }
 
     @Override
-    public Product getProductById(UUID productId) {
+    public ProductDto getProductById(UUID productId) {
         return productRepository.findById(productId).orElseThrow();
     }
 
     @Override
-    public Product saveNewProduct(Product product) {
+    public ProductDto saveNewProduct(ProductDto product) {
         return productRepository.save(product);
     }
 }

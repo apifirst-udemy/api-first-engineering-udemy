@@ -3,8 +3,8 @@ package com.rsouza01.apifirst_server.repositories;
 import org.springframework.data.repository.CrudRepository;
 import java.util.UUID;
 
-import com.rsouza01.apifirst.model.Product;
+import com.rsouza01.apifirst.model.ProductDto;
 
-public interface ProductRepository extends CrudRepository<Product, UUID> {
+public interface ProductRepository extends CrudRepository<ProductDto, UUID> {
 
 }

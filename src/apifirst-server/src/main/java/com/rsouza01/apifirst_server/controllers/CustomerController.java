@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.rsouza01.apifirst.model.Customer;
-import com.rsouza01.apifirst.model.Customer;
+import com.rsouza01.apifirst.model.CustomerDto;
 import com.rsouza01.apifirst_server.services.CustomerService;
 
 import lombok.RequiredArgsConstructor;
@@ -30,18 +29,18 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @GetMapping
-    public ResponseEntity<List<Customer>> listCustomers() {
+    public ResponseEntity<List<CustomerDto>> listCustomers() {
         return ResponseEntity.ok(customerService.listCustomers());
     }
 
     @GetMapping("/{customerId}")
-    public ResponseEntity<Customer> getCustomerById(@PathVariable("customerId") UUID customerId) {
+    public ResponseEntity<CustomerDto> getCustomerById(@PathVariable("customerId") UUID customerId) {
         return ResponseEntity.ok(customerService.getCustomerById(customerId));
     }
 
     @PostMapping
-    public ResponseEntity<Void> saveNewCustomer(@RequestBody Customer customer) {
-        Customer savedCustomer = customerService.saveNewCustomer(customer);
+    public ResponseEntity<Void> saveNewCustomer(@RequestBody CustomerDto customer) {
+        CustomerDto savedCustomer = customerService.saveNewCustomer(customer);
 
         UriComponents uriComponents = UriComponentsBuilder.fromPath(BASE_URL + "/{customer_id}")
                 .buildAndExpand(savedCustomer.getId());

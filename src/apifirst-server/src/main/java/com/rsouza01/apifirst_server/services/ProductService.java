@@ -3,14 +3,14 @@ package com.rsouza01.apifirst_server.services;
 import java.util.List;
 import java.util.UUID;
 
-import com.rsouza01.apifirst.model.Product;
+import com.rsouza01.apifirst.model.ProductDto;
 
 
 public interface ProductService {
 
-    List<Product> listProducts();
+    List<ProductDto> listProducts();
 
-    Product getProductById(UUID productId);
+    ProductDto getProductById(UUID productId);
 
-    Product saveNewProduct(Product product);
+    ProductDto saveNewProduct(ProductDto product);
 }
