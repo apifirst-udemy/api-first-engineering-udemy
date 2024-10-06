@@ -37,4 +37,4 @@ git remote set-url origin https://github.com/apifirst-udemy/api-first-engineerin
 # Course Progress
 
 Continue from:
-63. Implement Create Order API
+70. Customer Entity
