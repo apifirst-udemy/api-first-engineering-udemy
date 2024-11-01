@@ -8,9 +8,9 @@ import com.rsouza01.apifirst_server.domain.Customer;
 
 @Mapper
 public interface CustomerMapper {
-     CustomerDto customerToDto(Customer customer);
+     CustomerDto customerToCustomerDto(Customer customer);
 
     @Mapping(target = "dateCreated", ignore = true)
     @Mapping(target = "dateUpdated", ignore = true)
-    Customer dtoToCustomer(CustomerDto customerDto);
+    Customer customerDtoToCustomer(CustomerDto customerDto);
 }

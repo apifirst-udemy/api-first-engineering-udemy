@@ -2,7 +2,6 @@ package com.rsouza01.apifirst_server.services;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.StreamSupport;
 
 import org.springframework.stereotype.Service;
 

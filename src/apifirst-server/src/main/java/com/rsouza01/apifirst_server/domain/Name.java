@@ -1,6 +1,5 @@
 package com.rsouza01.apifirst_server.domain;
 
-import jakarta.persistence.*;
 import lombok.*;
 
 @Getter

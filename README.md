@@ -39,4 +39,4 @@ git remote set-url origin https://github.com/apifirst-udemy/api-first-engineerin
 # Course Progress
 
 Continue from:
-70. Customer Entity
+Assignment 12: Refactor categories (Update create product endpoint)

@@ -1,19 +1,12 @@
 package com.rsouza01.apifirst_server.services;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.StreamSupport;
 
 import org.springframework.stereotype.Service;
 
-import com.rsouza01.apifirst.model.CustomerDto;
 import com.rsouza01.apifirst.model.OrderDto;
 import com.rsouza01.apifirst.model.OrderCreateDto;
-import com.rsouza01.apifirst.model.OrderCustomerDto;
-import com.rsouza01.apifirst.model.OrderLineDto;
-import com.rsouza01.apifirst.model.OrderProductDto;
-import com.rsouza01.apifirst.model.ProductDto;
 import com.rsouza01.apifirst_server.repositories.CustomerRepository;
 import com.rsouza01.apifirst_server.repositories.OrderRepository;
 import com.rsouza01.apifirst_server.repositories.ProductRepository;
