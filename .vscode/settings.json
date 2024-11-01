@@ -2,5 +2,10 @@
     "java.compile.nullAnalysis.mode": "disabled",
     "java.configuration.updateBuildConfiguration": "automatic",
     "java.debug.settings.onBuildFailureProceed": true,
-    "java.debug.settings.showHex": true
+    "java.debug.settings.showHex": true,
+    "github.codespaces.defaultExtensions": [
+        "editorconfig.editorconfig",
+        "redhat.java",
+        "redhat.vscode-xml"
+      ]
 }
