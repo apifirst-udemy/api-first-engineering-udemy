@@ -10,7 +10,9 @@ mvn archetype:generate -DgroupId=com.rsouza01 -DartifactId=apifirst-server -Dint
 ## Build commands
 
 * Build
-mvn clean install
+mvn clean install {-Dmaven.test.skip=true}
+mvn clean install -f ./apifirst-server/pom.xml -Dmaven.test.skip=true
+
 
 * Full build + tests
 mvn test-compile -f "/workspaces/api-first-engineering-udemy/src/pom.xml"
