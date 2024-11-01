@@ -5,8 +5,11 @@ import java.util.UUID;
 import java.util.stream.StreamSupport;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.rsouza01.apifirst.model.CustomerDto;
+import com.rsouza01.apifirst_server.domain.Customer;
+import com.rsouza01.apifirst_server.mappers.CustomerMapper;
 import com.rsouza01.apifirst_server.repositories.CustomerRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -16,19 +19,26 @@ import lombok.RequiredArgsConstructor;
 public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepository customerRepository;
+    private final CustomerMapper customerMapper;
+
+    @Transactional
+    @Override
+    public CustomerDto saveNewCustomer(CustomerDto customer) {
+        Customer savedCustomer = customerRepository.save(customerMapper.dtoToCustomer(customer));
+        customerRepository.flush();
+        return customerMapper.customerToDto(savedCustomer);
+    }
 
     @Override
     public List<CustomerDto> listCustomers() {
-        return StreamSupport.stream(customerRepository.findAll().spliterator(), false).toList();
+        return StreamSupport.stream(customerRepository.findAll().spliterator(),
+                false)
+                .map(customerMapper::customerToDto)
+                .toList();
     }
 
     @Override
     public CustomerDto getCustomerById(UUID customerId) {
-        return customerRepository.findById(customerId).orElseThrow();
-    }
-
-    @Override
-    public CustomerDto saveNewCustomer(CustomerDto customer) {
-        return customerRepository.save(customer);
+        return customerMapper.customerToDto(customerRepository.findById(customerId).orElseThrow());
     }
 }

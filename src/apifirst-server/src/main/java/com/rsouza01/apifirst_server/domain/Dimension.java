@@ -1,6 +1,5 @@
 package com.rsouza01.apifirst_server.domain;
 
-import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
@@ -8,7 +7,6 @@ import lombok.*;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
 public class Dimension {
 
     private Integer length;

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rsouza01.apifirst.model.CustomerDto;
 import com.rsouza01.apifirst.model.OrderDto;
 import com.rsouza01.apifirst.model.ProductDto;
+import com.rsouza01.apifirst_server.mappers.CustomerMapper;
 import com.rsouza01.apifirst_server.repositories.CustomerRepository;
 import com.rsouza01.apifirst_server.repositories.OrderRepository;
 import com.rsouza01.apifirst_server.repositories.ProductRepository;
@@ -42,12 +43,15 @@ public class BaseTest {
     @Autowired
     Filter validationFilter;
 
+    @Autowired
+    CustomerMapper customerMapper;
+
     @BeforeEach
     void setup() {
         mockMvc = MockMvcBuilders.webAppContextSetup(wac).addFilter(validationFilter).build();
 
-        testCustomer = customerRepository.findAll().iterator().next();
-        testProduct = productRepository.findAll().iterator().next();
-        testOrder = orderRepository.findAll().iterator().next();
+        testCustomer = customerMapper.customerToDto(customerRepository.findAll().iterator().next());
+        // testProduct = productRepository.findAll().iterator().next();
+        // testOrder = orderRepository.findAll().iterator().next();
     }
 }

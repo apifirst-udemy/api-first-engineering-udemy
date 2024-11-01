@@ -1,10 +1,11 @@
 package com.rsouza01.apifirst_server.repositories;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.rsouza01.apifirst_server.domain.Customer;
+
 import java.util.UUID;
 
-import com.rsouza01.apifirst.model.CustomerDto;
-
-public interface CustomerRepository extends CrudRepository<CustomerDto, UUID> {
+public interface CustomerRepository extends JpaRepository<Customer, UUID> {
 
 }

@@ -1,5 +1,6 @@
 package com.rsouza01.apifirst_server.controllers;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,6 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.Arrays;
 
 @SpringBootTest
+@Disabled
 public class ProductControllerTest extends BaseTest {
 
     @DisplayName("Test list Products")

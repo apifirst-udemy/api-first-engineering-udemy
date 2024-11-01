@@ -7,6 +7,7 @@ import java.time.OffsetDateTime;
 
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +23,7 @@ import com.rsouza01.apifirst.model.OrderLineDto;
 import com.rsouza01.apifirst.model.OrderProductDto;
 import com.rsouza01.apifirst.model.PaymentMethodDto;
 import com.rsouza01.apifirst.model.ProductDto;
+import com.rsouza01.apifirst_server.mappers.CustomerMapper;
 import com.rsouza01.apifirst_server.repositories.CustomerRepository;
 import com.rsouza01.apifirst_server.repositories.OrderRepository;
 import com.rsouza01.apifirst_server.repositories.ProductRepository;
@@ -38,8 +40,67 @@ public class DataLoader implements CommandLineRunner {
     private final ProductRepository productRepository;
     private final OrderRepository orderRepository;
 
+    @Autowired
+    CustomerMapper customerMapper;
+
     @Override
     public void run(String... args) throws Exception {
+
+        AddressDto address1 = AddressDto.builder()
+                .addressLine1("1234 W Some Street")
+                .city("Some City")
+                .state("FL")
+                .zip("33701")
+                .build();
+
+        CustomerDto customer1 = CustomerDto.builder()
+                .name(NameDto.builder()
+                        .firstName("John")
+                        .lastName("Thompson")
+                        .build())
+                .billToAddress(address1)
+                .shipToAddress(address1)
+                .email("john@springframework.guru")
+                .phone("800-555-1212")
+                .paymentMethods(List.of(PaymentMethodDto.builder()
+                        .displayName("My Card")
+                        .cardNumber(12341234)
+                        .expiryMonth(12)
+                        .expiryYear(26)
+                        .cvv(123)
+                        .build()))
+                .build();
+
+        AddressDto address2 = AddressDto.builder()
+                .addressLine1("1234 W Some Street")
+                .city("Some City")
+                .state("FL")
+                .zip("33701")
+                .build();
+
+        CustomerDto customer2 = CustomerDto.builder()
+                .name(NameDto.builder()
+                        .firstName("Jim")
+                        .lastName("Smith")
+                        .build())
+                .billToAddress(address2)
+                .shipToAddress(address2)
+                .email("jim@springframework.guru")
+                .phone("800-555-1212")
+                .paymentMethods(List.of(PaymentMethodDto.builder()
+                        .displayName("My Other Card")
+                        .cardNumber(1234888)
+                        .expiryMonth(12)
+                        .expiryYear(26)
+                        .cvv(456)
+                        .build()))
+                .build();
+        customersList.add(customer1);
+        customersList.add(customer2);
+
+    }
+
+    public void runOld(String... args) throws Exception {
 
         initCustomerList();
         initProductList();
@@ -52,15 +113,15 @@ public class DataLoader implements CommandLineRunner {
     }
 
     private void initProductRepository() {
-        productsList.forEach(product -> productRepository.save(product));
+        // productsList.forEach(product -> productRepository.save(product));
     }
 
     private void initCustomerRepository() {
-        customersList.forEach(customer -> customerRepository.save(customer));
+        customersList.forEach(customer -> customerRepository.save(customerMapper.dtoToCustomer(customer)));
     }
 
     private void initOrderRepository() {
-        ordersList.forEach(order -> orderRepository.save(order));
+        // ordersList.forEach(order -> orderRepository.save(order));
     }
 
     private void initOrdersList() {
