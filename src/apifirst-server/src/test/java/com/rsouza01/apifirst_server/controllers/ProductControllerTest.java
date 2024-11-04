@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.Arrays;
 
 @SpringBootTest
-@Disabled
+// @Disabled
 public class ProductControllerTest extends BaseTest {
 
     @DisplayName("Test list Products")
@@ -54,6 +54,7 @@ public class ProductControllerTest extends BaseTest {
                 .price("1.00")
                 .categories(Arrays.asList(CategoryDto.builder()
                         .category("New Category")
+                        .categoryCode("NEWCATEGORY")
                         .description("Category Description")
                         .build()))
                 .images(Arrays.asList(ImageDto.builder()

@@ -106,12 +106,12 @@ public class DataLoader implements CommandLineRunner {
 
         initCustomerList();
         initCategoriesList();
-        // initProductList();
+        initProductList();
         // initOrdersList();
 
         initCustomerRepository();
         initCategoriesRepository();
-        // initProductRepository();
+        initProductRepository();
         // initOrderRepository();
 
     }

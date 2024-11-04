@@ -54,7 +54,7 @@ public class BaseTest {
         mockMvc = MockMvcBuilders.webAppContextSetup(wac).addFilter(validationFilter).build();
 
         testCustomer = customerRepository.findAll().iterator().next();
-        // testProduct = productRepository.findAll().iterator().next();
+        testProduct = productRepository.findAll().iterator().next();
         // testOrder = orderRepository.findAll().iterator().next();
     }
 }
