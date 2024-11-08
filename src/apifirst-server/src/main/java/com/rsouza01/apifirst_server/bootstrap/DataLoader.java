@@ -13,15 +13,15 @@ import org.springframework.stereotype.Component;
 
 import com.rsouza01.apifirst_server.domain.Order;
 import com.rsouza01.apifirst_server.domain.OrderLine;
+import com.rsouza01.apifirst_server.domain.OrderStatusEnum;
 import com.rsouza01.apifirst_server.domain.PaymentMethod;
 import com.rsouza01.apifirst_server.domain.Address;
 import com.rsouza01.apifirst_server.domain.Category;
 import com.rsouza01.apifirst_server.domain.Customer;
-import com.rsouza01.apifirst_server.domain.Dimension;
+import com.rsouza01.apifirst_server.domain.Dimensions;
 import com.rsouza01.apifirst_server.domain.Image;
 import com.rsouza01.apifirst_server.domain.Name;
 import com.rsouza01.apifirst_server.domain.Product;
-import com.rsouza01.apifirst_server.mappers.CustomerMapper;
 import com.rsouza01.apifirst_server.repositories.CategoryRepository;
 import com.rsouza01.apifirst_server.repositories.CustomerRepository;
 import com.rsouza01.apifirst_server.repositories.OrderRepository;
@@ -41,8 +41,8 @@ public class DataLoader implements CommandLineRunner {
     private final ProductRepository productRepository;
     private final OrderRepository orderRepository;
 
-    @Autowired
-    CustomerMapper customerMapper;
+//     @Autowired
+//     CustomerMapper customerMapper;
 
     // @Override
     // public void run(String... args) throws Exception {
@@ -107,12 +107,12 @@ public class DataLoader implements CommandLineRunner {
         initCustomerList();
         initCategoriesList();
         initProductList();
-        // initOrdersList();
+        initOrdersList();
 
         initCustomerRepository();
         initCategoriesRepository();
         initProductRepository();
-        // initOrderRepository();
+        initOrderRepository();
 
     }
 
@@ -148,26 +148,40 @@ public class DataLoader implements CommandLineRunner {
 
     private void initOrdersList() {
         Order order1 = Order.builder()
-                .id(UUID.randomUUID())
                 .customer(customersList.get(0))
+                .orderStatus(OrderStatusEnum.NEW)
                 .orderLines(List.of(
                         OrderLine.builder()
-                                .id(UUID.randomUUID())
-                                .product(Product.builder().build())
+                                .product(productsList.get(0))
                                 .orderQuantity(1)
                                 .shipQuantity(10)
                                 .build(),
                         OrderLine.builder()
-                                .id(UUID.randomUUID())
-                                .product(Product.builder().build())
+                                .product(productsList.get(1))
                                 .orderQuantity(1)
                                 .shipQuantity(10)
                                 .build()))
-                .dateCreated(OffsetDateTime.now())
-                .dateUpdated(OffsetDateTime.now())
                 .build();
 
         ordersList.add(order1);
+
+        Order order2 = Order.builder()
+                .customer(customersList.get(1))
+                .orderStatus(OrderStatusEnum.NEW)
+                .shipmentInfo("shipment info")
+                .orderLines(List.of(OrderLine.builder()
+                        .product(productsList.get(0))
+                        .orderQuantity(1)
+                        .shipQuantity(1)
+                        .build(),
+                        OrderLine.builder()
+                                .product(productsList.get(1))
+                                .orderQuantity(1)
+                                .shipQuantity(1)
+                                .build()))
+                .build();
+        ordersList.add(order2);
+
     }
 
     private void initProductList() {
@@ -175,7 +189,7 @@ public class DataLoader implements CommandLineRunner {
                 .description("Product 1")
                 .price("123")
                 .cost("100")
-                .dimension(Dimension.builder().width(10).height(10).length(10).build())
+                .dimensions(Dimensions.builder().width(10).height(10).length(10).build())
                 .categories(List.of(categoriesList.get(0), categoriesList.get(1)))
                 .dateCreated(OffsetDateTime.now())
                 .dateUpdated(OffsetDateTime.now())
@@ -200,7 +214,7 @@ public class DataLoader implements CommandLineRunner {
                 .description("Product 2")
                 .price("321")
                 .cost("300")
-                .dimension(Dimension.builder().width(100).height(100).length(100).build())
+                .dimensions(Dimensions.builder().width(100).height(100).length(100).build())
                 .categories(List.of(categoriesList.get(1), categoriesList.get(2)))
                 .dateCreated(OffsetDateTime.now())
                 .dateUpdated(OffsetDateTime.now())
@@ -253,8 +267,6 @@ public class DataLoader implements CommandLineRunner {
                         .cardNumber(12341234)
                         .expiryMonth(12)
                         .expiryYear(26)
-                        .dateCreated(OffsetDateTime.now())
-                        .dateUpdated(OffsetDateTime.now())
                         .build()))
                 .build();
 
@@ -263,8 +275,6 @@ public class DataLoader implements CommandLineRunner {
                 .city("Some City")
                 .state("FL")
                 .zip("33701")
-                .dateCreated(OffsetDateTime.now())
-                .dateUpdated(OffsetDateTime.now())
                 .build();
 
         Customer customer2 = Customer.builder()
@@ -277,16 +287,12 @@ public class DataLoader implements CommandLineRunner {
                 .shipToAddress(address2)
                 .email("jim@springframework.guru")
                 .phone("800-555-1212")
-                .dateCreated(OffsetDateTime.now())
-                .dateUpdated(OffsetDateTime.now())
                 .paymentMethods(List.of(PaymentMethod.builder()
                         .displayName("Card 2")
                         .cvv(123)
                         .cardNumber(1234888)
                         .expiryMonth(12)
                         .expiryYear(26)
-                        .dateCreated(OffsetDateTime.now())
-                        .dateUpdated(OffsetDateTime.now())
                         .build()))
                 .build();
 

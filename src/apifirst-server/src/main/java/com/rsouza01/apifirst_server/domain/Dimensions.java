@@ -7,7 +7,7 @@ import lombok.*;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Dimension {
+public class Dimensions {
 
     private Integer length;
     private Integer width;

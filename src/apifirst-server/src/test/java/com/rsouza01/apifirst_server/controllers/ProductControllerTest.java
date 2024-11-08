@@ -1,16 +1,14 @@
 package com.rsouza01.apifirst_server.controllers;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
-import com.rsouza01.apifirst.model.CategoryDto;
 import com.rsouza01.apifirst.model.DimensionsDto;
 import com.rsouza01.apifirst.model.ImageDto;
-import com.rsouza01.apifirst.model.ProductDto;
+import com.rsouza01.apifirst.model.ProductCreateDto;
 
 import static org.hamcrest.Matchers.greaterThan;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -48,15 +46,12 @@ public class ProductControllerTest extends BaseTest {
     @Test
     void testCreateProduct() throws Exception {
 
-        ProductDto product = ProductDto.builder()
+        
+        ProductCreateDto product = ProductCreateDto.builder()
                 .description("null")
                 .cost("1.00")
                 .price("1.00")
-                .categories(Arrays.asList(CategoryDto.builder()
-                        .category("New Category")
-                        .categoryCode("NEWCATEGORY")
-                        .description("Category Description")
-                        .build()))
+                .categories(Arrays.asList("ELECTRONICS"))
                 .images(Arrays.asList(ImageDto.builder()
                         .url("http://example.com/ImageDto.jpg")
                         .altText("Some image")

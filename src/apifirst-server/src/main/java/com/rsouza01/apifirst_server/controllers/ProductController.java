@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.rsouza01.apifirst.model.ProductCreateDto;
 import com.rsouza01.apifirst.model.ProductDto;
 import com.rsouza01.apifirst_server.services.ProductService;
 
@@ -40,7 +41,7 @@ public class ProductController {
     }
     
     @PostMapping
-    public ResponseEntity<Void> saveNewProduct(@RequestBody ProductDto product) {
+    public ResponseEntity<Void> saveNewProduct(@RequestBody ProductCreateDto product) {
         ProductDto savedProduct = productService.saveNewProduct(product);
 
         UriComponents uriComponents = UriComponentsBuilder.fromPath(BASE_URL + "/{product_id}").buildAndExpand(savedProduct.getId());

@@ -7,6 +7,7 @@ import java.util.stream.StreamSupport;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.rsouza01.apifirst.model.ProductCreateDto;
 import com.rsouza01.apifirst.model.ProductDto;
 import com.rsouza01.apifirst_server.domain.Product;
 import com.rsouza01.apifirst_server.mappers.ProductMapper;
@@ -23,8 +24,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Transactional
     @Override
-    public ProductDto saveNewProduct(ProductDto productDto) {
-        Product savedProduct = productRepository.save(productMapper.productDtoToProduct(productDto));
+    public ProductDto saveNewProduct(ProductCreateDto productDto) {
+        Product savedProduct = productRepository.save(productMapper.productCreateDtoToProduct(productDto));
         productRepository.flush();
         return productMapper.productToProductDto(savedProduct);
     }

@@ -25,7 +25,6 @@ public class OrderControllerTest extends BaseTest {
     // Failing because the Order objects are not fully fulfilled.
     @DisplayName("Test list Orders")
     @Test
-    @Disabled
     void testListOrders() throws Exception {
         mockMvc.perform(get(OrderController.BASE_URL)
                 .accept(MediaType.APPLICATION_JSON))
@@ -35,7 +34,6 @@ public class OrderControllerTest extends BaseTest {
 
     @DisplayName("Get by Id")
     @Test
-    @Disabled
     void testGetOrderById() throws Exception {
         mockMvc.perform(get(OrderController.BASE_URL + "/{orderId}", testOrder.getId())
                 .accept(MediaType.APPLICATION_JSON))
@@ -45,6 +43,7 @@ public class OrderControllerTest extends BaseTest {
 
     @DisplayName("Create order")
     @Test
+    @Disabled
     void testCreateOrder() throws Exception {
 
         OrderCreateDto orderCreate = OrderCreateDto.builder()

@@ -29,7 +29,7 @@ public class Product {
     private String description;
 
     @Embedded
-    private Dimension dimension;
+    private Dimensions dimensions;
 
     @OneToMany(mappedBy = "product")
     private List<Image> images;

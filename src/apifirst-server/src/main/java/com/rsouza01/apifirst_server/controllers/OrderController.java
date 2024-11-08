@@ -14,6 +14,7 @@ import com.rsouza01.apifirst.model.OrderCreateDto;
 import com.rsouza01.apifirst_server.services.OrderService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(OrderController.BASE_URL)
+@Slf4j
 public class OrderController {
 
     public static final String BASE_URL = "/v1/orders";
@@ -32,17 +34,21 @@ public class OrderController {
 
     @GetMapping
     public ResponseEntity<List<OrderDto>> listOrders() {
+        log.info("OrderController.listOrders");
         return ResponseEntity.ok(orderService.listOrders());
     }
 
     @GetMapping("/{orderId}")
     public ResponseEntity<OrderDto> getOrderById(@PathVariable("orderId") UUID orderId) {
+        log.info("OrderController.getOrderById");
         return ResponseEntity.ok(orderService.getOrderById(orderId));
     }
     
     @PostMapping
     public ResponseEntity<Void> saveNewOrder(@RequestBody OrderCreateDto orderCreate) {
         
+        log.info("OrderController.saveNewOrder");
+
         OrderDto savedOrder = orderService.saveNewOrder(orderCreate);
 
         UriComponents uriComponents = UriComponentsBuilder.fromPath(BASE_URL + "/{order_id}").buildAndExpand(savedOrder.getId());

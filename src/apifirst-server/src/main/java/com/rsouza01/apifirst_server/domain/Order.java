@@ -8,7 +8,7 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.type.SqlTypes;
 
-import com.rsouza01.apifirst.model.OrderDto.OrderStatusEnum;
+import com.rsouza01.apifirst_server.domain.OrderStatusEnum;
 
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
