@@ -10,6 +10,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import com.rsouza01.apifirst.model.OrderCreateDto;
 import com.rsouza01.apifirst.model.OrderLineCreateDto;
 
+import jakarta.transaction.Transactional;
+
 import static org.hamcrest.Matchers.greaterThan;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
@@ -43,8 +45,10 @@ public class OrderControllerTest extends BaseTest {
 
     @DisplayName("Create order")
     @Test
-    @Disabled
+    @Transactional
     void testCreateOrder() throws Exception {
+
+        var paymentMethods = testCustomer.getPaymentMethods().size();
 
         OrderCreateDto orderCreate = OrderCreateDto.builder()
                 .customerId(testCustomer.getId())

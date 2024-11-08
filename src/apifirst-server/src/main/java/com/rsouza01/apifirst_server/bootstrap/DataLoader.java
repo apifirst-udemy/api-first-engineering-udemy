@@ -150,6 +150,7 @@ public class DataLoader implements CommandLineRunner {
         Order order1 = Order.builder()
                 .customer(customersList.get(0))
                 .orderStatus(OrderStatusEnum.NEW)
+                .shipmentInfo("shipment info")
                 .orderLines(List.of(
                         OrderLine.builder()
                                 .product(productsList.get(0))

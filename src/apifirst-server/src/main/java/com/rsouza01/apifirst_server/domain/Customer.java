@@ -47,7 +47,7 @@ public class Customer {
             this.paymentMethods.forEach(paymentMethod -> paymentMethod.setCustomer(this));
         }
     }
-
+    
     @CreationTimestamp
     private OffsetDateTime dateCreated;
 
