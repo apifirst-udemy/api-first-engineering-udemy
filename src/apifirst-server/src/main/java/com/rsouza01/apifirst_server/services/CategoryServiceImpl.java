@@ -20,8 +20,8 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<CategoryDto> listCategories() {
-        return StreamSupport.stream(categoryRepository.findAll().spliterator(),
-                false)
+        return categoryRepository.findAll()
+                .stream()
                 .map(categoryMapper::categoryToCategoryDto)
                 .toList();
     }

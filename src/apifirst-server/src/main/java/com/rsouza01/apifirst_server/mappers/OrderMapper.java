@@ -1,5 +1,6 @@
 package com.rsouza01.apifirst_server.mappers;
 
+import org.mapstruct.DecoratedWith;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -8,22 +9,21 @@ import com.rsouza01.apifirst.model.OrderDto;
 import com.rsouza01.apifirst_server.domain.Order;
 
 @Mapper
+@DecoratedWith(OrderMapperDecorator.class)
 public interface OrderMapper {
-
     @Mapping(target = "shipmentInfo", ignore = true)
-    // @Mapping(target = "selectedPaymentMethod", ignore = true)
+    @Mapping(target = "selectedPaymentMethod", ignore = true)
     @Mapping(target = "orderStatus", ignore = true)
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "dateUpdated", ignore = true)
     @Mapping(target = "dateCreated", ignore = true)
     @Mapping(target = "customer", ignore = true)
-    Order orderCreateDtoToOrder(OrderCreateDto orderCreateDto);
+    Order dtoToOrder(OrderCreateDto orderDto);
 
-
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "dateCreated", ignore = true)
+    @Mapping(target = "selectedPaymentMethod", ignore = true)
     @Mapping(target = "dateUpdated", ignore = true)
-    Order orderDtoToOrder(OrderDto orderDto);
+    @Mapping(target = "dateCreated", ignore = true)
+    Order dtoToOrder(OrderDto orderDto);
 
-    OrderDto orderToOrderDto(Order order);
+    OrderDto orderToDto(Order order);
 }

@@ -26,25 +26,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 public class CustomerControllerTest extends BaseTest {
 
-    @DisplayName("Get by Id")
-    @Test
-    void testGetCustomerById() throws Exception {
-        mockMvc.perform(get(CustomerController.BASE_URL + "/{customerId}", testCustomer.getId())
-                .accept(MediaType.APPLICATION_JSON))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(testCustomer.getId().toString()));
-    }
-
-    @DisplayName("Test list customers")
-    @Test
-    void testListCustomers() throws Exception {
-        mockMvc.perform(get(CustomerController.BASE_URL)
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.length()", greaterThan(0)));
-    }
-
     @DisplayName("Create customer")
     @Test
     void testCreateCustomer() throws Exception {
@@ -87,4 +68,24 @@ public class CustomerControllerTest extends BaseTest {
                 .andExpect(status().isCreated())
                 .andExpect(header().exists("Location"));
     }
+
+    @DisplayName("Get by Id")
+    @Test
+    void testGetCustomerById() throws Exception {
+        mockMvc.perform(get(CustomerController.BASE_URL + "/{customerId}", testCustomer.getId())
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(testCustomer.getId().toString()));
+    }
+
+    @DisplayName("Test list customers")
+    @Test
+    void testListCustomers() throws Exception {
+        mockMvc.perform(get(CustomerController.BASE_URL)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()", greaterThan(0)));
+    }
+
 }

@@ -2,6 +2,7 @@ package com.rsouza01.apifirst_server.bootstrap;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.UUID;
 import java.time.OffsetDateTime;
 
@@ -41,69 +42,14 @@ public class DataLoader implements CommandLineRunner {
     private final ProductRepository productRepository;
     private final OrderRepository orderRepository;
 
-//     @Autowired
-//     CustomerMapper customerMapper;
-
-    // @Override
-    // public void run(String... args) throws Exception {
-
-    // AddressDto address1 = AddressDto.builder()
-    // .addressLine1("1234 W Some Street")
-    // .city("Some City")
-    // .state("FL")
-    // .zip("33701")
-    // .build();
-
-    // CustomerDto customer1 = CustomerDto.builder()
-    // .name(NameDto.builder()
-    // .firstName("John")
-    // .lastName("Thompson")
-    // .build())
-    // .billToAddress(address1)
-    // .shipToAddress(address1)
-    // .email("john@springframework.guru")
-    // .phone("800-555-1212")
-    // .paymentMethods(List.of(PaymentMethodDto.builder()
-    // .displayName("My Card")
-    // .cardNumber(12341234)
-    // .expiryMonth(12)
-    // .expiryYear(26)
-    // .cvv(123)
-    // .build()))
-    // .build();
-
-    // AddressDto address2 = AddressDto.builder()
-    // .addressLine1("1234 W Some Street")
-    // .city("Some City")
-    // .state("FL")
-    // .zip("33701")
-    // .build();
-
-    // CustomerDto customer2 = CustomerDto.builder()
-    // .name(NameDto.builder()
-    // .firstName("Jim")
-    // .lastName("Smith")
-    // .build())
-    // .billToAddress(address2)
-    // .shipToAddress(address2)
-    // .email("jim@springframework.guru")
-    // .phone("800-555-1212")
-    // .paymentMethods(List.of(PaymentMethodDto.builder()
-    // .displayName("My Other Card")
-    // .cardNumber(1234888)
-    // .expiryMonth(12)
-    // .expiryYear(26)
-    // .cvv(456)
-    // .build()))
-    // .build();
-    // customersList.add(customer1);
-    // customersList.add(customer2);
-
-    // }
-
     @Override
     public void run(String... args) throws Exception {
 
+        // initAllRepositories();
+        initAllRepositoriesSFG();
+    }
+
+    private void initAllRepositories() {
         initCustomerList();
         initCategoriesList();
         initProductList();
@@ -113,7 +59,6 @@ public class DataLoader implements CommandLineRunner {
         initCategoriesRepository();
         initProductRepository();
         initOrderRepository();
-
     }
 
     private void initProductRepository() {
@@ -121,11 +66,19 @@ public class DataLoader implements CommandLineRunner {
     }
 
     private void initCustomerRepository() {
-        customersList.forEach(customer -> customerRepository.save(customer));
+        customersList.forEach(customer -> {
+            Customer savedCustomer = customerRepository.saveAndFlush(customer);
+            System.out.println(">>> initCustomerRepository.savedCustomer: " + savedCustomer.toString());
+
+        });
     }
 
     private void initCategoriesRepository() {
-        categoriesList.forEach(category -> categoryRepository.save(category));
+        categoriesList.forEach(category -> categoryRepository.saveAndFlush(category));
+    }
+
+    private void initOrderRepository() {
+        ordersList.forEach(order -> orderRepository.saveAndFlush(order));
     }
 
     private void initCategoriesList() {
@@ -142,13 +95,10 @@ public class DataLoader implements CommandLineRunner {
         categoriesList.add(magazinesCategory);
     }
 
-    private void initOrderRepository() {
-        ordersList.forEach(order -> orderRepository.save(order));
-    }
-
     private void initOrdersList() {
         Order order1 = Order.builder()
                 .customer(customersList.get(0))
+                .selectedPaymentMethod(customersList.get(0).getPaymentMethods().get(0))
                 .orderStatus(OrderStatusEnum.NEW)
                 .shipmentInfo("shipment info")
                 .orderLines(List.of(
@@ -168,6 +118,7 @@ public class DataLoader implements CommandLineRunner {
 
         Order order2 = Order.builder()
                 .customer(customersList.get(1))
+                .selectedPaymentMethod(customersList.get(1).getPaymentMethods().get(0))
                 .orderStatus(OrderStatusEnum.NEW)
                 .shipmentInfo("shipment info")
                 .orderLines(List.of(OrderLine.builder()
@@ -253,12 +204,12 @@ public class DataLoader implements CommandLineRunner {
         Customer customer1 = Customer.builder()
                 .id(UUID.randomUUID())
                 .name(Name.builder()
-                        .firstName("John")
-                        .lastName("Thompson")
+                        .firstName("Customer")
+                        .lastName("Number1")
                         .build())
                 .billToAddress(address1)
                 .shipToAddress(address1)
-                .email("john@springframework.guru")
+                .email("customer1@api.first")
                 .phone("800-555-1212")
                 .dateCreated(OffsetDateTime.now())
                 .dateUpdated(OffsetDateTime.now())
@@ -297,7 +248,155 @@ public class DataLoader implements CommandLineRunner {
                         .build()))
                 .build();
 
+        System.out.println("customer1: " + customer1.toString());
+        System.out.println("customer2: " + customer2.toString());
+
         customersList.add(customer1);
         customersList.add(customer2);
+    }
+
+    public void initAllRepositoriesSFG() {
+        Category electronics = categoryRepository.save(Category.builder()
+                .category("Electronics")
+                .description("Electronics")
+                .categoryCode("ELECTRONICS")
+                .build());
+
+        Category clothing = categoryRepository.save(Category.builder()
+                .category("Clothing")
+                .description("Clothing")
+                .categoryCode("CLOTHING")
+                .build());
+
+        Category dryGoods = categoryRepository.save(Category.builder()
+                .category("Dry Goods")
+                .description("Dry Goods")
+                .categoryCode("DRYGOODS")
+                .build());
+
+        Address address1 = Address.builder()
+                .addressLine1("1234 W Some Street")
+                .city("Some City")
+                .state("FL")
+                .zip("33701")
+                .build();
+
+        Customer customer1 = Customer.builder()
+                .name(Name.builder()
+                        .firstName("John")
+                        .lastName("Thompson")
+                        .build())
+                .billToAddress(address1)
+                .shipToAddress(address1)
+                .email("john@springframework.guru")
+                .phone("800-555-1212")
+                .paymentMethods(List.of(PaymentMethod.builder()
+                        .displayName("My Card")
+                        .cardNumber(12341234)
+                        .expiryMonth(12)
+                        .expiryYear(26)
+                        .cvv(123)
+                        .build()))
+                .build();
+
+        Address address2 = Address.builder()
+                .addressLine1("1234 W Some Street")
+                .city("Some City")
+                .state("FL")
+                .zip("33701")
+                .build();
+
+        Customer customer2 = Customer.builder()
+                .name(Name.builder()
+                        .firstName("Jim")
+                        .lastName("Smith")
+                        .build())
+                .billToAddress(address2)
+                .shipToAddress(address2)
+                .email("jim@springframework.guru")
+                .phone("800-555-1212")
+                .paymentMethods(List.of(PaymentMethod.builder()
+                        .displayName("My Other Card")
+                        .cardNumber(1234888)
+                        .expiryMonth(12)
+                        .expiryYear(26)
+                        .cvv(456)
+                        .build()))
+                .build();
+
+        Customer savedCustomer1 = customerRepository.save(customer1);
+        Customer savedCustomer2 = customerRepository.save(customer2);
+
+        Product product1 = Product.builder()
+                .description("Product 1")
+                .categories(Arrays.asList(dryGoods))
+                .cost("12.99")
+                .price("14.99")
+                .dimensions(Dimensions.builder()
+                        .height(1)
+                        .length(2)
+                        .width(3)
+                        .build())
+                .images(List.of(Image.builder()
+                        .url("http://example.com/image1")
+                        .altText("Image 1")
+                        .build()))
+                .build();
+
+        Product product2 = Product.builder()
+                .description("Product 2")
+                .categories(Arrays.asList(electronics))
+                .cost("12.99")
+                .price("14.99")
+                .dimensions(Dimensions.builder()
+                        .height(1)
+                        .length(2)
+                        .width(3)
+                        .build())
+                .images(List.of(Image.builder()
+                        .url("http://example.com/image2")
+                        .altText("Image 2")
+                        .build()))
+                .build();
+
+        Product savedProduct1 = productRepository.save(product1);
+        Product savedProduct2 = productRepository.save(product2);
+
+        Order order1 = Order.builder()
+                .customer(savedCustomer1)
+                .selectedPaymentMethod(savedCustomer1.getPaymentMethods().get(0))
+                .orderStatus(OrderStatusEnum.NEW)
+                .shipmentInfo("shipment info")
+                .orderLines(List.of(OrderLine.builder()
+                        .product(product1)
+                        .orderQuantity(1)
+                        .shipQuantity(1)
+                        .build(),
+                        OrderLine.builder()
+                                .product(savedProduct1)
+                                .orderQuantity(1)
+                                .shipQuantity(1)
+                                .build()))
+                .build();
+
+        Order order2 = Order.builder()
+                .customer(savedCustomer2)
+                .selectedPaymentMethod(savedCustomer2.getPaymentMethods().get(0))
+                .orderStatus(OrderStatusEnum.NEW)
+                .shipmentInfo("shipment info #2")
+                .orderLines(List.of(OrderLine.builder()
+                        .product(savedProduct2)
+                        .orderQuantity(1)
+                        .shipQuantity(1)
+                        .build(),
+                        OrderLine.builder()
+                                .product(product2)
+                                .orderQuantity(1)
+                                .shipQuantity(1)
+                                .build()))
+                .build();
+
+        orderRepository.save(order1);
+        orderRepository.save(order2);
     }
 }

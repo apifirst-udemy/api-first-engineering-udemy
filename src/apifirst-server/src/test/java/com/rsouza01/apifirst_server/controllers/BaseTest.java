@@ -28,6 +28,9 @@ public class BaseTest {
     OrderRepository orderRepository;
 
     @Autowired
+    Filter validationFilter;
+
+    @Autowired
     ObjectMapper objectMapper;
 
     @Autowired
@@ -39,14 +42,13 @@ public class BaseTest {
     Product testProduct;
     Order testOrder;
 
-    @Autowired
-    Filter validationFilter;
-
     @BeforeEach
     void setup() {
         mockMvc = MockMvcBuilders.webAppContextSetup(wac).addFilter(validationFilter).build();
 
         testCustomer = customerRepository.findAll().iterator().next();
+        System.out.println(">>> setup.testCustomer.getPaymentMethods().size(): " + testCustomer.getPaymentMethods().size());
+
         testProduct = productRepository.findAll().iterator().next();
         testOrder = orderRepository.findAll().iterator().next();
     }

@@ -7,6 +7,7 @@ import lombok.*;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
 public class Name {
 
     private String prefix;

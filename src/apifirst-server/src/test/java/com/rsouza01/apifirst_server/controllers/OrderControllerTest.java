@@ -9,6 +9,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import com.rsouza01.apifirst.model.OrderCreateDto;
 import com.rsouza01.apifirst.model.OrderLineCreateDto;
+import com.rsouza01.apifirst_server.domain.Customer;
 
 import jakarta.transaction.Transactional;
 
@@ -48,7 +49,7 @@ public class OrderControllerTest extends BaseTest {
     @Transactional
     void testCreateOrder() throws Exception {
 
-        var paymentMethods = testCustomer.getPaymentMethods().size();
+        System.out.println("testCustomer: " + testCustomer.toString());
 
         OrderCreateDto orderCreate = OrderCreateDto.builder()
                 .customerId(testCustomer.getId())
