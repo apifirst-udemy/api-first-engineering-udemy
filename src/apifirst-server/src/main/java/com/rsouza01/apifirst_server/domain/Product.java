@@ -12,6 +12,8 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
 
+import jakarta.validation.constraints.*;
+
 @Getter
 @Setter
 @RequiredArgsConstructor
@@ -26,6 +28,8 @@ public class Product {
     @Column(length = 36, columnDefinition = "char(36)", updatable = false, nullable = false)
     private UUID id;
 
+    @NotNull
+    @Size(min = 3, max = 255)
     private String description;
 
     @Embedded
@@ -37,6 +41,8 @@ public class Product {
     @ManyToMany
     private List<Category> categories;
 
+    @NotNull
+    @Pattern(regexp = "^-?(?:0|[1-9]\\d{0,2}(?:,?\\d{3})*)(?:\\.\\d+)?$")
     private String price;
     private String cost;
 
