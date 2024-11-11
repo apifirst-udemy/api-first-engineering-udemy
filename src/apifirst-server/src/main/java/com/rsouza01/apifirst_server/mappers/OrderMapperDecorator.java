@@ -58,7 +58,10 @@ public abstract class OrderMapperDecorator implements OrderMapper {
                             .build());
                 });
 
-        return builder.orderLines(orderLines).build();
+        Order order = builder.orderLines(orderLines).build();
+        orderLines.forEach(orderLine -> orderLine.setOrder(order));
+
+        return order;
     }
 
     @Override

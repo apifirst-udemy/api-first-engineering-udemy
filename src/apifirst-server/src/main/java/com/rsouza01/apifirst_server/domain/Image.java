@@ -8,6 +8,7 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.type.SqlTypes;
 
+import jakarta.validation.constraints.*;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,8 +29,12 @@ public class Image {
     @ManyToOne
     private Product product;
 
+    @NotNull
+    @Size(min=5,max=500)
     private String url;
-  
+    
+    @NotNull
+    @Size(min=3,max=255)
     private String altText;
   
     @CreationTimestamp

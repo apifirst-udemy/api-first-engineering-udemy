@@ -8,6 +8,9 @@ import org.hibernate.type.SqlTypes;
 
 import java.util.UUID;
 
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
 @Getter
 @Setter
 @RequiredArgsConstructor
@@ -23,12 +26,20 @@ public class OrderLine {
     private UUID id;
 
     @ManyToOne
+    // @NotNull
     private Order order;
-    
+
     @ManyToOne
+    @NotNull
     private Product product;
 
+    @NotNull
+    @Min(1)
+    @Max(10000)
     private Integer orderQuantity;
-    private Integer shipQuantity;
 
+    @NotNull
+    @Min(1)
+    @Max(10000)
+    private Integer shipQuantity;
 }

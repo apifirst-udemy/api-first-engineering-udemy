@@ -11,6 +11,7 @@ import org.hibernate.type.SqlTypes;
 
 import jakarta.persistence.*;
 import lombok.*;
+import jakarta.validation.constraints.*;
 
 @Getter
 @Setter
@@ -26,9 +27,15 @@ public class Category {
     @Column(length = 36, columnDefinition = "char(36)", updatable = false, nullable = false)
     private UUID id;
 
+    @NotNull
+    @Size(min = 3, max = 25)
     private String category;
 
+    @NotNull
+    @Size(min = 3, max = 25)
     private String description;
+
+    @Size(min = 3, max = 25)
     private String categoryCode;
 
     @ManyToMany(mappedBy = "categories")

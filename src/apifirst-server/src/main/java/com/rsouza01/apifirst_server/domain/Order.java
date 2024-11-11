@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
 @Getter
 @Setter
 @RequiredArgsConstructor
@@ -31,19 +34,23 @@ public class Order {
     private UUID id;
 
     @ManyToOne
+    @NotNull
     private Customer customer;
-
-    @ManyToOne
-    private PaymentMethod selectedPaymentMethod;    
 
     @Builder.Default
     @Enumerated(EnumType.STRING)
+    @NotNull
     private OrderStatusEnum orderStatus = OrderStatusEnum.NEW;
 
+    @ManyToOne
+    private PaymentMethod selectedPaymentMethod;
+
+    @Size(min=1,max=255)
     private String shipmentInfo;
 
     @Builder.Default
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @NotNull
     private List<OrderLine> orderLines = new ArrayList<>();
 
     @CreationTimestamp

@@ -70,10 +70,6 @@ public class DataLoader implements CommandLineRunner {
             Customer savedCustomer = customerRepository.saveAndFlush(customer);
             System.out.println(">>> initCustomerRepository.savedCustomer: " + savedCustomer.toString());
 
-        //     customer.getPaymentMethods().forEach(paymentMethod -> {
-        //         System.out.println(">>> initCustomerRepository.paymentomethod: " + paymentMethod.getCustomer().getId());
-        //     });
-
         });
     }
 

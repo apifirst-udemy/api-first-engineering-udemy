@@ -41,9 +41,10 @@ public class Product {
     @ManyToMany
     private List<Category> categories;
 
-    @NotNull
     @Pattern(regexp = "^-?(?:0|[1-9]\\d{0,2}(?:,?\\d{3})*)(?:\\.\\d+)?$")
     private String price;
+
+    @Pattern(regexp = "^-?(?:0|[1-9]\\d{0,2}(?:,?\\d{3})*)(?:\\.\\d+)?$")
     private String cost;
 
     @CreationTimestamp
