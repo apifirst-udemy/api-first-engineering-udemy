@@ -8,4 +8,5 @@ import org.mapstruct.Mapper;
 @Mapper
 public interface PaymentMethodMapper {
         PaymentMethodDto paymentMethodToPaymentMethodDto(PaymentMethod paymentMethod);
+        // PaymentMethod paymentMethodDtoToPaymentMethod(PaymentMethodDto paymentMethodDto);
 }

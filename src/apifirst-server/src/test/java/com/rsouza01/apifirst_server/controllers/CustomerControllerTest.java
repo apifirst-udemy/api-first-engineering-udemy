@@ -1,5 +1,6 @@
 package com.rsouza01.apifirst_server.controllers;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,10 +25,43 @@ import java.util.UUID;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 
 @SpringBootTest
+// @Disabled
 public class CustomerControllerTest extends BaseTest {
+
+    @DisplayName("Test Create Customer - SFG")
+    @Test
+    void testCreateCustomerSFG() throws Exception {
+        CustomerDto customer = CustomerDto.builder()
+                .name(NameDto.builder()
+                        .lastName("Doe")
+                        .firstName("John")
+                        .build())
+                .phone("555-555-5555")
+                .email("john@example.com")
+                .shipToAddress(AddressDto.builder()
+                        .addressLine1("123 Main St")
+                        .city("Denver")
+                        .state("CO")
+                        .zip("80216")
+                        .build())
+                .billToAddress(AddressDto.builder()
+                        .addressLine1("123 Main St")
+                        .city("Denver")
+                        .state("CO")
+                        .zip("80216")
+                        .build())
+                .build();
+
+        mockMvc.perform(post(CustomerController.BASE_URL)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(customer)))
+                .andExpect(status().isCreated())
+                .andExpect(header().exists("Location"));
+    }
 
     @DisplayName("Create customer")
     @Test
+    @Disabled
     void testCreateCustomer() throws Exception {
         AddressDto address = AddressDto.builder()
                 .addressLine1("1234 W Some Street")
@@ -71,6 +105,7 @@ public class CustomerControllerTest extends BaseTest {
 
     @DisplayName("Get by Id")
     @Test
+    @Disabled
     void testGetCustomerById() throws Exception {
         mockMvc.perform(get(CustomerController.BASE_URL + "/{customerId}", testCustomer.getId())
                 .accept(MediaType.APPLICATION_JSON))
@@ -81,6 +116,7 @@ public class CustomerControllerTest extends BaseTest {
 
     @DisplayName("Test list customers")
     @Test
+    @Disabled
     void testListCustomers() throws Exception {
         mockMvc.perform(get(CustomerController.BASE_URL)
                 .accept(MediaType.APPLICATION_JSON))

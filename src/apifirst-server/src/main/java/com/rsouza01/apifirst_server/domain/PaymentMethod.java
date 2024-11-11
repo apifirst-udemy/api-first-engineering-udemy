@@ -17,7 +17,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 @Entity
-@ToString
 public class PaymentMethod {
 
     @Id

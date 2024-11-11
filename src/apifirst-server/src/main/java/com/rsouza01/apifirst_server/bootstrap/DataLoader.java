@@ -45,8 +45,8 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        // initAllRepositories();
-        initAllRepositoriesSFG();
+        initAllRepositories();
+        // initAllRepositoriesSFG();
     }
 
     private void initAllRepositories() {
@@ -69,6 +69,10 @@ public class DataLoader implements CommandLineRunner {
         customersList.forEach(customer -> {
             Customer savedCustomer = customerRepository.saveAndFlush(customer);
             System.out.println(">>> initCustomerRepository.savedCustomer: " + savedCustomer.toString());
+
+        //     customer.getPaymentMethods().forEach(paymentMethod -> {
+        //         System.out.println(">>> initCustomerRepository.paymentomethod: " + paymentMethod.getCustomer().getId());
+        //     });
 
         });
     }
