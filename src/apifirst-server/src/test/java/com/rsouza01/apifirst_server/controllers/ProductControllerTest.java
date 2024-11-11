@@ -21,7 +21,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.Arrays;
 
 @SpringBootTest
-@Disabled
 public class ProductControllerTest extends BaseTest {
 
     @DisplayName("Test list Products")

@@ -45,8 +45,8 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        initAllRepositories();
-        // initAllRepositoriesSFG();
+        // initAllRepositories(); <- ERROR HERE
+        initAllRepositoriesSFG();
     }
 
     private void initAllRepositories() {

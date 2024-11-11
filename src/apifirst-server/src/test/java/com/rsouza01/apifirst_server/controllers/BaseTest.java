@@ -47,8 +47,6 @@ public class BaseTest {
         mockMvc = MockMvcBuilders.webAppContextSetup(wac).addFilter(validationFilter).build();
 
         testCustomer = customerRepository.findAll().iterator().next();
-        System.out.println(">>> setup.testCustomer.getPaymentMethods().size(): " + testCustomer.getPaymentMethods().size());
-
         testProduct = productRepository.findAll().iterator().next();
         testOrder = orderRepository.findAll().iterator().next();
     }

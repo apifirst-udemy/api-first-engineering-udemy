@@ -24,10 +24,8 @@ import org.junit.jupiter.api.Disabled;
 import java.util.Arrays;
 
 @SpringBootTest
-@Disabled
 public class OrderControllerTest extends BaseTest {
 
-    // Failing because the Order objects are not fully fulfilled.
     @DisplayName("Test list Orders")
     @Test
     void testListOrders() throws Exception {
@@ -50,8 +48,6 @@ public class OrderControllerTest extends BaseTest {
     @Test
     @Transactional
     void testCreateOrder() throws Exception {
-
-        System.out.println("testCustomer: " + testCustomer.toString());
 
         OrderCreateDto orderCreate = OrderCreateDto.builder()
                 .customerId(testCustomer.getId())
