@@ -26,7 +26,7 @@ public class OrderLine {
     private UUID id;
 
     @ManyToOne
-    // @NotNull
+    @NotNull
     private Order order;
 
     @ManyToOne
@@ -38,7 +38,6 @@ public class OrderLine {
     @Max(10000)
     private Integer orderQuantity;
 
-    @NotNull
     @Min(1)
     @Max(10000)
     private Integer shipQuantity;
