@@ -12,6 +12,8 @@ import com.rsouza01.apifirst.model.CustomerDto;
 import com.rsouza01.apifirst.model.NameDto;
 import com.rsouza01.apifirst.model.PaymentMethodDto;
 
+import jakarta.transaction.Transactional;
+
 import static org.hamcrest.Matchers.greaterThan;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -29,6 +31,7 @@ public class CustomerControllerTest extends BaseTest {
 
     @DisplayName("Create customer")
     @Test
+    @Transactional
     void testCreateCustomer() throws Exception {
         AddressDto address = AddressDto.builder()
                 .addressLine1("1234 W Some Street")

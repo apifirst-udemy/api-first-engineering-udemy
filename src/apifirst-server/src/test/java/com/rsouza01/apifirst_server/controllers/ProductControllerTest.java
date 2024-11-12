@@ -11,6 +11,8 @@ import com.rsouza01.apifirst.model.DimensionsDto;
 import com.rsouza01.apifirst.model.ImageDto;
 import com.rsouza01.apifirst.model.ProductCreateDto;
 
+import jakarta.transaction.Transactional;
+
 import static org.hamcrest.Matchers.greaterThan;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -44,9 +46,8 @@ public class ProductControllerTest extends BaseTest {
 
     @DisplayName("Create product")
     @Test
+    @Transactional
     void testCreateProduct() throws Exception {
-
-        
         ProductCreateDto product = ProductCreateDto.builder()
                 .description("null")
                 .cost("1.00")

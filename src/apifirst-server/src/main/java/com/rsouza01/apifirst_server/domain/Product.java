@@ -35,7 +35,7 @@ public class Product {
     @Embedded
     private Dimensions dimensions;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Image> images;
 
     @ManyToMany
@@ -52,4 +52,15 @@ public class Product {
 
     @UpdateTimestamp
     private OffsetDateTime dateUpdated;
+
+    public static class ProductBuilder {
+        public Product build() {
+            Product product = new Product(this.id, this.description, this.dimensions, this.images, this.categories,
+                    this.price, this.cost, this.dateCreated, this.dateUpdated);
+            if (this.images != null) {
+                this.images.forEach(image -> image.setProduct(product));
+            }
+            return product;
+        }
+    }
 }
