@@ -134,50 +134,6 @@ public class DataLoader implements CommandLineRunner {
         savedCustomer2 = customerRepository.saveAndFlush(customer2);
     }
 
-    private void initOrdersList() {
-        Order order1 = Order.builder()
-                .customer(savedCustomer1)
-                .selectedPaymentMethod(savedCustomer2.getPaymentMethods().get(0))
-                .orderStatus(OrderStatusEnum.NEW)
-                .shipmentInfo("shipment info")
-                .orderLines(List.of(
-                        OrderLine.builder()
-                                .product(savedProduct1)
-                                .orderQuantity(1)
-                                .shipQuantity(10)
-                                .build(),
-                        OrderLine.builder()
-                                .product(savedProduct2)
-                                .orderQuantity(1)
-                                .shipQuantity(10)
-                                .build()))
-                .build();
-
-        order1.getOrderLines().forEach(orderLine -> orderLine.setOrder(order1));
-        ordersList.add(order1);
-
-        Order order2 = Order.builder()
-                .customer(savedCustomer2)
-                .selectedPaymentMethod(savedCustomer2.getPaymentMethods().get(0))
-                .orderStatus(OrderStatusEnum.NEW)
-                .shipmentInfo("shipment info")
-                .orderLines(List.of(OrderLine.builder()
-                        .product(savedProduct1)
-                        .orderQuantity(1)
-                        .shipQuantity(1)
-                        .build(),
-                        OrderLine.builder()
-                                .product(savedProduct2)
-                                .orderQuantity(1)
-                                .shipQuantity(1)
-                                .build()))
-                .build();
-        order2.getOrderLines().forEach(orderLine -> orderLine.setOrder(order2));
-        ordersList.add(order2);
-
-        ordersList.forEach(order -> orderRepository.saveAndFlush(order));
-    }
-
     private void initProductList() {
         Product product1 = Product.builder()
                 .description("Product 1")
@@ -185,8 +141,6 @@ public class DataLoader implements CommandLineRunner {
                 .cost("100")
                 .price("123")
                 .dimensions(Dimensions.builder().width(10).height(10).length(10).build())
-                .dateCreated(OffsetDateTime.now())
-                .dateUpdated(OffsetDateTime.now())
                 .images(List.of(
                         Image.builder()
                                 .url("url-1-product-1")
@@ -198,14 +152,12 @@ public class DataLoader implements CommandLineRunner {
                                 .build()))
                 .build();
 
-                Product product2 = Product.builder()
+        Product product2 = Product.builder()
                 .description("Product 2")
                 .categories(List.of(categoriesList.get(1), categoriesList.get(2)))
                 .cost("300")
                 .price("321")
                 .dimensions(Dimensions.builder().width(100).height(100).length(100).build())
-                .dateCreated(OffsetDateTime.now())
-                .dateUpdated(OffsetDateTime.now())
                 .images(List.of(
                         Image.builder()
                                 .url("url-1-product-2")
@@ -224,9 +176,41 @@ public class DataLoader implements CommandLineRunner {
         savedProduct2 = productRepository.save(product2);
     }
 
+    private void initOrdersList() {
+        Order order1 = Order.builder()
+                .customer(savedCustomer1)
+                .selectedPaymentMethod(savedCustomer1.getPaymentMethods().get(0))
+                .orderStatus(OrderStatusEnum.NEW)
+                .shipmentInfo("shipment info")
+                .orderLines(List.of(
+                        OrderLine.builder()
+                                .product(savedProduct1)
+                                .orderQuantity(1)
+                                .shipQuantity(10)
+                                .build()))
+                .build();
+
+        order1.getOrderLines().forEach(orderLine -> orderLine.setOrder(order1));
+        ordersList.add(order1);
+
+        Order order2 = Order.builder()
+                .customer(savedCustomer2)
+                .selectedPaymentMethod(savedCustomer2.getPaymentMethods().get(0))
+                .orderStatus(OrderStatusEnum.NEW)
+                .shipmentInfo("shipment info")
+                .orderLines(List.of(OrderLine.builder()
+                        .product(savedProduct2)
+                        .orderQuantity(1)
+                        .shipQuantity(1)
+                        .build()))
+                .build();
+        order2.getOrderLines().forEach(orderLine -> orderLine.setOrder(order2));
+        ordersList.add(order2);
+
+        ordersList.forEach(order -> orderRepository.saveAndFlush(order));
+    }
 
     public void initAllRepositoriesSFG() {
-
         Category electronics = categoryRepository.save(Category.builder()
                 .category("Electronics")
                 .description("Electronics")
@@ -262,11 +246,11 @@ public class DataLoader implements CommandLineRunner {
                 .email("john@springframework.guru")
                 .phone("800-555-1212")
                 .paymentMethods(List.of(PaymentMethod.builder()
-                                .displayName("My Card")
-                                .cardNumber(12341234)
-                                .expiryMonth(12)
-                                .expiryYear(26)
-                                .cvv(123)
+                        .displayName("My Card")
+                        .cardNumber(12341234)
+                        .expiryMonth(12)
+                        .expiryYear(26)
+                        .cvv(123)
                         .build()))
                 .build();
 
@@ -309,8 +293,8 @@ public class DataLoader implements CommandLineRunner {
                         .width(3)
                         .build())
                 .images(List.of(Image.builder()
-                                .url("http://example.com/image1")
-                                .altText("Image 1")
+                        .url("http://example.com/image1")
+                        .altText("Image 1")
                         .build()))
                 .build();
 
@@ -358,10 +342,10 @@ public class DataLoader implements CommandLineRunner {
                 .orderStatus(OrderStatusEnum.NEW)
                 .shipmentInfo("shipment info #2")
                 .orderLines(List.of(OrderLine.builder()
-                                .product(savedProduct2)
-                                .orderQuantity(1)
-                                .shipQuantity(1)
-                                .build(),
+                        .product(savedProduct2)
+                        .orderQuantity(1)
+                        .shipQuantity(1)
+                        .build(),
                         OrderLine.builder()
                                 .product(product2)
                                 .orderQuantity(1)
